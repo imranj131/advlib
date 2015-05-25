@@ -1,0 +1,29 @@
+{
+  "name": "advlib",
+  "homepage": "https://github.com/imranj131/advlib/",
+  "author": "Imran Jameel <imranj131@yahoo.com>",
+  "description": "Library for Decoding Wireless Advertising Packets.  We believe in an open Internet of Things.",
+  "keywords": [
+    "reelyActive",
+    "IoT",
+    "library"
+  ],
+  "version": "0.0.0",
+  "engines": {
+    "node": "^0.10.0"
+  },
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imranj131/advlib.git"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "bugs": {
+    "url": "https://github.com/imranj131/advlib/issues"
+  },
+  "contributors": [
+    { "name": "Imran Jameel" }
+  ],
+  "license": "MIT"
+}
