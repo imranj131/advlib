@@ -3,7 +3,7 @@
  * We believe in an open Internet of Things
  */
 
-var identifier = require('../identifier.js')
+var identifier = require('../common/util/identifier.js')
 
 /**
  * Convert a raw Bluetooth Low Energy advertiser address.

@@ -4,7 +4,7 @@
  */
 
 
-var identifier = require('./identifier.js');
+var identifier = require('./common/util/identifier.js');
 
 var address = require('./address/index.js');
 var header = require('./header/index.js');
