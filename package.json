@@ -8,37 +8,27 @@
     "IoT",
     "library"
   ],
-
   "version": "0.0.0",
-
   "engines": {
     "node": "^0.10.0"
   },
-
   "main": "./lib/index.js",
-
   "repository": {
     "type": "git",
     "url": "https://github.com/imranj131/advlib.git"
   },
-
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "mocha": "^2.2.5"
-    },
-
-  "devDependencies": {},
-
-  "scripts": {
-  "test" : "mocha"
   },
-
+  "scripts": {
+    "test" : "mocha"
+  },
   "bugs": {
     "url": "https://github.com/imranj131/advlib/issues"
-
   },
   "contributors": [
     { "name": "Imran Jameel" }
-
   ],
   "license": "MIT"
 }
