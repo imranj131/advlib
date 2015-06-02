@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title> reelyActive: advlib </title>
+    <link rel="stylesheet" href="web/style/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+    <script type="text/javascript" src="web/js/landing.js"></script>
+  </head>
+  <body ng-app="advlib">
+    <div id="content">
+     <!-- <img src="images/logo.png"> -->
+      <form ng-controller="QueryCtrl">
+        <input ng-model="query.payload" type="text" size="32"
+               placeholder="paste your payload here">
+        <button ng-click="query.process()"> Process </button>
+      </form>
+      <br>
+      <pre>{{query.result}}</pre>
+    </div>
+  </body>
+</html>
