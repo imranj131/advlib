@@ -6,7 +6,9 @@ angular.module("advlib", [])
     $scope.payload = 'This is the payload';
 
     // Watch for changes in the identifier field
-    $scope.$watch(function(scope) { return scope.payload },
+    $scope.$watch(function(scope) {
+     console.log('you typed'+scope);
+      return scope.payload },
                   process);
 
     // Redirect on search button click
