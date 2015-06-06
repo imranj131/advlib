@@ -7,7 +7,7 @@ var advlib = require("../../../lib/ble/index.js");
 var assert = require ('assert'); 
 
 // Inputs for the scenario
-var INPUT_DATA = '421655daba50e1fe0201050c097265656c794163746976650100' ;
+var INPUT_DATA = '421655daba50e1fe0201050c097265656c79416374697665' ;
 
 // Expected outputs for the scenario
 var EXPECTED_DATA =  {
