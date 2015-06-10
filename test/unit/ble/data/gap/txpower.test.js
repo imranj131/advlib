@@ -16,7 +16,7 @@ var INPUT_DATA = '';
 // Expected outputs for the scenario
 var EXPECTED_DATA = '';
 
-describe('ble data servicedata', function() {
+describe('ble data txpower', function() {
 
   // Test the process function
   it('should parse BLE advertiser data service data', function() {

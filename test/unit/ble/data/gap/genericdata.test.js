@@ -15,13 +15,13 @@ var ADTYPE = ;
 var INPUT_DATA = '';
 
 // Expected outputs for the scenario
-var EXPECTED_DATA ='';
+var EXPECTED_DATA ='\u0001';
 
 
 describe('ble data genericdata', function() {
 
   // Test the process function
-  it('should parse generic data', function() {
+  it('should parse genericdata', function() {
   	process(INPUT_DATA_APPLE, CURSOR, ADVERTISER_DATA, ADTYPE);
     assert.deepEqual(ADVERTISER_DATA[ADTYPE], EXPECTED_DATA);
   });
