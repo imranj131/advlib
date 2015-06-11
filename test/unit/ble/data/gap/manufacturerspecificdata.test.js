@@ -3,46 +3,41 @@
  * We believe in an open Internet of Things
  */
 
-var localname = require("../../../../../lib/ble/data/gap/manufacturerspecificdata.js");
+/**
+Bluetooth Core Specification:
+0xFF	«Manufacturer Specific Data»
+*/
+
+var localname = require("../../../../../lib/ble/data/gap/manufacturerspecificdata.js").process;
 var assert = require ('assert'); 
 
 // Constants for the scenario
 var CURSOR = 0;
 var ADVERTISER_DATA = {};
-
+  
 // Inputs for the scenario
-var INPUT_DATA_APPLE = '';
-var INPUT_DATA_IBEACON = '';
-var INPUT_DATA_APPLE_AND_IBEACON = '';
+var INPUT_DATA_COMPANY_ONLY = '03ff4c00';
+var INPUT_DATA_IBEACON = '23ff4c000215b9407f30f5f8466eaff925556b57fe6d294c903974';
 
 // Expected outputs for the scenario
-var EXPECTED_DATA_APPLE ='004c';
-var EXPECTED_DATA_IBEACON ='0215';
+var EXPECTED_DATA_COMPANY_ONLY ='004c';
 var EXPECTED_DATA_APPLE_AND_IBEACON = {
-																		uuid: '',
-																		major: '',
-																		minor: '',
-																		txPower: ''
+																		uuid: "b9407f30f5f8466eaff925556b57fe6d",
+														        major: "294c",
+														        minor: "9039",
+														        txPower: "-74dBm"
 };
 
 describe('ble data manufacturerspecificdata', function() {
 
   // Test the process function
-  it('should convert ble advertiser data to a apple manufacturerspecificdata', function() {
-  	process(INPUT_DATA_APPLE, CURSOR, ADVERTISER_DATA);
-    assert.deepEqual(ADVERTISER_DATA.manufacturerSpecificData.companyIdentifierCode, EXPECTED_DATA_APPLE);
+  it('should convert ble advertiser data to a apple manufacturer specificdata', function() {
+  	localname(INPUT_DATA_COMPANY_ONLY, CURSOR, ADVERTISER_DATA);
+    assert.deepEqual(ADVERTISER_DATA.manufacturerSpecificData.companyIdentifierCode, EXPECTED_DATA_COMPANY_ONLY);
   });
-  it('should convert ble advertiser data to a iBeacon manufacturerspecificdata', function() {
-  	process(INPUT_DATA_IBEACON, CURSOR, ADVERTISER_DATA);
-    assert.deepEqual(ADVERTISER_DATA.manufacturerSpecificData, EXPECTED_DATA_IBEACON);
-  });
-  it('should convert ble advertiser data to apple and iBeacon manufacturerspecificdata', function() {
-  	process(INPUT_DATA_IBEACON, CURSOR, ADVERTISER_DATA);
-    assert.deepEqual(ADVERTISER_DATA.manufacturerSpecificData.iBeacon, EXPECTED_DATA_IBEACON);
+  it('should convert ble advertiser data to apple and iBeacon manufacturer specificdata', function() {
+  	ADVERTISER_DATA.manufacturerSpecificData.iBeacon = {};
+  	localname(INPUT_DATA_IBEACON, CURSOR, ADVERTISER_DATA);
+    assert.deepEqual(ADVERTISER_DATA.manufacturerSpecificData.iBeacon, EXPECTED_DATA_APPLE_AND_IBEACON);
   });
 });
-
-/**
-Bluetooth Core Specification:
-0xFF	«Manufacturer Specific Data»
-*/
