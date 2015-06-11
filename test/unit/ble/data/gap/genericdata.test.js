@@ -18,7 +18,7 @@ var INPUT_DATA = '03ff4c00';
 var EXPECTED_DATA ='4c00';
 
 
-describe('ble data genericdata', function() {
+describe('ble data generic data', function() {
 
   // Test the process function
   it('should parse genericdata', function() {

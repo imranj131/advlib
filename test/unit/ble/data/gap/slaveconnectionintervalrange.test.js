@@ -3,7 +3,7 @@
  * We believe in an open Internet of Things
  */
 
-var localname = require("../../../../../lib/ble/data/gap/slaveconnectionintervalrange.js");
+var slaveconnectionintervalrange = require("../../../../../lib/ble/data/gap/slaveconnectionintervalrange.js").process;
 var assert = require ('assert'); 
 
 // Constants for the scenario
@@ -11,17 +11,17 @@ var CURSOR = 0;
 var ADVERTISER_DATA = {};
 
 // Inputs for the scenario
-var INPUT_DATA = '';
+var INPUT_DATA = '0201050c097265656c794163746976650100';
 
 // Expected outputs for the scenario
-var EXPECTED_DATA ='';
+var EXPECTED_DATA ='05';
 
 
 describe('ble data slaveconnectionintervalrange', function() {
 
   // Test the process function
   it('should parse BLE advertiser data slave connection interval range ', function() {
-  	process(INPUT_DATA_APPLE, CURSOR, ADVERTISER_DATA);
+  	slaveconnectionintervalrange(INPUT_DATA, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.slaveConnectionIntervalRange, EXPECTED_DATA);
   });
   
