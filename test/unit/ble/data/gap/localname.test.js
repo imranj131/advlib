@@ -3,6 +3,12 @@
  * We believe in an open Internet of Things
  */
 
+/**
+Bluetooth Core Specification:
+0x08	«Shortened Local Name»	
+0x09	«Complete Local Name»
+*/
+
 var localname = require("../../../../../lib/ble/data/gap/localname.js");
 var assert = require ('assert'); 
 
@@ -33,8 +39,3 @@ describe('ble data localname', function() {
 
 });
 
-/**
-Bluetooth Core Specification:
-0x08	«Shortened Local Name»	
-0x09	«Complete Local Name»
-*/
