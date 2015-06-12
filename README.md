@@ -132,9 +132,35 @@ which can alternatively be represented as ab:89:67:45:23:01.
 
 ### Data
 
+Process multi-byte entities (as a hexadecimal string) with the following command:
+
+    advlib.ble.data.process(rawHexAddress);
+
+For example:
+
+    advlib.ble.data.process('');
+
+would yield:
+
+    {
+      flags: [ "LE Limited Discoverable Mode", "BR/EDR Not Supported" ],
+      completeLocalName: "reelyActive" 
+    } 
+
 #### Generic Access Profile (GAP)
 
-Description to come
+#####Data Types Definitions and Formats
+
+-Service UUID (uuid.js)
+-Local Name (localname.js)
+-Flags(flags.js)
+-Manufacturer Specific Data (manufacturerspecificdata.js)
+-TX Power Level (txpower.js)
+-Slave Connection Interval Range (slaveconnectionintervalrange.js)
+-Service Solicitation (solicitation.js)
+-Service Data (servicedata.js)
+-Generic Data (genericdata.js)
+-Company Identifier (companyidentifier.js)
 
 
 reelyActive RFID Library
