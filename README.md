@@ -151,16 +151,16 @@ would yield:
 
 #####Data Types Definitions and Formats
 
--Service UUID (uuid.js)
--Local Name (localname.js)
--Flags(flags.js)
--Manufacturer Specific Data (manufacturerspecificdata.js)
--TX Power Level (txpower.js)
--Slave Connection Interval Range (slaveconnectionintervalrange.js)
--Service Solicitation (solicitation.js)
--Service Data (servicedata.js)
--Generic Data (genericdata.js)
--Company Identifier (companyidentifier.js)
+- Service UUID (uuid.js)
+- Local Name (localname.js)
+- Flags(flags.js)
+- Manufacturer Specific Data (manufacturerspecificdata.js)
+- TX Power Level (txpower.js)
+- Slave Connection Interval Range (slaveconnectionintervalrange.js)
+- Service Solicitation (solicitation.js)
+- Service Data (servicedata.js)
+- Generic Data (genericdata.js)
+- Company Identifier (companyidentifier.js)
 
 
 reelyActive RFID Library
