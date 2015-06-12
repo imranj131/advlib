@@ -151,16 +151,63 @@ would yield:
 
 #####Data Types Definitions and Formats
 
-- Service UUID (uuid.js)
-- Local Name (localname.js)
-- Flags(flags.js)
-- Manufacturer Specific Data (manufacturerspecificdata.js)
-- TX Power Level (txpower.js)
-- Slave Connection Interval Range (slaveconnectionintervalrange.js)
-- Service Solicitation (solicitation.js)
-- Service Data (servicedata.js)
-- Generic Data (genericdata.js)
-- Company Identifier (companyidentifier.js)
+###### UUID 
+Accesible at lib/ble/data/gap/uuid.js
+
+|                   Data Type          |        Description             |
+|-------------------------------------:|--------------------------------|
+| <<Incomplete List of 16-bit UUIDs>>  | More 16-bit UUIDs available    |
+| <<Complete List of 16-bit UUIDs>>    | Complete list of 16-bit UUIDs  |
+| <<Incomplete List of 128-bit UUIDs>> | More 128-bit UUIDs available   |
+| <<Complete List of 128-bit UUIDs>>   | Complete list of 128-bit UUIDs |
+
+
+
+###### Local Name 
+Accesible at lib/ble/data/localname.js
+
+
+
+###### Flags
+Accesible at lib/ble/data/flags.js
+
+
+
+###### Manufacturer Specific Data 
+Accesible at lib/ble/data/manufacturerspecificdata.js
+
+
+
+###### TX Power Level 
+Accesible at lib/ble/data/txpower.js
+
+
+
+###### Slave Connection Interval Range 
+Accesible at lib/ble/data/slaveconnectionintervalrange.js
+
+
+
+###### Service Solicitation 
+Accesible at lib/ble/data/solicitation.js
+
+
+
+###### Service Data 
+Accesible at lib/ble/data/servicedata.js
+
+
+
+###### Generic Data 
+Accesible at lib/ble/data/genericdata.js
+
+
+
+###### Company Identifier 
+Accesible at lib/ble/data/companyidentifier.js
+
+
+
 
 
 reelyActive RFID Library
