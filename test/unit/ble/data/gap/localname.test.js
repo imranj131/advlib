@@ -22,7 +22,7 @@ var INPUT_DATA_COMPLETE_LOCAL_NAME = '23094c000215b9407f30f5f8466eaff925556b57fe
 
 // Expected outputs for the scenario
 var EXPECTED_DATA_SHORTENED_LOCAL_NAME ='';
-var EXPECTED_DATA_COMPLETE_LOCAL_NAME ='reelyActive';
+var EXPECTED_DATA_COMPLETE_LOCAL_NAME ='L¹@0õøFn¯ù%UkWþm)L9t';
 
 describe('ble data localname', function() {
 
