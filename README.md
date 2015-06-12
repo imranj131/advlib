@@ -154,12 +154,12 @@ would yield:
 ###### UUID 
 Accesible at lib/ble/data/gap/uuid.js
 
-|                   Data Type          |        Description             |
-|-------------------------------------:|--------------------------------|
-| <<Incomplete List of 16-bit UUIDs>>  | More 16-bit UUIDs available    |
-| <<Complete List of 16-bit UUIDs>>    | Complete list of 16-bit UUIDs  |
-| <<Incomplete List of 128-bit UUIDs>> | More 128-bit UUIDs available   |
-| <<Complete List of 128-bit UUIDs>>   | Complete list of 128-bit UUIDs |
+|               Data Type          |        Description             |
+|---------------------------------:|--------------------------------|
+| Incomplete List of 16-bit UUIDs  | More 16-bit UUIDs available    |
+| Complete List of 16-bit UUIDs    | Complete list of 16-bit UUIDs  |
+| Incomplete List of 128-bit UUIDs | More 128-bit UUIDs available   |
+| Complete List of 128-bit UUIDs   | Complete list of 128-bit UUIDs |
 
 
 
