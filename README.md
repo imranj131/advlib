@@ -152,7 +152,7 @@ would yield:
 #####Data Types Definitions and Formats
 
 ###### UUID 
-Accesible at lib/ble/data/gap/uuid.js
+>>Description to come here
 
 |          Data Type               |        Description             |
 |---------------------------------:|--------------------------------|
@@ -161,54 +161,32 @@ Accesible at lib/ble/data/gap/uuid.js
 | Incomplete List of 128-bit UUIDs | More 128-bit UUIDs available   |
 | Complete List of 128-bit UUIDs   | Complete list of 128-bit UUIDs |
 
-
-
 ###### Local Name 
-Accesible at lib/ble/data/localname.js
-
-
+>>Description to come here
 
 ###### Flags
-Accesible at lib/ble/data/flags.js
-
-
+>>Description to come here
 
 ###### Manufacturer Specific Data 
-Accesible at lib/ble/data/manufacturerspecificdata.js
-
-
+>>Description to come here
 
 ###### TX Power Level 
-Accesible at lib/ble/data/txpower.js
-
-
+>>Description to come here
 
 ###### Slave Connection Interval Range 
-Accesible at lib/ble/data/slaveconnectionintervalrange.js
-
-
+>>Description to come here
 
 ###### Service Solicitation 
-Accesible at lib/ble/data/solicitation.js
-
-
+>>Description to come here
 
 ###### Service Data 
-Accesible at lib/ble/data/servicedata.js
-
-
+>>Description to come here
 
 ###### Generic Data 
-Accesible at lib/ble/data/genericdata.js
-
-
+>>Description to come here
 
 ###### Company Identifier 
-Accesible at lib/ble/data/companyidentifier.js
-
-
-
-
+>>Description to come here
 
 reelyActive RFID Library
 ------------------------
