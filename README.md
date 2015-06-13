@@ -138,7 +138,7 @@ Process multi-byte entities (as a hexadecimal string) with the following command
 
 For example:
 
-    advlib.ble.data.process('');
+    advlib.ble.data.process('payload');
 
 would yield:
 
@@ -152,7 +152,6 @@ would yield:
 #####Data Types Definitions and Formats
 
 ###### UUID 
->>Description to come here
 
 The Service UUID data type is used to include a list of Service or Service Class UUIDs.
 
