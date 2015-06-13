@@ -168,11 +168,13 @@ The Service UUID data type is used to include a list of Service or Service Class
 
 The Local Name data type shall be the same as, or a shortened version of, the
 local name assigned to the device.
+>Shotened local name
+>Complete local name
 
 ###### Flags
 >>Description to come here
 
-The Flags field may be zero or more octets long.
+The Flags data type contains one bit Boolean flags. The Flags field may be zero or more octets long.
 
 | Data Type | Octet | Bit | Description                        |  
 |-----------|-------|---- |------------------------------------|
@@ -187,17 +189,71 @@ The Flags field may be zero or more octets long.
 ###### Manufacturer Specific Data 
 >>Description to come here
 
+The first two data octets shall contain a company identifier code from the
+Assigned Numbers - Company Identifiers document.
+
+|          Data Type          |        Description             |
+|----------------------------:|--------------------------------|
+| Manufacturer Specific Data  | Size: 2 or more octets. 
+|                             | The first 2 octets contain the Company Identifier Code followed by additional manufacturer specific data |
+
 ###### TX Power Level 
 >>Description to come here
+
+The TX Power Level data type indicates the transmitted power level of the
+packet containing the data type.
+
+|      Data Type       |      Description        |
+|---------------------:|-------------------------|
+| TX Power Level       | Size: 1 octet           |
+|                      | 0xXX: -127 to +127 dBm  |
+
 
 ###### Slave Connection Interval Range 
 >>Description to come here
 
+The Slave Connection Interval Range data type contains the Peripheral’s
+preferred connection interval range, for all logical connections.
+
+|      Data Type                  |      Description                         |
+|------------------------------- :|------------------------------------------|
+| Slave Connection Interval Range |       Size: 4 Octets                     |
+|                                 | The first 2 octets defines the minimum   | |                                 | value for the connection interval in the | |                                 | following manner:
+|                                 | connIntervalmin = Conn_Interval_Min * 1.25 ms|
+|                                 | Conn_Interval_Min range: 0x0006 to 0x0C80|
+|                                 | Value of 0xFFFF indicates no specific minimum.|
+|                                 | Values not defined above are reserved.   |
+|                                 |                                          | 
+|                                 | The other 2 octets defines the maximum |                                 | value for the connection interval in the | |                                 | following manner:
+|                                 | connIntervalmax = Conn_Interval_Max * 1.25 ms |
+|                                 | Conn_Interval_Max range: 0x0006 to 0x0C80 |
+|                                 | Conn_Interval_Max shall be equal to or greater than the Conn_Interval_Min. |
+|                                 | Value of 0xFFFF indicates no specific maximum.
+|                                 | Values not defined above are reserved.    |
+
+
 ###### Service Solicitation 
 >>Description to come here
 
+A Peripheral device may send the Service Solicitation data type to invite
+Central devices that expose one or more of the services specified in the
+Service Solicitation data to connect.
+>List of 16 bit Service Solicitation UUIDs
+>List of 128 bit Service Solicitation UUIDs
+
 ###### Service Data 
 >>Description to come here
+
+The Service Data data type consists of a service UUID with the data associated
+with that service.
+
+|      Data Type                  |             Description                 |
+|------------------------------- :|-----------------------------------------|
+| Service Data - 16 bit UUIDs     |    Size: 2 or more octets               |
+|                                 | The first 2 octets contain the 16 bit Service UUID followed by additional service data                            | 
+| Service Data - 128 bit UUID    | Size: 16 or more octets                  |
+|                                 |The first 16 octets contain the 128 bit Service UUID followed by additional service data|
+
 
 ###### Generic Data 
 >>Description to come here
