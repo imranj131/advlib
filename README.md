@@ -215,28 +215,27 @@ packet containing the data type.
 The Slave Connection Interval Range data type contains the Peripheral’s
 preferred connection interval range, for all logical connections.
 
+|      Data Type                  |      Description                         |
+|---------------------------------|------------------------------------------|
+| Slave Connection Interval Range |  Size: 4 Octets                          |
 
-Slave Connection Interval Range 
-Size: 4 Octets   
+The first 2 octets defines the minimum  value for the connection interval in the following manner:
 
-The first 2 octets defines the minimum value for the connection interval in the following manner:
-
-connIntervalmin = Conn_Interval_Min * 1.25 ms
-
-Conn_Interval_Min range: 0x0006 to 0x0C80
+>connIntervalmin = Conn_Interval_Min * 1.25 ms
+>Conn_Interval_Min range: 0x0006 to 0x0C80
 
 Value of 0xFFFF indicates no specific minimum.
-Values not defined above are reserved.  
+Values not defined above are reserved.   
 
-The other 2 octets defines the maximum value for the connection interval in the following manner:
+The other 2 octets defines the maximum 
+value for the connection interval in the following manner:
 
-connIntervalmax = Conn_Interval_Max * 1.25 ms 
+>connIntervalmax = Conn_Interval_Max * 1.25 ms 
+>Conn_Interval_Max range: 0x0006 to 0x0C80 
 
-Conn_Interval_Max range: 0x0006 to 0x0C80 
-
-Conn_Interval_Max shall be equal to or greater than the Conn_Interval_Min.  Value of 0xFFFF indicates no specific maximum.
-Values not defined above are reserved.|
-
+Conn_Interval_Max shall be equal to or greater than the Conn_Interval_Min. 
+Value of 0xFFFF indicates no specific maximum.
+Values not defined above are reserved.    
 
 ###### Service Solicitation 
 >>Description to come here
