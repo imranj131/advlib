@@ -154,6 +154,8 @@ would yield:
 ###### UUID 
 >>Description to come here
 
+The Service UUID data type is used to include a list of Service or Service Class UUIDs.
+
 |          Data Type               |        Description             |
 |---------------------------------:|--------------------------------|
 | Incomplete List of 16-bit UUIDs  | More 16-bit UUIDs available    |
@@ -164,8 +166,23 @@ would yield:
 ###### Local Name 
 >>Description to come here
 
+The Local Name data type shall be the same as, or a shortened version of, the
+local name assigned to the device.
+
 ###### Flags
 >>Description to come here
+
+The Flags field may be zero or more octets long.
+
+| Data Type | Octet | Bit | Description                        |  
+|-----------|-------|---- |------------------------------------|
+|  Flags    |   0   |  0  | LE Limited Discoverable Mode       |
+|           |   0   |  1  | LE General Discoverable Mode       |
+|           |   0   |  2  | BR/EDR Not Supported.              |     
+|           |   0   |  3  | Simultaneous LE and BR/EDR to Same Device Capable (Controller). |      
+|           |   0   |  4  | Simultaneous LE and BR/EDR to Same Device Capable (Host). |
+|           |   0   | 5.7 |      Reserved                       |
+  
 
 ###### Manufacturer Specific Data 
 >>Description to come here
