@@ -306,6 +306,7 @@ If we look at the payload in detail,
 * 0215 = identifier code for iBeacon
 * b9407f30f5f8466eaff925556b57fe6d294c903974 = uuid
 
+
 ###### TX Power Level 
 
 The TX Power Level data type indicates the transmitted power level of the
