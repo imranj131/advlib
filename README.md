@@ -166,7 +166,7 @@ For example in the case where we want to process BLE advertiser data into a Comp
 If we look at the payload in detail,
 
 |               Byte Number(s)     |    Payload component (length, type, uuid) component |
-|:--------------------------------:|:---------------------------------------------------:|
+|:---------------------------------|:----------------------------------------------------s|
 |          32                      | length of hexadecimal string                        |
 |          07                      | data type value for 128-bit Service Class UUIDs from   [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile)| 
 | 4449555520657669746341796c656572 | 128 bit BLE advertiser                              |
@@ -235,7 +235,7 @@ If we look at the payload in detail,
 
 
 |               Byte Number(s)     |    Payload component (length, type, uuid) component |
-|:--------------------------------:|:---------------------------------------------------:|
+|:---------------------------------|:----------------------------------------------------|
 |          02                      | length of hexadecimal string                        |
 |          01                      | data type value for flags from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile)   | 
 |          04                      | Octet+Bit                                           |
