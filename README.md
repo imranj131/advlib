@@ -231,7 +231,7 @@ For example, if we look at the case for 'BR/EDR Not Supported.' in [flags.js](ht
 
 If we look at the payload in detail,
 * 02 = length of hexadecimal string
-* 01 = data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) 
+* 01 = data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for Flags
 * 04 = Octet+Bit
 
 ```javascript 
@@ -252,6 +252,59 @@ Assigned Numbers - Company Identifiers document.
 |----------------------------:|--------------------------------|
 | Manufacturer Specific Data  | Size: 2 or more octets. 
 |                             | The first 2 octets contain the Company Identifier Code followed by additional manufacturer specific data |
+
+In this case, we have two options of payloads. 
+
+For example in case 1, if the BLE advertiser data emits a packet with only company data,
+
+```javascript
+  var payload = '03ff4c00';
+  var cursor = 0;
+  var advertiserData = {};
+```
+
+... the ouput data would be as follows:
+
+```javascript
+{
+  manufacturerSpecificData: {
+      companyIdentifierCode: "004c",
+      data: "",
+}
+```
+
+If we look at the payload in detail,
+* 03 = length of hexadecimal string
+* ff = data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for manufacturer specific data
+* 4c00 = reversed company identifier code  (eg: Apple)
+
+For example in case 2, if the BLE advertiser data emits a packet from an iBeacon,
+
+```javascript
+  var payload = '23ff4c000215b9407f30f5f8466eaff925556b57fe6d294c903974';
+  var cursor = 0;
+  var advertiserData = {};
+```
+
+... the ouput data would be as follows:
+
+```javascript
+manufacturerSpecificData: {
+  iBeacon: {
+    uuid: "b9407f30f5f8466eaff925556b57fe6d",
+    major: "294c",
+    minor: "9039",
+    txPower: "116dBm"
+  }
+};
+```
+
+If we look at the payload in detail,
+* 23 = length of hexadecimal string (with the cursor starting at 6)
+* ff = data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for manufacturer specific data
+* 4c00 = company identifier code  (eg: Apple)
+* 0215 = identifier code for iBeacon
+* b9407f30f5f8466eaff925556b57fe6d294c903974 = uuid
 
 ###### TX Power Level 
 
