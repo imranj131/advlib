@@ -49,7 +49,7 @@ Process a raw packet (as a hexadecimal string) with the following command:
 
     advlib.ble.process(rawHexPacket);
 
-The library is organised hierarchically so that the separate elements of a packet can be processed individually.  Refer to the index below for details on each element:
+The library is organized hierarchically so that the separate elements of a packet can be processed individually.  Refer to the index below for details on each element:
 
 * [Header](#header)
 * [Address](#address)
@@ -158,24 +158,27 @@ The Service UUID data type is used to include a list of Service or Service Class
 For example in the case where we want to process BLE advertiser data into a Complete 128 Bit UUID, the input payload input need to be 128 bits. Since 128 bits are 16 bytes, which are 16 characters, we would need 32 hexadecimal digits in the payload.
 
 ```javascript
-  var payload = '32074449555520657669746341796c656572';
+  var payload = '33074449555520657669746341796c656572';
   var cursor = 0;
   var advertiserData = {};
 ```
 
 If we look at the payload in detail,
-* 32 = length of hexadecimal string
-* 07 = data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for 128-bit Service Class UUIDs
-* 4449555520657669746341796c656572 = 128 bit BLE advertiser
+|    Byte Number(s)    |    Payload component (length, type, uuid) component  |
+|---------------------:|------------------------------------------------------|
+|          32          |            length of hexadecimal string              |
+|          07          |  data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for 128-bit Service Class UUIDs                                               |
+| 4449555520657669746341796c656572  |        128 bit BLE advertiser           |
+
+
+This is best illustrated with an example:
+
+    advlib.ble.data.gap.uuid.complete128BitUUIDs(payload, cursor, advertiserData);
+
+Which would yield:
 
 ```javascript
-  function complete128BitUUIDs(payload, cursor, advertiserData) {
-  var data = payload.substr(cursor+4, pdu.getTagDataLength(payload, cursor));
-  var complete128BitUUIDs = pdu.reverseBytes(data);
-  advertiserData.complete128BitUUIDs = complete128BitUUIDs;
-  }
- 
- OUTPUT ---> "complete128BitUUIDs": "7265656c794163746976652055554944"
+"complete128BitUUIDs": "7265656c794163746976652055554944"
 ```
 
 ###### Local Name 
@@ -194,16 +197,14 @@ reelyActive in ASCII as a hexadecimal string would be '7265656c79416374697665' a
   var advertiserData = {};
 ```
 
-``` javascript
-function completeLocalName(payload, cursor, advertiserData) {
-  var hexName = payload.substr(cursor+4, pdu.getTagDataLength(payload, cursor));
-  var result = "";
-  for(var cChar = 0; cChar < hexName.length; cChar += 2)
-    result += String.fromCharCode(parseInt(hexName.substr(cChar,2),16));
-  advertiserData.completeLocalName = result;
-}
+This is best illustrated with an example:
 
-OUTPUT ---> "completeLocalName": "reelyActive"
+    advlib.ble.data.gap.localname.completeLocalName(payload, cursor, advertiserData);
+
+Which would yield:
+
+```javascript
+"completeLocalName": "reelyActive"
 ```
 
 ###### Flags
@@ -230,18 +231,21 @@ For example, if we look at the case for 'BR/EDR Not Supported.' in [flags.js](ht
 ```
 
 If we look at the payload in detail,
-* 02 = length of hexadecimal string
-* 01 = data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for Flags
-* 04 = Octet+Bit
+|    Byte Number(s)    |    Payload component (length, type, uuid) component  |
+|---------------------:|------------------------------------------------------|
+|          02          |            length of hexadecimal string              |
+|          01          |  data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for Flags                                                                     |
+|          04           |        Octet+Bit                                    |
 
-```javascript 
-  if(flags & 0x04) {
-    result.push("BR/EDR Not Supported");
-  }
+This is best illustrated with an example:
 
-OUTPUT ---> "flags": ["BR/EDR Not Supported"]
+    advlib.ble.data.gap.flags.process(payload, cursor, advertiserData);
+
+Which would yield:
+
+```javascript
+"flags": ["BR/EDR Not Supported"]
 ```
-
 
 ###### Manufacturer Specific Data
 
@@ -255,7 +259,7 @@ Assigned Numbers - Company Identifiers document.
 
 In this case, we have two options of payloads. 
 
-For example in case 1, if the BLE advertiser data emits a packet with only company data,
+For example in case 1, the BLE advertiser data emits a packet with only company data when the arguments are defined as follows,
 
 ```javascript
   var payload = '03ff4c00';
@@ -263,7 +267,18 @@ For example in case 1, if the BLE advertiser data emits a packet with only compa
   var advertiserData = {};
 ```
 
-... the ouput data would be as follows:
+If we look at the payload in detail,
+|    Byte Number(s)    |    Payload component (length, type, uuid) component  |
+|---------------------:|------------------------------------------------------|
+|          03          |            length of hexadecimal string              |
+|          ff          |  data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for manufacturer specific data                                                |
+|          4c00       |   reversed company identifier code  (eg: Apple)       |
+
+This is best illustrated with an example:
+
+    advlib.ble.data.gap.manufacturerspecificdata.process(payload, cursor, advertiserData);
+
+Which would yield:
 
 ```javascript
 {
@@ -273,12 +288,8 @@ For example in case 1, if the BLE advertiser data emits a packet with only compa
 }
 ```
 
-If we look at the payload in detail,
-* 03 = length of hexadecimal string
-* ff = data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for manufacturer specific data
-* 4c00 = reversed company identifier code  (eg: Apple)
 
-For example in case 2, if the BLE advertiser data emits a packet from an iBeacon,
+For example in case 2, the BLE advertiser data emits a packet from an iBeacon, when the arguments are defined as follows,
 
 ```javascript
   var payload = '23ff4c000215b9407f30f5f8466eaff925556b57fe6d294c903974';
@@ -286,7 +297,19 @@ For example in case 2, if the BLE advertiser data emits a packet from an iBeacon
   var advertiserData = {};
 ```
 
-... the ouput data would be as follows:
+If we look at the payload in detail,
+|    Byte Number(s)    |    Payload component (length, type, uuid) component  |
+|---------------------:|------------------------------------------------------|
+|          23          |            length of hexadecimal string              |
+|          ff          |  data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for manufacturer specific data                                                |
+|          4c00       |   reversed company identifier code  (eg: Apple)       
+|          0215       |   identifier code for iBeacon                         |
+| b9407f30f5f8466eaff925556b57fe6d294c903974 |          uuid                  |  
+This is best illustrated with an example:
+
+    advlib.ble.data.gap.manufacturerspecificdata.process(payload, cursor, advertiserData);
+
+Which would yield:
 
 ```javascript
 manufacturerSpecificData: {
@@ -298,14 +321,6 @@ manufacturerSpecificData: {
   }
 };
 ```
-
-If we look at the payload in detail,
-* 23 = length of hexadecimal string (with the cursor starting at 6)
-* ff = data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for manufacturer specific data
-* 4c00 = company identifier code  (eg: Apple)
-* 0215 = identifier code for iBeacon
-* b9407f30f5f8466eaff925556b57fe6d294c903974 = uuid
-
 
 ###### TX Power Level 
 
