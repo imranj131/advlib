@@ -19,17 +19,16 @@ var CURSOR = 0;
 var ADVERTISER_DATA = {};
 
 // Inputs for the scenario
-var INPUT_DATA_NC_16 = '0202';
-var INPUT_DATA_C_16 = '0203';
-var INPUT_DATA_NC_128 = '0206';
-var INPUT_DATA_C_128 = '0207';
+var INPUT_DATA_NC_16 = '';
+var INPUT_DATA_C_16 = '';
+var INPUT_DATA_NC_128 = '';
+var INPUT_DATA_C_128 = '32xx4449555520657669746341796c656572';
 
 // Expected outputs for the scenario
-var EXPECTED_DATA_NC_16 = '';
-var EXPECTED_DATA_C_16 = '';
-var EXPECTED_DATA_NC_128 = '';
-var EXPECTED_DATA_C_128 = '';
-
+var EXPECTED_DATA_NC_16 ='';
+var EXPECTED_DATA_C_16 ='';
+var EXPECTED_DATA_NC_128 ='';
+var EXPECTED_DATA_C_128 = '7265656c794163746976652055554944'; 
 
 describe('ble data uuid', function() {
 
