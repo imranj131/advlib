@@ -164,11 +164,11 @@ For example in the case where we want to process BLE advertiser data into a Comp
 ```
 
 If we look at the payload in detail,
-| Byte Number(s) | Payload component (length, type, uuid) component |
-|----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 32 | length of hexadecimal string |
-| 07 | data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for 128-bit Service Class UUIDs |
-| 4449555520657669746341796c656572 | The other 2 octets defines the maximum value forthe connection interval in the following manner:connIntervalmax,= Conn_Interval_Max * 1.25 msConn_Interval_Max range: 0x0006 to 0x0C80Conn_Interval_Max shall be equal to or greaterthan the Conn_Interval_Min.Value of 0xFFFF indicates no specific maximum.Values not defined above are reserved. |
+|    Byte Number(s)     |    Payload component (length, type, uuid) component    |
+|----------------------:|:------------------------------------------------------:|
+|          32           |            length of hexadecimal string                |
+|          07           |  data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for 128-bit Service Class UUIDs|
+| 4449555520657669746341796c656572  |        128 bit BLE advertiser           |
 
 
 This is best illustrated with an example:
@@ -301,7 +301,7 @@ If we look at the payload in detail,
 |    Byte Number(s)    |    Payload component (length, type, uuid) component  |
 |----------------------|------------------------------------------------------|
 |          23          |            length of hexadecimal string              |
-|          ff          |  data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for manufacturer specific data|
+|          ff          |  data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for manufacturer specific data                                                |
 |          4c00       |   reversed company identifier code  (eg: Apple)       
 |          0215       |   identifier code for iBeacon                         |
 | b9407f30f5f8466eaff925556b57fe6d294c903974 |          uuid                  |  
