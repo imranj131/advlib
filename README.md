@@ -155,19 +155,57 @@ would yield:
 
 The Service UUID data type is used to include a list of Service or Service Class UUIDs.
 
-|          Data Type               |        Description             |
-|---------------------------------:|--------------------------------|
-| Incomplete List of 16-bit UUIDs  | More 16-bit UUIDs available    |
-| Complete List of 16-bit UUIDs    | Complete list of 16-bit UUIDs  |
-| Incomplete List of 128-bit UUIDs | More 128-bit UUIDs available   |
-| Complete List of 128-bit UUIDs   | Complete list of 128-bit UUIDs |
+For example in the case where we want to process BLE advertiser data into a Complete 128 Bit UUID,the input payload input need to be 128 bits.
+
+Since 128 bits are 16 bytes, which are 16 characters, we would need 32 hexadecimal digits in the payload.
+
+If we look at the payload in detail,
+* 32 = length of hexadecimal string
+* xx = type 
+* 4449555520657669746341796c656572 = 128 bit BLE advertiser
+
+```javascript
+  var payload = '32074449555520657669746341796c656572';
+  var cursor = 0;
+  var advertiserData = {};
+```
+
+```javascript
+  function complete128BitUUIDs(payload, cursor, advertiserData) {
+  var data = payload.substr(cursor+4, pdu.getTagDataLength(payload, cursor));
+  var complete128BitUUIDs = pdu.reverseBytes(data);
+  advertiserData.complete128BitUUIDs = complete128BitUUIDs;
+  }
+ 
+ OUTPUT ---> "complete128BitUUIDs": "7265656c794163746976652055554944"
+  // From http://www.hyperlocalcontext.com/whatat/receiver/001bc50940810075
+```
 
 ###### Local Name 
 
-The Local Name data type shall be the same as, or a shortened version of, the
-local name assigned to the device.
->Shotened local name
->Complete local name
+The Local Name data type shall be the complete name, or a shortened version of, the local name assigned to the device.
+
+For example in the case where we want to process BLE advertiser data into a Complete local name ,the input payload input would need to be valid ASCII code bytes. 
+
+For instance, reelyActive in ASCII as a hexadecimal string would be 7265656c79416374697665.
+
+```javascript
+  var payload = '7265656c79416374697665'
+  var cursor = -4;
+  var advertiserData = {};
+```
+
+``` javascript
+function completeLocalName(payload, cursor, advertiserData) {
+  var hexName = payload.substr(cursor+4, pdu.getTagDataLength(payload, cursor));
+  var result = "";
+  for(var cChar = 0; cChar < hexName.length; cChar += 2)
+    result += String.fromCharCode(parseInt(hexName.substr(cChar,2),16));
+  advertiserData.completeLocalName = result;
+}
+
+OUTPUT ---> "completeLocalName": "reelyActive"
+```
 
 ###### Flags
 
@@ -182,6 +220,7 @@ The Flags data type contains one bit Boolean flags. The Flags field may be zero 
 |           |   0   |  4  | Simultaneous LE and BR/EDR to Same Device Capable (Host). |
 |           |   0   | 5.7 |      Reserved                       |
   
+
 
 ###### Manufacturer Specific Data
 
