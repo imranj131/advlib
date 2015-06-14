@@ -9,8 +9,9 @@ Library for wireless advertising packet decoding.  Currently supports the follow
 Installation
 ------------
 
+  ```javascript
     npm install advlib
-
+  ```
 
 Hello advlib
 ------------
@@ -26,6 +27,7 @@ console.log(JSON.stringify(processedPacket, null, " "));
 
 The console output should appear as follows:
 
+  ```javascript
     {
       type: "ADVA-48",
       value: "fee150bada55",
@@ -40,7 +42,7 @@ The console output should appear as follows:
         completeLocalName: "reelyActive" 
       } 
     }
-
+  ```
 
 Bluetooth Smart (BLE) Advertising Packet Library
 ------------------------------------------------
@@ -60,7 +62,9 @@ The library is organized hierarchically so that the separate elements of a packe
 
 Process a 16-bit header (as a hexadecimal string) with the following command:
 
+  ```javascript
     advlib.ble.header.process(rawHexHeader);
+  ```
 
 For reference, the 16-bit header is as follows (reading the hexadecimal string from left to right):
 
@@ -87,24 +91,27 @@ And the advertising packet types are as follows:
 
 For example:
 
+  ```javascript
     advlib.ble.header.process('4216');
-
+  ```
 would yield:
 
+  ```javascript
     {
       rxAdd: "public",
       txAdd: "random",
       type: "ADV_NONCONNECT_IND",
       length: 22
     }
-
+  ```
 
 ### Address
 
 Process a 48-bit address (as a hexadecimal string) with the following command:
 
+  ```javascript
     advlib.ble.address.process(rawHexAddress);
-
+  ```
 For reference, the 48-bit header is as follows (reading the hexadecimal string from left to right):
 
 | Bit(s) | Address component |
@@ -118,15 +125,17 @@ For reference, the 48-bit header is as follows (reading the hexadecimal string f
 
 This is best illustrated with an example:
 
+  ```javascript
     advlib.ble.address.process('0123456789ab');
-
+  ```
 Would yield:
 
+   ```javascript
     {
       type: "ADVA-48",
       value: "ab8967452301"
     }
-
+   ```
 which can alternatively be represented as ab:89:67:45:23:01.
 
 
@@ -134,18 +143,22 @@ which can alternatively be represented as ab:89:67:45:23:01.
 
 Process multi-byte entities (as a hexadecimal string) with the following command:
 
+  ```javascript
     advlib.ble.data.process(rawHexAddress);
-
+  ```
 For example:
 
+  ```javascript
     advlib.ble.data.process('payload');
-
+  ```
 would yield:
 
+  ```javascript
     {
       flags: [ "LE Limited Discoverable Mode", "BR/EDR Not Supported" ],
       completeLocalName: "reelyActive" 
     } 
+  ```
 
 #### Generic Access Profile (GAP)
 
@@ -174,8 +187,9 @@ If we look at the payload in detail,
 
 This is best illustrated with an example:
 
+  ```javascript
     advlib.ble.data.gap.uuid.complete128BitUUIDs(payload, cursor, advertiserData);
-
+  ```
 Which would yield:
 
 ```javascript
@@ -200,8 +214,9 @@ reelyActive in ASCII as a hexadecimal string would be '7265656c79416374697665' a
 
 This is best illustrated with an example:
 
+   ```javascript
     advlib.ble.data.gap.localname.completeLocalName(payload, cursor, advertiserData);
-
+    ```
 Which would yield:
 
 ```javascript
@@ -242,8 +257,9 @@ If we look at the payload in detail,
 
 This is best illustrated with an example:
 
+   ```javascript
     advlib.ble.data.gap.flags.process(payload, cursor, advertiserData);
-
+   ```
 Which would yield:
 
 ```javascript
@@ -315,8 +331,9 @@ If we look at the payload in detail,
   
 This is best illustrated with an example:
 
-    advlib.ble.data.gap.manufacturerspecificdata.process(payload, cursor, advertiserData);
-
+  ```javascript
+      advlib.ble.data.gap.manufacturerspecificdata.process(payload, cursor, advertiserData);
+  ```
 Which would yield:
 
 ```javascript
