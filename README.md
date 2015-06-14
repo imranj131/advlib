@@ -232,11 +232,13 @@ For example, if we look at the case for 'BR/EDR Not Supported.' in [flags.js](ht
 ```
 
 If we look at the payload in detail,
-|    Byte Number(s)    |    Payload component (length, type, uuid) component  |
-|----------------------|------------------------------------------------------|
-|          02          |            length of hexadecimal string              |
-|          01          |  data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for Flags|
-|          04           |        Octet+Bit                                    |
+
+
+|               Byte Number(s)     |    Payload component (length, type, uuid) component |
+|:-------------------------------- |:----------------------------------------------------|
+|          02                      | length of hexadecimal string                        |
+|          01                      | data type value for flags from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile)   | 
+|          04                      | Octet+Bit                                           |
 
 This is best illustrated with an example:
 
@@ -269,11 +271,13 @@ For example in case 1, the BLE advertiser data emits a packet with only company 
 ```
 
 If we look at the payload in detail,
-|    Byte Number(s)    |    Payload component (length, type, uuid) component  |
-|----------------------|------------------------------------------------------|
-|          03          |            length of hexadecimal string              |
-|          ff          |  data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for manufacturer specific data|
-|          4c00       |   reversed company identifier code  (eg: Apple)       |
+
+
+|               Byte Number(s)     |    Payload component (length, type, uuid) component |
+|:-------------------------------- |:----------------------------------------------------|
+|          03                      | length of hexadecimal string                        |
+|          ff                      | data type value for manufacturer speicific data from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile)   | 
+|         4c00                     | reversed company identifier code  (eg: Apple)       |
 
 This is best illustrated with an example:
 
@@ -299,13 +303,16 @@ For example in case 2, the BLE advertiser data emits a packet from an iBeacon, w
 ```
 
 If we look at the payload in detail,
-|    Byte Number(s)    |    Payload component (length, type, uuid) component  |
-|----------------------|------------------------------------------------------|
-|          23          |            length of hexadecimal string              |
-|          ff          |  data type value from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) for manufacturer specific data                                                |
-|          4c00       |   reversed company identifier code  (eg: Apple)       
-|          0215       |   identifier code for iBeacon                         |
-| b9407f30f5f8466eaff925556b57fe6d294c903974 |          uuid                  |  
+
+|               Byte Number(s)              |Payload component (length, type, uuid) component|
+|:------------------------------------------|:---------------------------------------------|
+|          23                               | length of hexadecimal string                 |
+|          ff                               | data type value for manufacturer specific data from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) | 
+|          4c00                             | Octet+Bit                                    |
+|          4c00                             | reversed company identifier code  (eg: Apple)|
+|          0215                             | identifier code for iBeacon                  |
+| b9407f30f5f8466eaff925556b57fe6d294c903974|          uuid                                |
+  
 This is best illustrated with an example:
 
     advlib.ble.data.gap.manufacturerspecificdata.process(payload, cursor, advertiserData);
