@@ -155,11 +155,7 @@ would yield:
     } 
 
 
-#### Generic Access Profile (GAP)
-
-#####Data Types Definitions and Formats
-
-###### UUID 
+#### UUID 
 
 Process a UUID assigned to the device.
 
@@ -182,14 +178,14 @@ For reference, the example payload is interpreted as follows:
 | 1           | 07                               | GAP Data Type for complete 128-bit UUID | 
 | 2 to length | 4449555520657669746341796c656572 | ASCII representation for 'reelyActive UUID'|
 
-Which would yield:
+Which would add a property to advData as follows:
 
     advData: {
       complete128BitUUIDs: "7265656c794163746976652055554944"
     }
 
 
-###### Local Name 
+#### Local Name 
 
 Process a local name (completeLocalName, or shortenedLocalName) of the local name assigned to the device.
 
@@ -208,126 +204,97 @@ For reference, the example payload is interpreted as follows:
 | 1           | 09                     | GAP Data Type for complete local name   | 
 | 2 to length | 7265656c79416374697665 | ASCII representation for 'reelyActive'  |
 
-Which would yield:
+Which would add a property to advData as follows:
 
     advData: {
       completeLocalName: "reelyActive"
     }
 
-###### Flags
+#### Flags
 
-The Flags data type contains one bit Boolean flags. The Flags field may be zero or more octets long.
+Process flags assigned to the device.
 
-| Data Type | Octet | Bit | Description                        |  
-|-----------|-------|---- |------------------------------------|
-|  Flags    |   0   |  0  | LE Limited Discoverable Mode       |
-|           |   0   |  1  | LE General Discoverable Mode       |
-|           |   0   |  2  | BR/EDR Not Supported.              |     
-|           |   0   |  3  | Simultaneous LE and BR/EDR to Same Device Capable (Controller). |      
-|           |   0   |  4  | Simultaneous LE and BR/EDR to Same Device Capable (Host). |
-|           |   0   | 5.7 |      Reserved                       |
-  
-The input payload input could be in five different cases as mentioned in the table above.
+    advlib.ble.data.gap.flags.process(payload, cursor, advertiserData);
+ 
+For reference, the flags are as follows:
 
-For example, if we look at the case for 'BR/EDR Not Supported.' in [flags.js](https://github.com/imranj131/advlib/blob/master/lib/ble/data/gap/flags.js) file, our input arguments would be as follows:
-
-    var payload = '020104'
-    var cursor = 0;
-    var advertiserData = {};
-
-
-If we look at the payload in detail,
-
-
-|               Byte Number(s)     |    Payload component (length, type, uuid)           |
-|:---------------------------------|:----------------------------------------------------|
-|          02                      | length of hexadecimal string                        |
-|          01                      | data type value for flags from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile)   | 
-|          04                      | Octet+Bit                                           |
+| Bit(s) | Description                                                   |
+|-------:|---------------------------------------------------------------|
+| 0      | LE Limited Discoverable Mode                                  |
+| 1      | LE General Discoverable Mode                                  |
+| 2      | BR/EDR Not Supported                                          |
+| 3      | Simultaneous LE and BR/EDR to Same Device Capable (Controller)|
+| 4      | Simultaneous LE and BR/EDR to Same Device Capable (Host)      |
+| 5      | Reserved                                                      |
 
 This is best illustrated with an example:
 
+    advlib.ble.data.gap.flags.process(020104, 0, {});
+    
+For reference, the example payload is interpreted as follows:
 
-    advlib.ble.data.gap.flags.process(payload, cursor, advertiserData);
+| Byte(s)     | Hex String  | Description                         |
+|-------------|:------------|:------------------------------------|
+| 0           | 02          | Length, in bytes, of type and data  |
+| 1           | 01          | GAP Data Type for flags             | 
+| 2 to length | 04          | See table above                     |
 
-Which would yield:
-
+Which would add a property to advData as follows:
 
     advData: {
       flags: ["BR/EDR Not Supported"]
     }
 
+#### Manufacturer Specific Data
 
-###### Manufacturer Specific Data
-
-The first two data octets shall contain a company identifier code from the
-Assigned Numbers - Company Identifiers document.
-
-|          Data Type          |        Description             |
-|:---------------------------:|:------------------------------:|
-| Manufacturer Specific Data  | Size: 2 or more octets. 
-|                             | The first 2 octets contain the Company Identifier Code followed by additional manufacturer specific data |
-
-In this case, we have two options of payloads. 
-
-For example in case 1, the BLE advertiser data emits a packet with only company data when the arguments are defined as follows,
-
-
-    var payload = '03ff4c00';
-    var cursor = 0;
-    var advertiserData = {};
-
-
-If we look at the payload in detail,
-
-
-|               Byte Number(s)     |    Payload component (length, type, uuid)           |
-|:-------------------------------- |:----------------------------------------------------|
-|          03                      | length of hexadecimal string                        |
-|          ff                      | data type value for manufacturer speicific data from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile)   | 
-|         4c00                     | reversed company identifier code  (eg: Apple)       |
-
-This is best illustrated with an example:
+Process manufacturer specific data assigned to the device.
 
     advlib.ble.data.gap.manufacturerspecificdata.process(payload, cursor, advertiserData);
+  
+This is best illustrated with an example:
 
-Which would yield:
+    advlib.ble.data.gap.manufacturerspecificdata.process(03ff4c00, 0, {});
+    
+For reference, the example payload is interpreted as follows:
 
+| Byte(s)     | Hex String             | Description                                  |
+|-------------|:-----------------------|:---------------------------------------------|
+| 0           | 03                     | Length, in bytes, of type and data           |
+| 1           | ff                     | GAP Data Type for manufacturer specific data | 
+| 2 to length | 4c00                   |                                              |
+
+Which would add a property to advData as follows:
 
     manufacturerSpecificData: {
       companyIdentifierCode: "004c",
       data: "",
     }
 
+In the other case,
+
+    var payload = 26ff4c000215b9407f30f5f8466eaff925556b57fe6d294c903974;
+    advlib.ble.data.gap.manufacturerspecificdata.process(payload, 0, {});
+    
+For reference, the example payload is interpreted as follows:
+
+| Byte(s)     | Hex String                                        | Description       |
+|-------------|:--------------------------------------------------|:------------------|
+| 0           | 26                                                | Length, in bytes, of type and data |
+| 1           | ff                                                | GAP Data Type for manufacturer specific data | 
+| 2 to length | 4c000215b9407f30f5f8466eaff925556b57fe6d294c903974 | See table below  |
 
 
-For example in case 2, the BLE advertiser data emits a packet from an iBeacon, when the arguments are defined as follows,
+| Byte(s) | Hex String                      | Description                                  |
+|--------:|:--------------------------------|:---------------------------------------------|
+| 0-1     | 4c00                            | Apple company identifier code (bytes reversed)|
+| 2-3     | 0215                            | Identifier code for iBeacon                  |
+| 3-19    | b9407f30f5f8466eaff925556b57fe6d| UUID (assigned by Apple)                     |
+| 20-21   | 294c                            | Major                                        |
+| 21-22   | 9039                            | Minor                                        |
+| 23      | 74                              | TxPower (see TxPower section)                |
+ 
 
-    var payload = '26ff4c000215b9407f30f5f8466eaff925556b57fe6d294c903974';
-    var cursor = 0;
-    var advertiserData = {};
-
-
-If we look at the payload in detail,
-
-|               Byte Number(s)              |Payload component (length, type, uuid) component|
-|:------------------------------------------|:---------------------------------------------|
-|          26                               | length of hexadecimal string                 |
-|          ff                               | data type value for manufacturer specific data from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) | 
-|          4c00                             | reversed company identifier code  (eg: Apple)|
-|          0215                             | reversed identifier code for iBeacon         |
-| b9407f30f5f8466eaff925556b57fe6           |          uuid                                |
-|       d294c                               |          major                               |
-|           9039                            |          minor                               |
-|             74                            |          txPower                             |
-
-This is best illustrated with an example: 
-
-
-    advlib.ble.data.gap.manufacturerspecificdata.process(payload, cursor, advertiserData);
-
-Which would yield:
-
+Which would add a property to advData as follows:
 
     manufacturerSpecificData: {
       iBeacon: {
@@ -338,8 +305,7 @@ Which would yield:
         }
     };
 
-
-###### TX Power Level 
+#### TX Power Level 
 
 The TX Power Level data type indicates the transmitted power level of the
 packet containing the data type.
@@ -357,7 +323,7 @@ preferred connection interval range, for all logical connections.
 
 >>Table to come here
 
-###### Service Solicitation 
+#### Service Solicitation 
 
 A Peripheral device may send the Service Solicitation data type to invite
 Central devices that expose one or more of the services specified in the
@@ -365,7 +331,7 @@ Service Solicitation data to connect.
 >List of 16 bit Service Solicitation UUIDs
 >List of 128 bit Service Solicitation UUIDs
 
-###### Service Data 
+#### Service Data 
 
 The Service Data data type consists of a service UUID with the data associated
 with that service.
