@@ -367,10 +367,10 @@ And the type specific data is intepreted as follows:
 | 4-5     | 354c       | connIntervalmax |
 
 - connIntervalmin = Conn_Interval_Min * 1.25 ms
-    -Conn_Interval_Min range: 0x0006 to 0x0C80
+    - Conn_Interval_Min range: 0x0006 to 0x0C80
 
 - connIntervalmax = Conn_Interval_Max * 1.25 ms
-    -Conn_Interval_Max range: 0x0006 to 0x0C80
+    - Conn_Interval_Max range: 0x0006 to 0x0C80
 
 
 Which would add a property to advData as follows:
