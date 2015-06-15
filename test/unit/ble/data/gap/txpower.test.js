@@ -11,10 +11,10 @@ var CURSOR = 0;
 var ADVERTISER_DATA = {};
 
 // Inputs for the scenario
-var INPUT_DATA = 'ba50e1fe0201050c097265656c794163746976650100';
+var INPUT_DATA = '020a7f';
 
 // Expected outputs for the scenario
-var EXPECTED_DATA = '-31dBm';
+var EXPECTED_DATA = '127dBm';
 
 describe('ble data txpower', function() {
 

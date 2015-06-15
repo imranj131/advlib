@@ -16,12 +16,12 @@ var CURSOR = 0;
 var ADVERTISER_DATA = {};
   
 // Inputs for the scenario
-var INPUT_DATA_COMPANY_ONLY = '03ff4c00';
-var INPUT_DATA_IBEACON = '23ff4c000215b9407f30f5f8466eaff925556b57fe6d294c903974';
+var INPUT_DATA_COMPANY_ONLY = '03ff8c00';
+var INPUT_DATA_IBEACON = '26ff4c000215b9407f30f5f8466eaff925556b57fe6d294c903974';
 
 // Expected outputs for the scenario
 var EXPECTED_DATA_COMPANY_ONLY = {
-                               companyIdentifierCode: "004c",
+                               companyIdentifierCode: "008c",
                                data: ""
 };
 var EXPECTED_DATA_APPLE_AND_IBEACON = {

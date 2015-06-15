@@ -13,15 +13,15 @@ var localname = require("../../../../../lib/ble/data/gap/localname.js");
 var assert = require ('assert'); 
 
 // Constants for the scenario
-var CURSOR = -4;
+var CURSOR = 0;
 var ADVERTISER_DATA = {};
 
 // Inputs for the scenario
-var INPUT_DATA_SHORTENED_LOCAL_NAME = '';
-var INPUT_DATA_COMPLETE_LOCAL_NAME = '7265656c79416374697665'
+var INPUT_DATA_SHORTENED_LOCAL_NAME = '06087265656c79';
+var INPUT_DATA_COMPLETE_LOCAL_NAME = '12097265656c79416374697665'
 
 // Expected outputs for the scenario
-var EXPECTED_DATA_SHORTENED_LOCAL_NAME ='';
+var EXPECTED_DATA_SHORTENED_LOCAL_NAME ='reely';
 var EXPECTED_DATA_COMPLETE_LOCAL_NAME ='reelyActive';
 
 describe('ble data localname', function() {

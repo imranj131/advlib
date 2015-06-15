@@ -11,12 +11,12 @@ var CURSOR = 0;
 var ADVERTISER_DATA = {};
 
 // Inputs for the scenario
-var INPUT_DATA = '421655daba50e1fe0201050c097265656c794163746976650100';
+var INPUT_DATA = '09160a181204eb150000';
 
 // Expected outputs for the scenario
 var EXPECTED_DATA ={
-	uuid:"da55",
-	data:"ba50e1fe0201050c097265656c794163746976650100",
+	uuid:"180a",
+	data:"1204eb150000",
 };
 
 
