@@ -336,7 +336,7 @@ Which would add a property to advData as follows:
 
     manufacturerSpecificData": {
       iBeacon": {
-        txPower": "-74dBm"
+        txPower": "127dBm"
       }
     }
     
