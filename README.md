@@ -289,7 +289,7 @@ Process manufacturer specific data assigned to the device.
   
 This is best illustrated with an example:
 
-    advlib.ble.data.gap.manufacturerspecificdata.process(03ff4c00, 0, {});
+    advlib.ble.data.gap.manufacturerspecificdata.process(03ff8c00, 0, {});
     
 For reference, the example payload is interpreted as follows:
 
