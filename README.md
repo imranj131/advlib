@@ -341,9 +341,42 @@ Which would add a property to advData as follows:
     }
     
 
-###### Slave Connection Interval Range 
+#### Slave Connection Interval Range 
+
+Process Slave Connection Interval Range assigned to the device.
+
+    advlib.ble.data.gap.slaveconnectionintervalrange.process(payload, cursor, advertiserData);
+  
+This is best illustrated with an example:
+
+    advlib.ble.data.gap.slaveconnectionintervalrange.process(0612072e05354c, 0, {});
+    
+For reference, the example payload is interpreted as follows:
+
+| Byte(s)     | Hex String  | Description                                       |
+|-------------|:------------|:--------------------------------------------------|
+| 0           | 06          | Length, in bytes, of type and data                |
+| 1           | 12          | GAP Data Type for Slave Connection Interval Range | 
+| 2 to length | 072e05354c  | See table below                                   |
+
+And the type specific data is intepreted as follows:
+
+| Byte(s) | Hex String | Description                                   |
+|--------:|:-----------|:----------------------------------------------|
+| 0-3     | 072e05     | The first 2 octets defines the minimum value for
+the connection interval in the following manner:
+connIntervalmin = Conn_Interval_Min * 1.25 ms
+Conn_Interval_Min range: 0x0006 to 0x0C80)|
+| 4-5     | 354c       | The other 2 octets defines the maximum value for
+the connection interval in the following manner:
+connIntervalmax = Conn_Interval_Max * 1.25 ms
+Conn_Interval_Max range: 0x0006 to 0x0C80 |
 
 
+Which would add a property to advData as follows:
+
+    slaveConnectionIntervalRange": '072e05354c';
+      
 #### Service Solicitation 
 
 
