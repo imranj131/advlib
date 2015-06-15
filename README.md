@@ -283,6 +283,7 @@ For reference, the example payload is interpreted as follows:
 | 1           | ff                                                | GAP Data Type for manufacturer specific data | 
 | 2 to length | 4c000215b9407f30f5f8466eaff925556b57fe6d294c903974 | See table below  |
 
+And the type specific data is intepreted as follows:
 
 | Byte(s) | Hex String                      | Description                                  |
 |--------:|:--------------------------------|:---------------------------------------------|
@@ -307,32 +308,47 @@ Which would add a property to advData as follows:
 
 #### TX Power Level 
 
-The TX Power Level data type indicates the transmitted power level of the
-packet containing the data type.
+Process Tx Power Level assigned to the device.
 
-|      Data Type       |      Description        |
-|---------------------:|-------------------------|
-| TX Power Level       | Size: 1 octet           |
-|                      | 0xXX: -127 to +127 dBm  |
+    advlib.ble.data.gap.txpower.process(payload, cursor, advertiserData);
+  
+This is best illustrated with an example:
 
+    advlib.ble.data.gap.txpower.process(020a7f, 0, {});
+    
+For reference, the two's complement value is interpreted as follows:
+
+| Hex String  | Power dBm |
+|------------:|-----------|
+| 7f          | 127 dBm   |
+| 00          | 0 dBm     |
+| ff          | -128 dBm  |
+
+For reference, the example payload is interpreted as follows:
+
+| Byte(s)     | Hex String  | Description                         |
+|-------------|:------------|:------------------------------------|
+| 0           | 02          | Length, in bytes, of type and data  |
+| 1           | 0a          | GAP Data Type for TxPower           | 
+| 2 to length | 7f          | See table above                     |
+
+Which would add a property to advData as follows:
+
+    manufacturerSpecificData": {
+      iBeacon": {
+        txPower": "-74dBm"
+      }
+    }
+    
 
 ###### Slave Connection Interval Range 
 
-The Slave Connection Interval Range data type contains the Peripheral’s
-preferred connection interval range, for all logical connections.
-
->>Table to come here
 
 #### Service Solicitation 
 
-A Peripheral device may send the Service Solicitation data type to invite
-Central devices that expose one or more of the services specified in the
-Service Solicitation data to connect.
->List of 16 bit Service Solicitation UUIDs
->List of 128 bit Service Solicitation UUIDs
+
 
 #### Service Data 
-
 
 Process service data assigned to the device.
 
@@ -350,10 +366,12 @@ For reference, the example payload is interpreted as follows:
 | 1           | 16                   | GAP Data Type for service data      | 
 | 2 to length | 09160a181204eb150000 | See table below                     |
 
+And the type specific data is intepreted as follows:
+
 | Byte(s) | Hex String   | Description     |
 |--------:|:-------------|:----------------|
 | 0-1     | 0a18         | UUID (reversed) |
-| 2-3     | 1204eb150000 | Data            |
+| 2-6     | 1204eb150000 | Data            |
 
 Which would add a property to advData as follows:
 
