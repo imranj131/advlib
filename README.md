@@ -364,6 +364,8 @@ And the type specific data is intepreted as follows:
 | Byte(s) | Hex String | Description     |
 |--------:|:-----------|:----------------|
 | 0-3     | 072e05     | connIntervalmin |
+|         |            | - connIntervalmin = Conn_Interval_Min * 1.25 ms
+                             - Conn_Interval_Min range: 0x0006 to 0x0C80 |
 | 4-5     | 354c       | connIntervalmax |
 
 - connIntervalmin = Conn_Interval_Min * 1.25 ms
