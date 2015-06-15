@@ -327,7 +327,7 @@ If we look at the payload in detail,
 
 |               Byte Number(s)              |Payload component (length, type, uuid) component|
 |:------------------------------------------|:---------------------------------------------|
-|          23                               | length of hexadecimal string                 |
+|          26                               | length of hexadecimal string                 |
 |          ff                               | data type value for manufacturer specific data from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) | 
 |          4c00                             | reversed company identifier code  (eg: Apple)|
 |          0215                             | reversed identifier code for iBeacon         |
