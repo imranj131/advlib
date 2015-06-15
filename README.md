@@ -16,18 +16,14 @@ Installation
 Hello advlib
 ------------
 
-```javascript
-var advlib = require('advlib');
+    var advlib = require('advlib');
+    var rawHexPacket = '421655daba50e1fe0201050c097265656c79416374697665';
+    var processedPacket = advlib.ble.process(rawHexPacket);
+    console.log(JSON.stringify(processedPacket, null, " "));
 
-var rawHexPacket = '421655daba50e1fe0201050c097265656c79416374697665';
-var processedPacket = advlib.ble.process(rawHexPacket);
-
-console.log(JSON.stringify(processedPacket, null, " "));
-```
 
 The console output should appear as follows:
 
-  ```javascript
     {
       type: "ADVA-48",
       value: "fee150bada55",
@@ -42,7 +38,7 @@ The console output should appear as follows:
         completeLocalName: "reelyActive" 
       } 
     }
-  ```
+
 
 Bluetooth Smart (BLE) Advertising Packet Library
 ------------------------------------------------
@@ -62,9 +58,9 @@ The library is organized hierarchically so that the separate elements of a packe
 
 Process a 16-bit header (as a hexadecimal string) with the following command:
 
-  ```javascript
+
     advlib.ble.header.process(rawHexHeader);
-  ```
+
 
 For reference, the 16-bit header is as follows (reading the hexadecimal string from left to right):
 
@@ -91,27 +87,26 @@ And the advertising packet types are as follows:
 
 For example:
 
-  ```javascript
+
     advlib.ble.header.process('4216');
-  ```
+
 would yield:
 
-  ```javascript
+
     {
       rxAdd: "public",
       txAdd: "random",
       type: "ADV_NONCONNECT_IND",
       length: 22
     }
-  ```
+
 
 ### Address
 
 Process a 48-bit address (as a hexadecimal string) with the following command:
 
-  ```javascript
     advlib.ble.address.process(rawHexAddress);
-  ```
+
 For reference, the 48-bit header is as follows (reading the hexadecimal string from left to right):
 
 | Bit(s) | Address component |
@@ -125,17 +120,17 @@ For reference, the 48-bit header is as follows (reading the hexadecimal string f
 
 This is best illustrated with an example:
 
-  ```javascript
+
     advlib.ble.address.process('0123456789ab');
-  ```
+
 Would yield:
 
-   ```javascript
+
     {
       type: "ADVA-48",
       value: "ab8967452301"
     }
-   ```
+
 which can alternatively be represented as ab:89:67:45:23:01.
 
 
@@ -143,22 +138,22 @@ which can alternatively be represented as ab:89:67:45:23:01.
 
 Process multi-byte entities (as a hexadecimal string) with the following command:
 
-  ```javascript
+
     advlib.ble.data.process(rawHexAddress);
-  ```
+
 For example:
 
-  ```javascript
+
     advlib.ble.data.process('payload');
-  ```
+
 would yield:
 
-  ```javascript
+
     {
       flags: [ "LE Limited Discoverable Mode", "BR/EDR Not Supported" ],
       completeLocalName: "reelyActive" 
     } 
-  ```
+
 
 #### Generic Access Profile (GAP)
 
@@ -166,66 +161,58 @@ would yield:
 
 ###### UUID 
 
-The Service UUID data type is used to include a list of Service or Service Class UUIDs.
+Process a UUID assigned to the device.
 
-For example in the case where we want to process BLE advertiser data into a Complete 128 Bit UUID, the input payload input need to be 128 bits. Since 128 bits are 16 bytes, which are 16 characters, we would need 32 hexadecimal digits in the payload.
-
-```javascript
-  var payload = '33074449555520657669746341796c656572';
-  var cursor = 0;
-  var advertiserData = {};
-```
-
-If we look at the payload in detail,
-
-|               Byte Number(s)     |    Payload component (length, type, uuid)           |
-|:---------------------------------|:----------------------------------------------------|
-|          32                      | length of hexadecimal string                        |
-|          07                      | data type value for 128-bit Service Class UUIDs from   [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile)| 
-| 4449555520657669746341796c656572 | 128 bit BLE advertiser                              |
-
-
+    advlib.ble.data.gap.uuid.nonComplete16BitUUIDs(payload, cursor, advertiserData);
+    advlib.ble.data.gap.uuid.complete16BitUUIDs(payload, cursor, advertiserData);
+    advlib.ble.data.gap.uuid.nonComplete128BitUUIDs(payload, cursor, advertiserData);
+    advlib.ble.data.gap.uuid.complete128BitUUIDs(payload, cursor, advertiserData);
+    
+    
 This is best illustrated with an example:
 
-```javascript
-advlib.ble.data.gap.uuid.complete128BitUUIDs(payload, cursor, advertiserData);
-```
+    var payload = '16074449555520657669746341796c656572';
+    advlib.ble.data.gap.uuid.complete128BitUUIDs(payload, 0, {});
+    
+For reference, the example payload is interpreted as follows:
+
+| Byte(s)     | Hex String                       | Description                             |
+|-------------|:---------------------------------|:----------------------------------------|
+| 0           | 16                               | Length, in bytes, of type and data      |
+| 1           | 07                               | GAP Data Type for complete 128-bit UUID | 
+| 2 to length | 4449555520657669746341796c656572 | ASCII representation for 'reelyActive UUID'|
+
 Which would yield:
 
-```javascript
-advData: {
-  complete128BitUUIDs: "7265656c794163746976652055554944"
-}
-```
+    advData: {
+      complete128BitUUIDs: "7265656c794163746976652055554944"
+    }
+
 
 ###### Local Name 
 
-The Local Name data type shall be the complete name, or a shortened version of, the local name assigned to the device.
+Process a local name (completeLocalName, or shortenedLocalName) of the local name assigned to the device.
 
-For example in the case where we want to process BLE advertiser data into a Complete local name, the input payload input would need to be valid [ASCII](http://www.asciitable.com/) code bytes. 
-
-You can use a [converter](https://www.branah.com/ascii-converter) for hex into ASCII and vice versa.
-
-reelyActive in ASCII as a hexadecimal string would be '7265656c79416374697665' as seen below.
-
-```javascript
-  var payload = '7265656c79416374697665'
-  var cursor = 0;
-  var advertiserData = {};
-```
-
+    advlib.ble.data.gap.localname.completeLocalName(payload, cursor, advertiserData);
+    advlib.ble.data.gap.localname.completeLocalName(payload, cursor, advertiserData);
+    
 This is best illustrated with an example:
 
-```javascript
-advlib.ble.data.gap.localname.completeLocalName(payload, cursor, advertiserData);
-```
+    advlib.ble.data.gap.localname.completeLocalName(12097265656c79416374697665, 0, {});
+    
+For reference, the example payload is interpreted as follows:
+
+| Byte(s)     | Hex String             | Description                             |
+|-------------|:-----------------------|:----------------------------------------|
+| 0           | 12                     | Length, in bytes, of type and data      |
+| 1           | 09                     | GAP Data Type for complete local name   | 
+| 2 to length | 7265656c79416374697665 | ASCII representation for 'reelyActive'  |
+
 Which would yield:
 
-```javascript
-advData: {
-  completeLocalName: "reelyActive"
-}
-```
+    advData: {
+      completeLocalName: "reelyActive"
+    }
 
 ###### Flags
 
@@ -244,11 +231,10 @@ The input payload input could be in five different cases as mentioned in the tab
 
 For example, if we look at the case for 'BR/EDR Not Supported.' in [flags.js](https://github.com/imranj131/advlib/blob/master/lib/ble/data/gap/flags.js) file, our input arguments would be as follows:
 
-```javascript
-  var payload = '020104'
-  var cursor = 0;
-  var advertiserData = {};
-```
+    var payload = '020104'
+    var cursor = 0;
+    var advertiserData = {};
+
 
 If we look at the payload in detail,
 
@@ -261,16 +247,16 @@ If we look at the payload in detail,
 
 This is best illustrated with an example:
 
-```javascript
-advlib.ble.data.gap.flags.process(payload, cursor, advertiserData);
-```
+
+    advlib.ble.data.gap.flags.process(payload, cursor, advertiserData);
+
 Which would yield:
 
-```javascript
-advData: {
-  flags: ["BR/EDR Not Supported"]
-}
-```
+
+    advData: {
+      flags: ["BR/EDR Not Supported"]
+    }
+
 
 ###### Manufacturer Specific Data
 
@@ -286,11 +272,11 @@ In this case, we have two options of payloads.
 
 For example in case 1, the BLE advertiser data emits a packet with only company data when the arguments are defined as follows,
 
-```javascript
-  var payload = '03ff4c00';
-  var cursor = 0;
-  var advertiserData = {};
-```
+
+    var payload = '03ff4c00';
+    var cursor = 0;
+    var advertiserData = {};
+
 
 If we look at the payload in detail,
 
@@ -307,21 +293,20 @@ This is best illustrated with an example:
 
 Which would yield:
 
-```javascript
-manufacturerSpecificData: {
-    companyIdentifierCode: "004c",
-    data: "",
-}
-```
+
+    manufacturerSpecificData: {
+      companyIdentifierCode: "004c",
+      data: "",
+    }
+
 
 
 For example in case 2, the BLE advertiser data emits a packet from an iBeacon, when the arguments are defined as follows,
 
-```javascript
-  var payload = '23ff4c000215b9407f30f5f8466eaff925556b57fe6d294c903974';
-  var cursor = 0;
-  var advertiserData = {};
-```
+    var payload = '26ff4c000215b9407f30f5f8466eaff925556b57fe6d294c903974';
+    var cursor = 0;
+    var advertiserData = {};
+
 
 If we look at the payload in detail,
 
@@ -338,21 +323,21 @@ If we look at the payload in detail,
 
 This is best illustrated with an example: 
 
-```javascript
-advlib.ble.data.gap.manufacturerspecificdata.process(payload, cursor, advertiserData);
-```
+
+    advlib.ble.data.gap.manufacturerspecificdata.process(payload, cursor, advertiserData);
+
 Which would yield:
 
-```javascript
-manufacturerSpecificData: {
-  iBeacon: {
-    uuid: "b9407f30f5f8466eaff925556b57fe6d",
-    major: "294c",
-    minor: "9039",
-    txPower: "116dBm"
-  }
-};
-```
+
+    manufacturerSpecificData: {
+      iBeacon: {
+        uuid: "b9407f30f5f8466eaff925556b57fe6d",
+        major: "294c",
+        minor: "9039",
+        txPower: "116dBm"
+        }
+    };
+
 
 ###### TX Power Level 
 
@@ -385,11 +370,11 @@ Service Solicitation data to connect.
 The Service Data data type consists of a service UUID with the data associated
 with that service.
 
-```javascript
-  var payload = '09160a181204eb150000';
-  var cursor = 0;
-  var advertiserData = {};
-```
+
+    var payload = '09160a181204eb150000';
+    var cursor = 0;
+    var advertiserData = {};
+
 
 If we look at the payload in detail,
 
@@ -402,17 +387,17 @@ If we look at the payload in detail,
   
 This is best illustrated with an example:
 
-  ```javascript
-      advlib.ble.data.gap.servicedata.process(payload, cursor, advertiserData);
-  ```
+ 
+    advlib.ble.data.gap.servicedata.process(payload, cursor, advertiserData);
+
 Which would yield:
 
-```javascript
-serviceData: {
-    uuid : "180a",
-    data : "1204eb150000"
-};
-```
+
+    serviceData: {
+      uuid : "180a",
+      data : "1204eb150000"
+    };
+
 
 
 reelyActive RFID Library
