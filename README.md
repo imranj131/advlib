@@ -193,7 +193,9 @@ This is best illustrated with an example:
 Which would yield:
 
 ```javascript
-"complete128BitUUIDs": "7265656c794163746976652055554944"
+advData: {
+  complete128BitUUIDs: "7265656c794163746976652055554944"
+}
 ```
 
 ###### Local Name 
@@ -214,13 +216,15 @@ reelyActive in ASCII as a hexadecimal string would be '7265656c79416374697665' a
 
 This is best illustrated with an example:
 
-   ```javascript
-    advlib.ble.data.gap.localname.completeLocalName(payload, cursor, advertiserData);
-    ```
+```javascript
+advlib.ble.data.gap.localname.completeLocalName(payload, cursor, advertiserData);
+```
 Which would yield:
 
 ```javascript
-"completeLocalName": "reelyActive"
+advData: {
+  completeLocalName: "reelyActive"
+}
 ```
 
 ###### Flags
@@ -257,13 +261,15 @@ If we look at the payload in detail,
 
 This is best illustrated with an example:
 
-   ```javascript
-    advlib.ble.data.gap.flags.process(payload, cursor, advertiserData);
-   ```
+```javascript
+advlib.ble.data.gap.flags.process(payload, cursor, advertiserData);
+```
 Which would yield:
 
 ```javascript
-"flags": ["BR/EDR Not Supported"]
+advData: {
+  flags: ["BR/EDR Not Supported"]
+}
 ```
 
 ###### Manufacturer Specific Data
@@ -302,10 +308,9 @@ This is best illustrated with an example:
 Which would yield:
 
 ```javascript
-{
-  manufacturerSpecificData: {
-      companyIdentifierCode: "004c",
-      data: "",
+manufacturerSpecificData: {
+    companyIdentifierCode: "004c",
+    data: "",
 }
 ```
 
@@ -331,9 +336,9 @@ If we look at the payload in detail,
   
 This is best illustrated with an example:
 
-  ```javascript
-      advlib.ble.data.gap.manufacturerspecificdata.process(payload, cursor, advertiserData);
-  ```
+```javascript
+advlib.ble.data.gap.manufacturerspecificdata.process(payload, cursor, advertiserData);
+```
 Which would yield:
 
 ```javascript
