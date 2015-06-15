@@ -373,6 +373,27 @@ Which would add a property to advData as follows:
       
 #### Service Solicitation 
 
+Process a Service Solicitation UUID assigned to the device.
+
+    advlib.ble.data.gap.solicitation.solicitation16BitUUIDs(payload, cursor, advertiserData);
+    advlib.ble.data.gap.solicitation.solicitation128BitUUIDs(payload, cursor, advertiserData);
+    
+This is best illustrated with an example:
+
+    var payload = '';
+    advlib.ble.data.gap.uuid.solicitation16BitUUIDs(0314d8fe, 0, {});
+    
+For reference, the example payload is interpreted as follows:
+
+| Byte(s)     | Hex String | Description                                                  |
+|-------------|:-----------|:-------------------------------------------------------------|
+| 0           | 03         | Length, in bytes, of type and data                           |
+| 1           | 14         | GAP Data Type for complete 128-bit Service Solicitation UUID | 
+| 2 to length | d8fe       | Google company identifier code (bytes reversed)              |
+
+Which would add a property to advData as follows:
+
+    solicitation16BitUUIDs": 'fed8';
 
 
 #### Service Data 
