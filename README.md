@@ -357,20 +357,14 @@ For reference, the example payload is interpreted as follows:
 |-------------|:------------|:--------------------------------------------------|
 | 0           | 06          | Length, in bytes, of type and data                |
 | 1           | 12          | GAP Data Type for Slave Connection Interval Range | 
-| 2 to length | 072e05354c  | See table below                                   |
+| 2 to length | 00060c80    | See table below                                   |
 
 And the type specific data is intepreted as follows:
 
-| Byte(s) | Hex String | Description     |
-|--------:|:-----------|:----------------|
-| 0-3     | 072e05     | connIntervalmin |
-| 4-5     | 354c       | connIntervalmax |
-
-- connIntervalmin = Conn_Interval_Min * 1.25 ms
-    - Conn_Interval_Min range: 0x0006 to 0x0C80
-
-- connIntervalmax = Conn_Interval_Max * 1.25 ms
-    - Conn_Interval_Max range: 0x0006 to 0x0C80
+| Byte(s) | Hex String | Description                      |
+|--------:|:-----------|:---------------------------------|
+| 0-1     | 0006       | Min = 6 x 1.25 ms = 7.5 ms       |
+| 2-3     | 0c80       | Max = 12128 x 1.25 ms = 15160 ms |
 
 
 Which would add a property to advData as follows:
