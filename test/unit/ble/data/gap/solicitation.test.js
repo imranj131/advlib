@@ -25,6 +25,7 @@ describe('ble data solicitation', function() {
   	solicitation.solicitation16BitUUIDs(INPUT_DATA_16_BIT_UUID, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.solicitation16BitUUIDs, EXPECTED_DATA_16_BIT_UUID);
   });
+  
   it('should parse BLE advertiser data service solicitation 128-bit UUIDs', function() {
   	solicitation.solicitation128BitUUIDs(INPUT_DATA__128_BIT_UUID, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.solicitation128BitUUIDs, EXPECTED_DATA_128_BIT_UUID);

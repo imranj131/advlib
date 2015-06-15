@@ -27,26 +27,28 @@ var EXPECTED_DATA_SIMULTANEOUS_LE_AND_BR_OR_EDR_TO_SDC_HOST ='Simultaneous LE an
 describe('ble data flags', function() {
 
   // Test the process function
-  it('should convert a hexadecimal payload to advertiser data flags', function() {
+  it('should convert a hexadecimal payload to Le Limited', function() {
   	flags.process(INPUT_DATA_LE_LIMITED, CURSOR, ADVERTISER_DATA);
     assert.equal(ADVERTISER_DATA.flags[0], EXPECTED_DATA_LE_LIMITED);
-   
   });
-  it('should convert a hexadecimal payload to advertiser data flags', function() {
+
+  it('should convert a hexadecimal payload to LE General', function() {
   	flags.process(INPUT_DATA_LE_GENERAL, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.flags[0], EXPECTED_DATA_LE_GENERAL);
   });
-  it('should convert a hexadecimal payload to advertiser data flags', function() {
+
+  it('should convert a hexadecimal payload to BR/EDR Not Supported', function() {
   	flags.process(INPUT_DATA_BR_OR_EDR_NOT_SUPPORTED, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.flags[0], EXPECTED_DATA_BR_OR_EDR_NOT_SUPPORTED);
   });
-  it('should convert a hexadecimal payload to advertiser data flags', function() {
+
+  it('should convert a hexadecimal payload to Simultaneous LE and BR/EDR to Same Device Capable (Controller', function() {
   	flags.process(INPUT_DATA_SIMULTANEOUS_LE_AND_BR_OR_EDR_TO_SDC_CONTROLLER, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.flags[0], EXPECTED_DATA_SIMULTANEOUS_LE_AND_BR_OR_EDR_TO_SDC_CONTROLLER);
   });
-  it('should convert a hexadecimal payload to advertiser data flags', function() {
+
+  it('should convert a hexadecimal payload to Simultaneous LE and BR/EDR to Same Device Capable (Host)', function() {
   	flags.process(INPUT_DATA_SIMULTANEOUS_LE_AND_BR_OR_EDR_TO_SDC_HOST, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.flags[0], EXPECTED_DATA_SIMULTANEOUS_LE_AND_BR_OR_EDR_TO_SDC_HOST);
   });
-
 });

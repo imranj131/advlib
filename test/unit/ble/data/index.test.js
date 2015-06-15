@@ -21,5 +21,4 @@ describe('ble data', function() {
   it('should convert a hexadecimal advertiser data to JSON', function() {
     assert.deepEqual(advlib.process(INPUT_DATA), EXPECTED_DATA);
   });
-
 });

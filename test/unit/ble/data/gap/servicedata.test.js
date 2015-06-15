@@ -27,5 +27,4 @@ describe('ble data servicedata', function() {
   	servicedata(INPUT_DATA, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.serviceData, EXPECTED_DATA);
   });
-  
 });

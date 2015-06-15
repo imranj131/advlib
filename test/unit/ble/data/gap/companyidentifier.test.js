@@ -26,6 +26,7 @@ describe('ble data companyidentifier', function() {
   	companyidentifier(INPUT_DATA_CIC,null,DEVICE);
     assert.deepEqual(DEVICE.url, EXPECTED_DATA_CIC);
   });
+  
   it('should identify company service data', function() {
   	companyidentifier(null, INPUT_DATA_SD, DEVICE);
     assert.deepEqual(DEVICE.url, EXPECTED_DATA_SD);

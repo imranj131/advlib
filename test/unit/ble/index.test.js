@@ -31,5 +31,4 @@ describe('ble', function() {
   it('should convert a hexadecimal payload to a JSON packet', function() {
     assert.deepEqual(advlib.process(INPUT_DATA), EXPECTED_DATA);
   });
-
 });

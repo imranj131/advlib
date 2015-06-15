@@ -28,19 +28,20 @@ describe('ble data uuid', function() {
   it('should parse BLE advertiser non-complete 16-bit UUIDs', function() {
   	uuid.nonComplete16BitUUIDs(INPUT_DATA_NC_16, CURSOR, ADVERTISER_DATA);
     assert.equal(ADVERTISER_DATA.nonComplete16BitUUIDs, EXPECTED_DATA_NC_16);
-   
   });
+
   it('should parse BLE advertiser complete 16-bit UUIDs', function() {
   	uuid.complete16BitUUIDs(INPUT_DATA_C_16, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.complete16BitUUIDs, EXPECTED_DATA_C_16);
   });
+
   it('should parse BLE advertiser non-complete 128-bit UUIDs.', function() {
   	uuid.nonComplete128BitUUIDs(INPUT_DATA_NC_128, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.nonComplete128BitUUIDs, EXPECTED_DATA_NC_128);
   });
+
   it('should parse BLE advertiser complete 128-bit UUIDs', function() {
   	uuid.complete128BitUUIDs(INPUT_DATA_C_128, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.complete128BitUUIDs, EXPECTED_DATA_C_128);
   });
-
 });

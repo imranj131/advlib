@@ -33,6 +33,7 @@ describe('ble data manufacturerspecificdata', function() {
   	manufacturerspecificdata(INPUT_DATA_COMPANY_ONLY, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.manufacturerSpecificData, EXPECTED_DATA_COMPANY_ONLY);
   });
+  
   it('should convert ble advertiser data to apple and iBeacon manufacturer specificdata', function() {
   	ADVERTISER_DATA.manufacturerSpecificData.iBeacon = {};
   	manufacturerspecificdata(INPUT_DATA_IBEACON, CURSOR, ADVERTISER_DATA);

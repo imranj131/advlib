@@ -23,5 +23,4 @@ describe('ble data txpower', function() {
   	txpower(INPUT_DATA, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.txPower, EXPECTED_DATA);
   });
-  
 });

@@ -24,5 +24,4 @@ describe('ble data slaveconnectionintervalrange', function() {
   	slaveconnectionintervalrange(INPUT_DATA, CURSOR, ADVERTISER_DATA);
     assert.deepEqual(ADVERTISER_DATA.slaveConnectionIntervalRange, EXPECTED_DATA);
   });
-  
 });
