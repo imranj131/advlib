@@ -261,12 +261,12 @@ For reference, the example payload is interpreted as follows:
 |-------------|:-----------------------|:---------------------------------------------|
 | 0           | 03                     | Length, in bytes, of type and data           |
 | 1           | ff                     | GAP Data Type for manufacturer specific data | 
-| 2 to length | 4c00                   |                                              |
+| 2 to length | 8c00                   | Gimbal company identifier code (bytes reversed)                                  |
 
 Which would add a property to advData as follows:
 
     manufacturerSpecificData: {
-      companyIdentifierCode: "004c",
+      companyIdentifierCode: "008c",
       data: "",
     }
 
@@ -333,31 +333,40 @@ Service Solicitation data to connect.
 
 #### Service Data 
 
-The Service Data data type consists of a service UUID with the data associated
-with that service.
 
+Process service data assigned to the device.
 
-    var payload = '09160a181204eb150000';
-    var cursor = 0;
-    var advertiserData = {};
+    advlib.ble.data.gap.servicedata.process(payload, cursor, advertiserData);
+ 
+For reference, the flags are as follows:
 
+| Bit(s) | Description                                                   |
+|-------:|---------------------------------------------------------------|
+| 0      | LE Limited Discoverable Mode                                  |
+| 1      | LE General Discoverable Mode                                  |
+| 2      | BR/EDR Not Supported                                          |
+| 3      | Simultaneous LE and BR/EDR to Same Device Capable (Controller)|
+| 4      | Simultaneous LE and BR/EDR to Same Device Capable (Host)      |
+| 5      | Reserved                                                      |
 
-If we look at the payload in detail,
-
-| Byte Number(s)   |      Payload component (length, type, uuid)        |
-|-----------------:|----------------------------------------------------|
-|        09        | length of hexadecimal string                       |               
-|        16        | data type value for service data                   |
-|        0a18      | uuid                                               |
-|   1204eb150000   | data                                               |
-  
 This is best illustrated with an example:
 
- 
-    advlib.ble.data.gap.servicedata.process(payload, cursor, advertiserData);
+    advlib.ble.data.gap.servicedata.process(09160a181204eb150000, 0, {});
+    
+For reference, the example payload is interpreted as follows:
 
-Which would yield:
+| Byte(s)     | Hex String           | Description                         |
+|-------------|:---------------------|:------------------------------------|
+| 0           | 09                   | Length, in bytes, of type and data  |
+| 1           | 16                   | GAP Data Type for service data      | 
+| 2 to length | 09160a181204eb150000 | See table below                     |
 
+| Byte(s) | Hex String   | Description     |
+|--------:|:-------------|:----------------|
+| 0-1     | 0a18         | UUID (reversed) |
+| 2-3     | 1204eb150000 | Data            |
+
+Which would add a property to advData as follows:
 
     serviceData: {
       uuid : "180a",
