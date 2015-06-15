@@ -338,17 +338,6 @@ Process service data assigned to the device.
 
     advlib.ble.data.gap.servicedata.process(payload, cursor, advertiserData);
  
-For reference, the flags are as follows:
-
-| Bit(s) | Description                                                   |
-|-------:|---------------------------------------------------------------|
-| 0      | LE Limited Discoverable Mode                                  |
-| 1      | LE General Discoverable Mode                                  |
-| 2      | BR/EDR Not Supported                                          |
-| 3      | Simultaneous LE and BR/EDR to Same Device Capable (Controller)|
-| 4      | Simultaneous LE and BR/EDR to Same Device Capable (Host)      |
-| 5      | Reserved                                                      |
-
 This is best illustrated with an example:
 
     advlib.ble.data.gap.servicedata.process(09160a181204eb150000, 0, {});
@@ -372,7 +361,6 @@ Which would add a property to advData as follows:
       uuid : "180a",
       data : "1204eb150000"
     };
-
 
 
 reelyActive RFID Library
