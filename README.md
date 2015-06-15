@@ -187,9 +187,9 @@ If we look at the payload in detail,
 
 This is best illustrated with an example:
 
-  ```javascript
-    advlib.ble.data.gap.uuid.complete128BitUUIDs(payload, cursor, advertiserData);
-  ```
+```javascript
+advlib.ble.data.gap.uuid.complete128BitUUIDs(payload, cursor, advertiserData);
+```
 Which would yield:
 
 ```javascript
@@ -210,7 +210,7 @@ reelyActive in ASCII as a hexadecimal string would be '7265656c79416374697665' a
 
 ```javascript
   var payload = '7265656c79416374697665'
-  var cursor = -4;
+  var cursor = 0;
   var advertiserData = {};
 ```
 
@@ -329,12 +329,14 @@ If we look at the payload in detail,
 |:------------------------------------------|:---------------------------------------------|
 |          23                               | length of hexadecimal string                 |
 |          ff                               | data type value for manufacturer specific data from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile) | 
-|          4c00                             | Octet+Bit                                    |
 |          4c00                             | reversed company identifier code  (eg: Apple)|
-|          0215                             | identifier code for iBeacon                  |
-| b9407f30f5f8466eaff925556b57fe6d294c903974|          uuid                                |
-  
-This is best illustrated with an example:
+|          0215                             | reversed identifier code for iBeacon         |
+| b9407f30f5f8466eaff925556b57fe6           |          uuid                                |
+|       d294c                               |          major                               |
+|           9039                            |          minor                               |
+|             74                            |          txPower                             |
+
+This is best illustrated with an example: 
 
 ```javascript
 advlib.ble.data.gap.manufacturerspecificdata.process(payload, cursor, advertiserData);
