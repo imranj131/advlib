@@ -178,7 +178,7 @@ For example in the case where we want to process BLE advertiser data into a Comp
 
 If we look at the payload in detail,
 
-|               Byte Number(s)     |    Payload component (length, type, uuid) component |
+|               Byte Number(s)     |    Payload component (length, type, uuid)           |
 |:---------------------------------|:----------------------------------------------------|
 |          32                      | length of hexadecimal string                        |
 |          07                      | data type value for 128-bit Service Class UUIDs from   [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile)| 
@@ -249,7 +249,7 @@ For example, if we look at the case for 'BR/EDR Not Supported.' in [flags.js](ht
 If we look at the payload in detail,
 
 
-|               Byte Number(s)     |    Payload component (length, type, uuid) component |
+|               Byte Number(s)     |    Payload component (length, type, uuid)           |
 |:---------------------------------|:----------------------------------------------------|
 |          02                      | length of hexadecimal string                        |
 |          01                      | data type value for flags from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile)   | 
@@ -289,7 +289,7 @@ For example in case 1, the BLE advertiser data emits a packet with only company 
 If we look at the payload in detail,
 
 
-|               Byte Number(s)     |    Payload component (length, type, uuid) component |
+|               Byte Number(s)     |    Payload component (length, type, uuid)           |
 |:-------------------------------- |:----------------------------------------------------|
 |          03                      | length of hexadecimal string                        |
 |          ff                      | data type value for manufacturer speicific data from [BLE Assigned Number](https://www.bluetooth.org/en-us/specification/assigned-numbers/generic-access-profile)   | 
@@ -378,15 +378,35 @@ Service Solicitation data to connect.
 The Service Data data type consists of a service UUID with the data associated
 with that service.
 
->>Table to come here
+```javascript
+  var payload = '09160a181204eb150000';
+  var cursor = 0;
+  var advertiserData = {};
+```
 
-###### Generic Data 
+If we look at the payload in detail,
 
->>Description to come here
+| Byte Number(s)   |      Payload component (length, type, uuid)        |
+|-----------------:|----------------------------------------------------|
+|        09        | length of hexadecimal string                       |               
+|        16        | data type value for service data                   |
+|        0a18      | uuid                                               |
+|   1204eb150000   | data                                               |
+  
+This is best illustrated with an example:
 
-###### Company Identifier 
+  ```javascript
+      advlib.ble.data.gap.servicedata.process(payload, cursor, advertiserData);
+  ```
+Which would yield:
 
->>Description to come here
+```javascript
+serviceData: {
+    uuid : "180a",
+    data : "1204eb150000"
+};
+```
+
 
 reelyActive RFID Library
 ------------------------
