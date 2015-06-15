@@ -3,11 +3,6 @@
  * We believe in an open Internet of Things
  */
 
-/**
-Bluetooth Core Specification:
-0xFF	«Manufacturer Specific Data»
-*/
-
 var manufacturerspecificdata = require("../../../../../lib/ble/data/gap/manufacturerspecificdata.js").process;
 var assert = require ('assert'); 
 

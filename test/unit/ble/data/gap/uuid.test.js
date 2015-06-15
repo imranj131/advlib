@@ -3,14 +3,6 @@
  * We believe in an open Internet of Things
  */
 
- /*
-Bluetooth Core Specification:
-0x02	«Incomplete List of 16-bit Service Class UUIDs»	
-0x03	«Complete List of 16-bit Service Class UUIDs»		
-0x06	«Incomplete List of 128-bit Service Class UUIDs»
-0x07	«Complete List of 128-bit Service Class UUIDs»
- */
-
 var uuid = require("../../../../../lib/ble/data/gap/uuid.js");
 var assert = require ('assert'); 
 

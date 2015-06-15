@@ -3,12 +3,6 @@
  * We believe in an open Internet of Things
  */
 
-/**
-Bluetooth Core Specification:
-0x14	«List of 16-bit Service Solicitation UUIDs»	
-0x15	«List of 128-bit Service Solicitation UUIDs»
-*/
-
 var solicitation = require("../../../../../lib/ble/data/gap/solicitation.js");
 var assert = require ('assert'); 
 
@@ -17,12 +11,12 @@ var CURSOR = 0;
 var ADVERTISER_DATA = {};
   
 // Inputs for the scenario
-var INPUT_DATA_16_BIT_UUID = '03144c00';
-var INPUT_DATA__128_BIT_UUID = '23154c000215b9407f30f5f8466eaff925556b57fe6d294c903974';
+var INPUT_DATA_16_BIT_UUID = '0314d8fe';
+var INPUT_DATA__128_BIT_UUID = '261516074449555520657669746341796c656572';
 
 // Expected outputs for the scenario
-var EXPECTED_DATA_16_BIT_UUID ='004c';
-var EXPECTED_DATA_128_BIT_UUID = '7439904c296dfe576b5525f9af6e46f8f5307f40b91502004c';
+var EXPECTED_DATA_16_BIT_UUID ='fed8';
+var EXPECTED_DATA_128_BIT_UUID = '7265656c7941637469766520555549440716';
 
 describe('ble data solicitation', function() {
 

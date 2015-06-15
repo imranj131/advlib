@@ -11,10 +11,10 @@ var CURSOR = 0;
 var ADVERTISER_DATA = {};
 
 // Inputs for the scenario
-var INPUT_DATA = '0201050c097265656c794163746976650100';
+var INPUT_DATA = '061200060c80';
 
 // Expected outputs for the scenario
-var EXPECTED_DATA ='05';
+var EXPECTED_DATA ='00060c80';
 
 
 describe('ble data slaveconnectionintervalrange', function() {
