@@ -5,8 +5,8 @@
 
  // Comment out line 10 and 11 of /gap/companyidentifier.js to pass in the inputs directly from the test's input scenarios
 
-var companyidentifier = require("../../../../../lib/ble/data/gap/companyidentifier.js").process;
-var assert = require ('assert'); 
+var companyidentifier = require("../../../../../lib/ble/data/gap/companyidentifier.js");
+var assert = require('assert'); 
 
 // Constants for the scenario
 var DEVICE = {};
@@ -23,12 +23,12 @@ describe('ble data companyidentifier', function() {
 
   // Test the process function
   it('should identify a company identifier code', function() {
-  	companyidentifier(INPUT_DATA_CIC,null,DEVICE);
+    companyidentifier.process(INPUT_DATA_CIC,null,DEVICE);
     assert.deepEqual(DEVICE.url, EXPECTED_DATA_CIC);
   });
   
   it('should identify company service data', function() {
-  	companyidentifier(null, INPUT_DATA_SD, DEVICE);
+    companyidentifier.process(null, INPUT_DATA_SD, DEVICE);
     assert.deepEqual(DEVICE.url, EXPECTED_DATA_SD);
   });
 

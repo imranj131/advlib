@@ -17,18 +17,22 @@
     "type": "git",
     "url": "https://github.com/imranj131/advlib.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "angular": "^1.4.1"
+  },
   "devDependencies": {
     "mocha": "^2.2.5"
   },
   "scripts": {
-    "test" : "mocha"
+    "test": "mocha"
   },
   "bugs": {
     "url": "https://github.com/imranj131/advlib/issues"
   },
   "contributors": [
-    { "name": "Imran Jameel" }
+    {
+      "name": "Imran Jameel"
+    }
   ],
   "license": "MIT"
 }
