@@ -2,19 +2,22 @@
 <html>
   <head>
     <title> reelyActive: advlib </title>
-    <link rel="stylesheet" href="web/style/main.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
-    <script type="text/javascript" src="web/js/query.js"></script>
+    <link rel="stylesheet" href="./style/main.css">
+     <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script> -->
+    <script src="./js/bundle.js"></script>
+     <!-- <script type="text/javascript" src="./js/query.js"></script> -->
   </head>
+
   <body ng-app="advlib">
     <div id="content" ng-controller="QueryCtrl">
-     <!-- <img src="images/logo.png"> -->
       <form>
-        <input ng-model="result" type="text" size="32"
-               placeholder="paste your payload here">
+        <input ng-model="payload" type="text" size="32"
+               placeholder="Paste your payload here">
+        <button ng-click="process()"> Process </button>
       </form>
       <br>
-      <pre>This is {{result}}</pre>
+      <pre>{{result}}</pre>
     </div>
+
   </body>
 </html>
