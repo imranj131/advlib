@@ -11,6 +11,8 @@ See the [advlib master branch](https://github.com/reelyactive/advlib) for more d
 How we create this using browserify
 -----------------------------------
 
+# Installing Browserify
+
 [Browserify](http://browserify.org/) is a beautiful tool which bundles up and concatenates NodeJS modules for use in browser environments.  
 
 To get started with browserify, install browserify globally with npm:
@@ -21,7 +23,18 @@ or
 
     sudo npm install -g browserify
 
-Now recursively bundle up all the required modules starting at lib/ble/index.js into a single file called advlib.js with the browserify command:
+# Integrating Back-End Logic to Front-End Code
+
+Feel free to require NodeJS modules you need to run your app, or any npm modules you need in order to write your AngularJS code for the browser in web/js/advapp.js. 
+
+    var advlib = require('../../lib/index.js');
+    var angular = require('angular');
+
+If at this point you are confused that you are using NodeJS's module loading system for your browser's JavaScript code, do not worry as Browserify bundles it all up into a single neat and tidy JavaScript file which can be understood by the browser.
+
+# Using Browserify
+
+Now to recursively bundle up all the required modules starting at web/js/advapp.js into a single file called advlib.js, use the following browserify command:
 
     browserify web/js/advapp.js -o web/js/advlib.js 
 
