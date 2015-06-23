@@ -29019,12 +29019,20 @@ module.exports = angular.module('advapp', [])
       $scope.presets = $scope.reelyactive.presets;
     }
 
+  // Watch function
+    $scope.$watch(
+      function(scope) {
+        console.log( "Function watched" );
+        return scope.payload.substr(0,4)
+      },
+      function() {
+      }
+    );
 
     // Add change function here
     $scope.change = function() {
       console.log("I changed");
       $scope.header = $scope.payload.substr(0,4); // FIX THIS : What is the correct variable to pass into $scope.header?
-      // $scope.headerType= ;
     }
   })
 
@@ -29050,19 +29058,36 @@ module.exports = angular.module('advapp', [])
 
   });
 
-  // // ----- Form controller -----
-  // .controller("FormCtrl",function($scope) {
-  //   // $scope.header = {
-  //   //   name: $scope.packet.substr(0,4)
-      
-  //   // };
+// HEADER
+  // 1) Header
+  //    Watch the first 4 numbers in the payload string and bind it to {{header}} 
+  //    (payload.substr(0,4))
+  // 2) Header_Type
+  //    Watch the 2nd number in the payload string and make it chose the corresponding 'Type' 
+  //    from the drop down menu 
+  //    (payload.substr(1,1);)
+  // 3) rxAdd and txAdd
+  //    Not sure yet..
+  // 4) Header_Length
+  //    var length = parseInt(payload.substr(2,2),16) % 64;
 
+  // ADDRESS
+  // 1) Value 
+  //     var advAString = payload.substr(10,2);
+  //     advAString += payload.substr(8,2);
+  //     advAString += payload.substr(6,2);
+  //     advAString += payload.substr(4,2);
+  //     advAString += payload.substr(2,2);
+  //     advAString += payload.substr(0,2);
   
-  //   // $scope.header = {
-  //   //   type : { id: 0, id: 1, id: 2, id: 3, id: 4, id: 5, id: 6, id: 7 };
-  //   // }
-
-  // });
+  // DATA
+  // 1) UUID 
+  // 2) Local Name
+  // 3) Flags
+  // 4) MSD
+  // 5) TXPowerLevel
+  // 6) Service Solicitation
+  // 7) Service Data
 
 
 
