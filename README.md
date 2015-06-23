@@ -25,10 +25,9 @@ Now recursively bundle up all the required modules starting at lib/ble/index.js 
 
     browserify lib/ble/index.js -o web/js/advlib.js
 
-Finally, drop a single <script> tag into your html and you're done!
+Finally, drop a single <script> tag into your html and you are done!
 
     <script src="web/js/advlib.js"></script>
-
 
 
 Bluetooth Smart (BLE) Advertising Packet Library
