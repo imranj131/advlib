@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="style/main.css" />
   </head>
   <body ng-app="advapp">
+
     <div ng-controller="InteractionCtrl"> 
 
-      <!----- Menu ----->
+     <!--________Menu________-->
       <div id="menu">
         <ul>
           <li><a ng-click="selectBluetooth()" ng-class="bluetooth.tabclass">Bluetooth Smart</a></li>
@@ -18,34 +19,111 @@
         </ul>
       </div>
 
-      <!----- Packet ----->
+      <!--________Packet________-->
+
       <div ng-controller="PacketCtrl">
 
-        <!----- Payload ----->
-        <div>
-          <form>
-            <select ng-model="payload" ng-options="preset.payload as preset.name for preset in presets">
-              <option value="">-- Select Preset Payload --</option>
-            </select>
-            <input ng-model="payload" type="text" size="64"
-                   placeholder="Paste your payload here">
-            <button ng-click="process()"> Process </button>
-          </form>
-        </div>
+        
 
-        <!----- Bluetooth Smart ----->
-        <div class="form" ng-show="bluetooth.show">
-          <h1> Bluetooth Smart Packet Elements </h1>
-          <p> Feature coming soon </p>
-        </div>
+        <!--________Payload________-->
+          <div>
+            <form>
+              <select ng-model="payload"  ng-options="preset.payload as preset.name for preset in presets">
+                <option value="">-- Select Preset Payload --</option>
+              </select>
+              <!-- input button for payload -->
+              <input ng-model="payload" ng-change="change()" type="text" size="64" placeholder="Paste your payload here">
 
-        <!----- reelyActive ----->
+              <button ng-click="process()"> Process </button>
+            </form>
+          </div>
+
+        <!--________Bluetooth Smart________-->
+
+          <div class="form" ng-show="bluetooth.show" >
+
+              <h1> Bluetooth Smart Packet Elements </h1>
+              <form>
+                 <h2 ng-model="header"> Header: {{header}} </h2>
+                 <!-- <input type="text" name="header" ng-model="header.name"> -->
+                    <form>
+                      <h3> Type: 
+                        <select ng-model="header_type.id">
+                          <option value="0">ADV_IND</option>
+                          <option value="1">ADV_DIRECT_IND</option>
+                          <option value="2">ADV_NONCONNECT_IND</option>
+                          <option value="3">SCAN_REQ</option>
+                          <option value="4">SCAN_RSP</option>
+                          <option value="5">CONNECT_REQ</option>
+                          <option value="6">ADV_DISCOVER_IND</option>
+                          <option value="7">UNRECOGNISED</option>
+                        </select>
+                      <h4> rxAdd: </h4>
+                                public: <input type="radio" name="sex" value="male" checked><br>
+                                random: <input type="radio" name="sex" value="female"><br>
+                      <h4> txAdd: <br> </h4>
+                                public: <input type="radio" name="age" value="teen" checked><br>
+                                random: <input type="radio" name="age" value="adult"> <br>
+                      <label for="length">
+                      <h3> Length: <input type="number" name="payloadlength" id="length" 
+                                    min="8" max="37" step="1" value="8">
+                      </label>
+                    </form>
+                  <h2> Address:<br><input type="text" name="address"><br> </h2>
+                  <h2> Data:<br><input type="text" name="data"> </h2>
+                  <h3> UUID: </h3>
+                        <select>
+                          <option value="0">ADV_IND</option>
+                          <option value="1">ADV_DIRECT_IND</option>
+                          <option value="2">ADV_NONCONNECT_IND</option>
+                          <option value="3">SCAN_REQ</option>
+                          <option value="4">SCAN_RSP</option>
+                          <option value="5">CONNECT_REQ</option>
+                          <option value="6">ADV_DISCOVER_IND</option>
+                          <option value="f">UNRECOGNISED</option>
+                        </select>
+                  <h4> Local Name: <br> </h4>
+                          shortenedLocalName: <input type="radio" name="age" value="adult"> <br>
+                          completeLocalName: <input type="radio" name="age" value="teen" checked><br>
+                  <h3> Flags: </h3>
+                        <select>
+                          <option value="0">Non Complete 16 Bit UUIDs</option>
+                          <option value="1">Complete 16 Bit UUIDs</option>
+                          <option value="2">Non Complete 128 Bit UUIDs</option>
+                          <option value="3">Complete 128 Bit UUIDs</option>
+                        </select>
+                  <h3> Manufacturer Specific Data: </h3>
+                          Not iBeacon: <input type="radio" name="age" value="adult"> <br>
+                            <h4> companyIdentifierCode:<br><input type="text" name="address"><br> </h4>
+                            <h4> data:<br><input type="text" name="address"><br> </h4>
+                          iBeacon: <input type="radio" name="age" value="teen" checked><br>
+                            <h4> uuid:<br><input type="text" name="address"><br> </h4>
+                            <h4> major:<br><input type="text" name="address"><br> </h4>
+                            <h4> minor:<br><input type="text" name="address"><br> </h4>
+                            <h4> txPower:<br><input type="text" name="address"><br> </h4>
+                      <label for="txPowerLevel">
+                      <h3> TX Power Level: <input type="number" name="txPowerLeval" id="txPowerLevel" 
+                                    min="-128" max="128" step="1" value="-128">
+                      </label>
+                      <h4> Slave Connection Interval Range:<br><input type="text" name="address"><br> </h4>
+                      <h3> Service Solicitation: <br> </h3>
+                          16 Bit UUIDs: <input type="radio" name="age" value="adult"> <br>
+                          128 Bit UUIDs: <input type="radio" name="age" value="teen" checked><br>
+                      <h3> Service Data: <br> </h3>
+                          <h4> uuid:<br><input type="text" name="address"><br> </h4>
+                          <h4> data:<br><input type="text" name="address"><br> </h4>
+              </form> 
+          </div>
+       
+        <!--________reelyActive________-->
+       
         <div class="form" ng-show="reelyactive.show">
           <h1> reelyActive Packet Elements </h1>
-          <p> Feature coming soon </p>
+          <p>Feature coming soon!</p>
         </div>
 
-        <!----- JSON ----->
+        <!--________JSON________-->
+        
         <div class="json">
           <h1> As JSON </h1>
           <pre>{{packet}}</pre>

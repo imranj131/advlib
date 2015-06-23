@@ -28986,6 +28986,7 @@ module.exports = angular.module('advapp', [])
   // ----- Interaction controller -----
   .controller("InteractionCtrl", function($scope) {
     $scope.payload = '';
+    $scope.header = '';
     $scope.bluetooth = { show: true,
                          tabclass: "selected-tab",
                          packet: {},
@@ -29017,8 +29018,14 @@ module.exports = angular.module('advapp', [])
       $scope.packet = $scope.reelyactive.packet;
       $scope.presets = $scope.reelyactive.presets;
     }
-  })
 
+
+    // Add change function here
+    $scope.change = function() {
+      console.log("I changed");
+      $scope.header = $scope.payload; // FIX THIS : What is the correct variable to pass into $scope.header?
+    }
+  })
 
   // ----- Packet controller -----
   .controller("PacketCtrl", function($scope) {
@@ -29039,6 +29046,23 @@ module.exports = angular.module('advapp', [])
         $scope.packet = JSON.stringify($scope.reelyactive.packet, null, " ");
       }
     }
+
   });
+
+  // // ----- Form controller -----
+  // .controller("FormCtrl",function($scope) {
+  //   // $scope.header = {
+  //   //   name: $scope.packet.substr(0,4)
+      
+  //   // };
+
+  
+  //   // $scope.header = {
+  //   //   type : { id: 0, id: 1, id: 2, id: 3, id: 4, id: 5, id: 6, id: 7 };
+  //   // }
+
+  // });
+
+
 
 },{"../../lib/index.js":16,"angular":18}]},{},[19]);
