@@ -25,10 +25,7 @@ Now recursively bundle up all the required modules starting at lib/ble/index.js 
 
     browserify web/js/advapp.js -o web/js/advlib.js 
 
-Finally, drop a single <script> tag into your index.html file and you are done!
-
-
-<script src="js/advlib.js"></script>
+Finally, drop a single script tag into your index.html file and you are done!
 
 ``` html
 <script src="js/advlib.js"></script>
