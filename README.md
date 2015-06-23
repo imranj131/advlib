@@ -11,9 +11,24 @@ See the [advlib master branch](https://github.com/reelyactive/advlib) for more d
 How we create this using browserify
 -----------------------------------
 
-Instructions coming soon
-* First step
-* Second step
+[Browserify](http://browserify.org/) is a beautiful tool which bundles up and concatenates NodeJS modules for use in browser environments.  
+
+To get started with browserify, install browserify globally with npm:
+
+    npm install -g browserify
+
+or
+
+    sudo npm install -g browserify
+
+Now recursively bundle up all the required modules starting at lib/ble/index.js into a single file called advlib.js with the browserify command:
+
+    browserify lib/ble/index.js -o web/js/advlib.js
+
+Finally, drop a single <script> tag into your html and you're done!
+
+    <script src="web/js/advlib.js"></script>
+
 
 
 Bluetooth Smart (BLE) Advertising Packet Library
