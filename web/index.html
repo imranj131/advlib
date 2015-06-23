@@ -48,7 +48,7 @@
                  <!-- <input type="text" name="header" ng-model="header.name"> -->
                     <form>
                       <h3> Type: 
-                        <select ng-model="header_type.id">
+                        <select ng-model="headerType">
                           <option value="0">ADV_IND</option>
                           <option value="1">ADV_DIRECT_IND</option>
                           <option value="2">ADV_NONCONNECT_IND</option>
@@ -59,11 +59,12 @@
                           <option value="7">UNRECOGNISED</option>
                         </select>
                       <h4> rxAdd: </h4>
-                                public: <input type="radio" name="sex" value="male" checked><br>
-                                random: <input type="radio" name="sex" value="female"><br>
+                                <input type="radio" name="sex" value="male" checked> public<br>
+                                <input type="radio" name="sex" value="female"> random<br>
                       <h4> txAdd: <br> </h4>
-                                public: <input type="radio" name="age" value="teen" checked><br>
-                                random: <input type="radio" name="age" value="adult"> <br>
+                               </h4>
+                                <input type="radio" name="age" value="teen" checked> public<br>
+                                <input type="radio" name="age" value="adult"> random<br>
                       <label for="length">
                       <h3> Length: <input type="number" name="payloadlength" id="length" 
                                     min="8" max="37" step="1" value="8">
@@ -72,31 +73,35 @@
                   <h2> Address:<br><input type="text" name="address"><br> </h2>
                   <h2> Data:<br><input type="text" name="data"> </h2>
                   <h3> UUID: </h3>
-                        <select>
-                          <option value="0">ADV_IND</option>
-                          <option value="1">ADV_DIRECT_IND</option>
-                          <option value="2">ADV_NONCONNECT_IND</option>
-                          <option value="3">SCAN_REQ</option>
-                          <option value="4">SCAN_RSP</option>
-                          <option value="5">CONNECT_REQ</option>
-                          <option value="6">ADV_DISCOVER_IND</option>
-                          <option value="f">UNRECOGNISED</option>
-                        </select>
+                        <input type="radio" name="uuid" value="nc16" checked> Non-Complete 16 Bit
+                         <br>
+                         <input type="radio" name="uuid" value="c16"> Complete 16 Bit
+                         <br>
+                         <input type="radio" name="uuid" value="nc128" checked> Non-Complete 128 Bit<br>
+                         <input type="radio" name="uuid" value="c128"> Complete 128 Bit
+                         <br>
                   <h4> Local Name: <br> </h4>
-                          shortenedLocalName: <input type="radio" name="age" value="adult"> <br>
-                          completeLocalName: <input type="radio" name="age" value="teen" checked><br>
+                          <input type="radio" name="age" value="adult"> shortenedLocalName <br>
+                         <input type="radio" name="age" value="teen" checked> completeLocalName <br>
                   <h3> Flags: </h3>
                         <select>
-                          <option value="0">Non Complete 16 Bit UUIDs</option>
-                          <option value="1">Complete 16 Bit UUIDs</option>
-                          <option value="2">Non Complete 128 Bit UUIDs</option>
-                          <option value="3">Complete 128 Bit UUIDs</option>
+                          <option value="0">LE Limited Discoverable Mode</option>
+                          <option value="1">LE General Discoverable Mode</option>
+                          <option value="2">BR/EDR Not Supported</option>
+                          <option value="3">Simultaneous LE and BR/EDR to Same Device Capable (Controller)</option>
+                          <option value="2">Simultaneous LE and BR/EDR to Same Device Capable (Host)</option>
+                          <option value="2">Reserved</option>
                         </select>
                   <h3> Manufacturer Specific Data: </h3>
-                          Not iBeacon: <input type="radio" name="age" value="adult"> <br>
+                        <select>
+                          <option value="1">Generic</option>
+                          <option value="1">iBeacon</option>
+                        </select>
+
+                          Generic: 
                             <h4> companyIdentifierCode:<br><input type="text" name="address"><br> </h4>
                             <h4> data:<br><input type="text" name="address"><br> </h4>
-                          iBeacon: <input type="radio" name="age" value="teen" checked><br>
+                          iBeacon: 
                             <h4> uuid:<br><input type="text" name="address"><br> </h4>
                             <h4> major:<br><input type="text" name="address"><br> </h4>
                             <h4> minor:<br><input type="text" name="address"><br> </h4>
@@ -107,8 +112,8 @@
                       </label>
                       <h4> Slave Connection Interval Range:<br><input type="text" name="address"><br> </h4>
                       <h3> Service Solicitation: <br> </h3>
-                          16 Bit UUIDs: <input type="radio" name="age" value="adult"> <br>
-                          128 Bit UUIDs: <input type="radio" name="age" value="teen" checked><br>
+                          <input type="radio" name="age" value="adult"> 16 Bit UUIDs <br>
+                          <input type="radio" name="age" value="teen" checked> 128 Bit UUIDs <br>
                       <h3> Service Data: <br> </h3>
                           <h4> uuid:<br><input type="text" name="address"><br> </h4>
                           <h4> data:<br><input type="text" name="address"><br> </h4>

@@ -42,7 +42,8 @@ module.exports = angular.module('advapp', [])
     // Add change function here
     $scope.change = function() {
       console.log("I changed");
-      $scope.header = $scope.payload; // FIX THIS : What is the correct variable to pass into $scope.header?
+      $scope.header = $scope.payload.substr(0,4); // FIX THIS : What is the correct variable to pass into $scope.header?
+      // $scope.headerType= ;
     }
   })
 
