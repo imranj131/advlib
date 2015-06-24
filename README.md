@@ -44,7 +44,7 @@ Finally, drop a single script tag into your index.html file and you are done!
 <script src="js/advlib.js"></script>
 ```
 
-
+Note: Browserify is called on the source in the [master branch](https://github.com/imranj131/advlib/tree/master)
 
 Bluetooth Smart (BLE) Advertising Packet Library
 ------------------------------------------------
