@@ -23,7 +23,6 @@
 
       <div ng-controller="PacketCtrl">
 
-        
 
         <!--________Payload________-->
           <div>
@@ -44,8 +43,8 @@
 
               <h1> Bluetooth Smart Packet Elements </h1>
               <form>
-                 <h2> Header: {{header}} </h2>
-                 <!-- <input type="text" name="header" ng-model="header.name"> -->
+                 <h2> Header: <input type="text" name="header" ng-model="header"> </h2>
+                 
                     <form>
                       <h3> Type: 
                         <select ng-model="bluetooth.packet.advHeader.type">
@@ -59,19 +58,19 @@
                           <option value="UNRECOGNISED">UNRECOGNISED</option>
                         </select>
                       <h4> rxAdd: </h4>
-                                <input type="radio" name="sex" value="male" checked> public<br>
-                                <input type="radio" name="sex" value="female"> random<br>
+                                <input type="radio" value="public" ng-model="bluetooth.packet.advHeader.rxAdd"> public<br>
+                                <input type="radio" value="random" ng-model="bluetooth.packet.advHeader.rxAdd"> random<br>
                       <h4> txAdd: <br> </h4>
                                </h4>
-                                <input type="radio" name="age" value="teen" checked> public<br>
-                                <input type="radio" name="age" value="adult"> random<br>
+                                <input type="radio" value="public" ng-model="bluetooth.packet.advHeader.txAdd"> public<br>
+                                <input type="radio" value="random" ng-model="bluetooth.packet.advHeader.txAdd"> random<br>
                       <label for="length">
                       <h3> Length: <input ng-model="bluetooth.packet.advHeader.length" type="number" name="payloadlength" id="length" 
                                     min="8" max="37" step="1" value="8">
                       </label>
                     </form>
-                  <h2> Address:<br><input type="text" name="address"><br> </h2>
-                  <h2> Data:<br><input type="text" name="data"> </h2>
+                  <h2> Address: <input type="text" name="address" ng-model="address.value"> </h2>
+                  <h2> Data: <input type="text" name="data" > </h2>
                   <h3> UUID: </h3>
                         <input type="radio" name="uuid" value="nc16" checked> Non-Complete 16 Bit
                          <br>
@@ -80,37 +79,36 @@
                          <input type="radio" name="uuid" value="nc128" checked> Non-Complete 128 Bit<br>
                          <input type="radio" name="uuid" value="c128"> Complete 128 Bit
                          <br>
-                  <h4> Local Name: <br> </h4>
+                  <h3> Local Name: <br> </h3>
                           <input type="radio" name="age" value="adult"> shortenedLocalName <br>
                          <input type="radio" name="age" value="teen" checked> completeLocalName <br>
                   <h3> Flags: </h3>
-                        <select>
-                          <option value="0">LE Limited Discoverable Mode</option>
-                          <option value="1">LE General Discoverable Mode</option>
-                          <option value="2">BR/EDR Not Supported</option>
-                          <option value="3">Simultaneous LE and BR/EDR to Same Device Capable (Controller)</option>
-                          <option value="2">Simultaneous LE and BR/EDR to Same Device Capable (Host)</option>
-                          <option value="2">Reserved</option>
+                        <select ng-model="bluetooth.packet.advData.flags[1]">
+                          <option value="LE Limited Discoverable Mode">LE Limited Discoverable Mode</option>
+                          <option value="LE General Discoverable Mode">LE General Discoverable Mode</option>
+                          <option value="BR/EDR Not Supported">BR/EDR Not Supported</option>
+                          <option value="Simultaneous LE and BR/EDR to Same Device Capable (Controller)">Simultaneous LE and BR/EDR to Same Device Capable (Controller)</option>
+                          <option value="Simultaneous LE and BR/EDR to Same Device Capable (Host)">Simultaneous LE and BR/EDR to Same Device Capable (Host)</option>
+                          <option value="Reserved">Reserved</option>
                         </select>
                   <h3> Manufacturer Specific Data: </h3>
                         <select>
                           <option value="1">Generic</option>
                           <option value="1">iBeacon</option>
                         </select>
-
                           Generic: 
-                            <h4> companyIdentifierCode:<br><input type="text" name="address"><br> </h4>
-                            <h4> data:<br><input type="text" name="address"><br> </h4>
+                            <h4> companyIdentifierCode:<br><input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.companyIdentifierCode"><br> </h4>
+                            <h4> data:<br><input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.data"><br> </h4>
                           iBeacon: 
-                            <h4> uuid:<br><input type="text" name="address"><br> </h4>
-                            <h4> major:<br><input type="text" name="address"><br> </h4>
-                            <h4> minor:<br><input type="text" name="address"><br> </h4>
-                            <h4> txPower:<br><input type="text" name="address"><br> </h4>
+                            <h4> uuid:<br><input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.uuid"><br> </h4>
+                            <h4> major:<br><input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.major"><br> </h4>
+                            <h4> minor:<br><input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.minor"><br> </h4>
+                            <h4> txPower:<br><input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower"><br> </h4>
                       <label for="txPowerLevel">
-                      <h3> TX Power Level: <input type="number" name="txPowerLeval" id="txPowerLevel" 
-                                    min="-128" max="128" step="1" value="-128">
+                      <h3> TX Power Level: <input type="number" name="txPowerLeval" id="txPowerLevel"
+                                    min="-128" max="128" step="1" value="-128" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower">
                       </label>
-                      <h4> Slave Connection Interval Range:<br><input type="text" name="address"><br> </h4>
+                      <h3> Slave Connection Interval Range:<br><input type="text" name="address"><br> </h3>
                       <h3> Service Solicitation: <br> </h3>
                           <input type="radio" name="age" value="adult"> 16 Bit UUIDs <br>
                           <input type="radio" name="age" value="teen" checked> 128 Bit UUIDs <br>

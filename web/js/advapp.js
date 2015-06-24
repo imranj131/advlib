@@ -37,22 +37,6 @@ module.exports = angular.module('advapp', [])
       $scope.packet = $scope.reelyactive.packet;
       $scope.presets = $scope.reelyactive.presets;
     }
-
-  // // Watch function
-  //   $scope.$watch(
-  //     function(scope) {
-  //       console.log( "Function watched" );
-  //       return scope.payload.substr(0,4)
-  //     },
-  //     function() {
-  //     }
-  //   );
-
-    // Add change function here
-    $scope.change = function() {
-      console.log("I changed");
-      $scope.header = 23232; // FIX THIS : What is the correct variable to pass into $scope.header?
-    }
   })
 
   // ----- Packet controller -----
@@ -68,48 +52,44 @@ module.exports = angular.module('advapp', [])
       if($scope.bluetooth.show) {
         $scope.bluetooth.packet = advlib.ble.process($scope.payload);
         $scope.packet = JSON.stringify($scope.bluetooth.packet, null, " ");
+
+        // Defined for ng-keyup function process() calls
         $scope.header = $scope.payload.substr(0,4);
+        $scope.address = advlib.ble.address.process($scope.payload);
       }
       else if($scope.reelyactive.show) {
         $scope.reelyactive.packet = advlib.reelyactive.process($scope.payload);
         $scope.packet = JSON.stringify($scope.reelyactive.packet, null, " ");
-        $scope.header = $scope.payload.substr(0,4);
       }
     }
 
-    window.MYSCOPE = $scope;
+    window.MYSCOPE = $scope; // In order to access scope on console (to be removed when not testing)
 
   });
 
-  // HEADER
-  // 1) Header
-  //    Watch the first 4 numbers in the payload string and bind it to {{header}} 
-  //    (payload.substr(0,4))
-  // 2) Header_Type
-  //    Watch the 2nd number in the payload string and make it chose the corresponding 'Type' 
-  //    from the drop down menu 
-  //    (payload.substr(1,1);)
-  // 3) rxAdd and txAdd
-  //    Not sure yet..
-  // 4) Header_Length
-  //    var length = parseInt(payload.substr(2,2),16) % 64;
+  //      TO DO LIST
+  // -------------------
+  // HEADER 
+  // 1) Header ---> DONE
+  //    See line 57
+
+  // 2) Type ---> DONE 
+   
+  // 3) rxAdd and txAdd ---> DONE
+  
+  // 4) Length ---> DONE
 
   // ADDRESS
-  // 1) Value 
-  //     var advAString = payload.substr(10,2);
-  //     advAString += payload.substr(8,2);
-  //     advAString += payload.substr(6,2);
-  //     advAString += payload.substr(4,2);
-  //     advAString += payload.substr(2,2);
-  //     advAString += payload.substr(0,2);
+  // 1) Value ---> DONE
+  //    See line 58
   
   // DATA
-  // 1) UUID 
-  // 2) Local Name
-  // 3) Flags
-  // 4) MSD
-  // 5) TXPowerLevel
-  // 6) Service Solicitation
-  // 7) Service Data
+  // 1) UUID ---> not sure
+  // 2) Local Name ---> not sure
+  // 3) Flags ---> DONE
+  // 4) MSD ---> DONE
+  // 5) TXPowerLevel ---> not sure
+  // 6) Service Solicitation ---> not sure
+  // 7) Service Data ---> not sure
 
 
