@@ -32,7 +32,7 @@
                 <option value="">-- Select Preset Payload --</option>
               </select>
               <!-- input button for payload -->
-              <input ng-model="payload" ng-change="change()" type="text" size="64" placeholder="Paste your payload here">
+              <input ng-model="payload" ng-keyup="process()" type="text" size="64" placeholder="Paste your payload here">
 
               <button ng-click="process()"> Process </button>
             </form>
@@ -44,19 +44,19 @@
 
               <h1> Bluetooth Smart Packet Elements </h1>
               <form>
-                 <h2 ng-model="header"> Header: {{header}} </h2>
+                 <h2> Header: {{header}} </h2>
                  <!-- <input type="text" name="header" ng-model="header.name"> -->
                     <form>
                       <h3> Type: 
-                        <select ng-model="headerType">
-                          <option value="0">ADV_IND</option>
-                          <option value="1">ADV_DIRECT_IND</option>
-                          <option value="2">ADV_NONCONNECT_IND</option>
-                          <option value="3">SCAN_REQ</option>
-                          <option value="4">SCAN_RSP</option>
-                          <option value="5">CONNECT_REQ</option>
-                          <option value="6">ADV_DISCOVER_IND</option>
-                          <option value="7">UNRECOGNISED</option>
+                        <select ng-model="bluetooth.packet.advHeader.type">
+                          <option value="ADV_IND">ADV_IND</option>
+                          <option value="ADV_DIRECT_IND">ADV_DIRECT_IND</option>
+                          <option value="ADV_NONCONNECT_IND">ADV_NONCONNECT_IND</option>
+                          <option value="SCAN_REQ">SCAN_REQ</option>
+                          <option value="SCAN_RSP">SCAN_RSP</option>
+                          <option value="CONNECT_REQ">CONNECT_REQ</option>
+                          <option value="ADV_DISCOVER_IND">ADV_DISCOVER_IND</option>
+                          <option value="UNRECOGNISED">UNRECOGNISED</option>
                         </select>
                       <h4> rxAdd: </h4>
                                 <input type="radio" name="sex" value="male" checked> public<br>
@@ -66,7 +66,7 @@
                                 <input type="radio" name="age" value="teen" checked> public<br>
                                 <input type="radio" name="age" value="adult"> random<br>
                       <label for="length">
-                      <h3> Length: <input type="number" name="payloadlength" id="length" 
+                      <h3> Length: <input ng-model="bluetooth.packet.advHeader.length" type="number" name="payloadlength" id="length" 
                                     min="8" max="37" step="1" value="8">
                       </label>
                     </form>

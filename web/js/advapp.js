@@ -38,20 +38,20 @@ module.exports = angular.module('advapp', [])
       $scope.presets = $scope.reelyactive.presets;
     }
 
-  // Watch function
-    $scope.$watch(
-      function(scope) {
-        console.log( "Function watched" );
-        return scope.payload.substr(0,4)
-      },
-      function() {
-      }
-    );
+  // // Watch function
+  //   $scope.$watch(
+  //     function(scope) {
+  //       console.log( "Function watched" );
+  //       return scope.payload.substr(0,4)
+  //     },
+  //     function() {
+  //     }
+  //   );
 
     // Add change function here
     $scope.change = function() {
       console.log("I changed");
-      $scope.header = $scope.payload.substr(0,4); // FIX THIS : What is the correct variable to pass into $scope.header?
+      $scope.header = 23232; // FIX THIS : What is the correct variable to pass into $scope.header?
     }
   })
 
@@ -68,16 +68,20 @@ module.exports = angular.module('advapp', [])
       if($scope.bluetooth.show) {
         $scope.bluetooth.packet = advlib.ble.process($scope.payload);
         $scope.packet = JSON.stringify($scope.bluetooth.packet, null, " ");
+        $scope.header = $scope.payload.substr(0,4);
       }
       else if($scope.reelyactive.show) {
         $scope.reelyactive.packet = advlib.reelyactive.process($scope.payload);
         $scope.packet = JSON.stringify($scope.reelyactive.packet, null, " ");
+        $scope.header = $scope.payload.substr(0,4);
       }
     }
 
+    window.MYSCOPE = $scope;
+
   });
 
-// HEADER
+  // HEADER
   // 1) Header
   //    Watch the first 4 numbers in the payload string and bind it to {{header}} 
   //    (payload.substr(0,4))
