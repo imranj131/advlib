@@ -63,7 +63,12 @@ module.exports = angular.module('advapp', [])
       }
     }
 
- // ----- DropDown controller -----
+
+    window.MYSCOPE = $scope; // In order to access scope on console (to be removed when not testing)
+
+  });
+
+  // ----- DropDown controller -----
 
   .controller('DropDown', function ($scope) {
     $scope.msd = [{ abbreviation:'Gen', name: 'Generic', properties: ['companyIdentifierCode', 'data']}, 
@@ -89,10 +94,7 @@ module.exports = angular.module('advapp', [])
   };
  });
 
-
-    window.MYSCOPE = $scope; // In order to access scope on console (to be removed when not testing)
-
-  });
+  
 
   //      TO DO LIST
   // -------------------

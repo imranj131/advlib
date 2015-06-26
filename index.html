@@ -144,58 +144,61 @@
 
                   <h3> Manufacturer Specific Data: </h3>
 
+                      <section ng-controller="DropDown as Dd"> 
 
-<section ng-controller="DropDown as Dd"> 
-    <select ng-model="showDd" class="form-control" ng-options="msd.abbreviation as msd.name for msd in msd">                                                                    
-        <option value="">Choose One</option>
-    </select>
+                        <select ng-model="showDd" class="form-control" ng-options="msd.abbreviation as msd.name for msd in msd">                                                                    
+                            <option value="">Choose One</option>
+                        </select>
 
- <div ng-switch="showDd">
- <div ng-switch-when="Gen">
-     <table class="table">
-         
-         <tbody>
-             <tr>
-                 <td>companyIdentifierCode:
-<input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.companyIdentifierCode">
-                   </td>
-             </tr>
-             <tr>
-                 <td>data:
-<input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.data">
-                 </td>
-             </tr>
-         </tbody>
-     </table>
-</div>
+                             <div ng-switch="showDd">
+                             <div ng-switch-when="Gen">
+                                 <table class="table">
+                                     
+                                     <tbody>
+                                         <tr>
+                                             <td>companyIdentifierCode:
+                            <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.companyIdentifierCode">
+                                               </td>
+                                         </tr>
+                                         <tr>
+                                             <td>data:
+                            <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.data">
+                                             </td>
+                                         </tr>
+                                     </tbody>
+                                 </table>
+                            </div>
 
- <div ng-switch-when="iB">
-     <table class="table">
-             <tbody>
-             <tr >
-                 <td>uuid:  
-<input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.uuid">
-                 </td>
-             </tr>
-              <tr >
-                 <td>major: 
-<input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.major"> 
-                  </td>
-             </tr>
-              <tr >
-                 <td>minor: 
-<input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.minor">
-                  </td>
-             </tr>
-              <tr >
-                 <td>txPower:
-<input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower"> 
-                 </td>
-             </tr>
-         </tbody>
-     </table>
-</div>
-    </section>
+                             <div ng-switch-when="iB">
+                                 <table class="table">
+                                         <tbody>
+                                         <tr >
+                                             <td>uuid:  
+                            <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.uuid">
+                                             </td>
+                                         </tr>
+                                          <tr >
+                                             <td>major: 
+                            <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.major"> 
+                                              </td>
+                                         </tr>
+                                          <tr >
+                                             <td>minor: 
+                            <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.minor">
+                                              </td>
+                                         </tr>
+                                          <tr >
+                                             <td>txPower:
+                            <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower"> 
+                                             </td>
+                                         </tr>
+                                     </tbody>
+                                     
+                                 </table>
+
+                            </div>
+
+                      </section>
 
 
 
