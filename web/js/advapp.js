@@ -66,33 +66,28 @@ module.exports = angular.module('advapp', [])
  // ----- DropDown controller -----
 
   .controller('DropDown', function ($scope) {
-    $scope.msd = [{ abbreviation:'Gen', name: 'Generic', properties: ['companyIdentifierCode', 'data']}, {abbreviation: 'iB', name:'iBeacon', properties: ['uuid', 'major', 'minor', 'txPower']}];
+    $scope.msd = [{ abbreviation:'Gen', name: 'Generic', properties: ['companyIdentifierCode', 'data']}, 
+    {abbreviation: 'iB', name:'iBeacon', properties: ['uuid', 'major', 'minor', 'txPower']}];
+
   this.setTab = function(setTab) {
     this.tab = setTab;
   };
-  
-  this.isSelected = function(checkTab) {
+    this.isSelected = function(checkTab) {
     return this.tab === checkTab;
   };
-  
-  this.notSelected = function(checkTab) {
+    this.notSelected = function(checkTab) {
     return !(this.isSelected(checkTab));
   };
-  
-  this.getTab = function() {
+    this.getTab = function() {
     return this.tab;
   };
-  
-  this.setIsDefault = function() {
+    this.setIsDefault = function() {
     this.isDefault = true;
   };
-  
-  this.getIsDefault = function() {
+    this.getIsDefault = function() {
     return this.isDefault;
   };
  });
-
-
 
 
     window.MYSCOPE = $scope; // In order to access scope on console (to be removed when not testing)
