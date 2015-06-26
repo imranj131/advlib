@@ -71,8 +71,7 @@ module.exports = angular.module('advapp', [])
   // ----- DropDown controller -----
 
   .controller('DropDown', function ($scope) {
-    $scope.msd = [{ abbreviation:'Gen', name: 'Generic', properties: ['companyIdentifierCode', 'data']}, 
-    {abbreviation: 'iB', name:'iBeacon', properties: ['uuid', 'major', 'minor', 'txPower']}];
+    $scope.msd = [{ abbreviation:'Gen', name: 'Generic', properties: ['companyIdentifierCode', 'data']}, {abbreviation: 'iB', name:'iBeacon', properties: ['uuid', 'major', 'minor', 'txPower']}];
 
   this.setTab = function(setTab) {
     this.tab = setTab;
@@ -94,7 +93,7 @@ module.exports = angular.module('advapp', [])
   };
  });
 
-  
+
 
   //      TO DO LIST
   // -------------------
