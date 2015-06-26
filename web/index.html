@@ -42,10 +42,12 @@
           <div class="form" ng-show="bluetooth.show" >
 
               <h1> Bluetooth Smart Packet Elements </h1>
+              <div class="form1">
               <form>
+                <div class="form2">
                  <h2> Header: <input type="text" name="header" ng-model="header"> </h2>
-                 
-                    <form>
+                 </div>
+                      <div class="form2">
                       <h3> Type: 
                         <select ng-model="bluetooth.packet.advHeader.type">
                           <option value="ADV_IND">ADV_IND</option>
@@ -57,19 +59,33 @@
                           <option value="ADV_DISCOVER_IND">ADV_DISCOVER_IND</option>
                           <option value="UNRECOGNISED">UNRECOGNISED</option>
                         </select>
+                        </div>
+                          <div class="form2">
                       <h4> rxAdd: </h4>
+
                                 <input type="radio" value="public" ng-model="bluetooth.packet.advHeader.rxAdd"> public<br>
                                 <input type="radio" value="random" ng-model="bluetooth.packet.advHeader.rxAdd"> random<br>
+                          </div>
+
+                            <div class="form2">
                       <h4> txAdd: <br> </h4>
                                </h4>
                                 <input type="radio" value="public" ng-model="bluetooth.packet.advHeader.txAdd"> public<br>
                                 <input type="radio" value="random" ng-model="bluetooth.packet.advHeader.txAdd"> random<br>
+                          </div>
                       <label for="length">
                       <h3> Length: <input ng-model="bluetooth.packet.advHeader.length" type="number" name="payloadlength" id="length" 
                                     min="8" max="37" step="1" value="8">
                       </label>
                     </form>
-                  <h2> Address: <input type="text" name="address" ng-model="address.value"> </h2>
+                  </div>
+
+                  <div class="form1">
+                  <h2> Address: <input type="text" name="address" ng-model="address.value"> 
+                  </h2>
+                  </div>
+
+                  <div class="form1">
                   <h2> Data: <input type="text" name="data" > </h2>
                   <h3> UUID: </h3>
                         <input type="radio" name="uuid" value="nc16" checked> Non-Complete 16 Bit
@@ -117,7 +133,7 @@
                           <h4> data:<br><input type="text" name="address"><br> </h4>
               </form> 
           </div>
-       
+          </div>
         <!--________reelyActive________-->
        
         <div class="form" ng-show="reelyactive.show">

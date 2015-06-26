@@ -35,6 +35,14 @@ h1 {
   padding-bottom: 0.1em;
 }
 
+.form1 {
+  padding-bottom: 0px;
+}
+
+.form2 {
+  padding-bottom: 0px;
+
+}
 .selected-tab
 {
   color: #ffffff; 
