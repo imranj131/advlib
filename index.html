@@ -1,18 +1,24 @@
 <!DOCTYPE HTML>
 <html>
+
   <head>
+
     <title>
       reelyActive: advlib
     </title>
-    <script src="web/js/advlib.js"></script>
-    <link rel="stylesheet" href="web/style/main.css" />
+
+    <script src="js/advlib.js"></script>
+    <link rel="stylesheet" href="style/main.css" />
+
   </head>
+
   <body ng-app="advapp">
 
     <div ng-controller="InteractionCtrl"> 
 
      <!--________Menu________-->
       <div id="menu">
+
         <ul>
           <li><a ng-click="selectBluetooth()" ng-class="bluetooth.tabclass">Bluetooth Smart</a></li>
           <li><a ng-click="selectReelyactive()" ng-class="reelyactive.tabclass">reelyActive</a></li>
@@ -22,7 +28,6 @@
       <!--________Packet________-->
 
       <div ng-controller="PacketCtrl">
-
 
         <!--________Payload________-->
           <div>
@@ -42,12 +47,19 @@
           <div class="form" ng-show="bluetooth.show" >
 
               <h1> Bluetooth Smart Packet Elements </h1>
+
               <div class="form1">
+
               <form>
+
                 <div class="form2">
+
                  <h2> Header: <input type="text" name="header" ng-model="header"> </h2>
-                 </div>
+
+                </div>
+
                       <div class="form2">
+
                       <h3> Type: 
                         <select ng-model="bluetooth.packet.advHeader.type">
                           <option value="ADV_IND">ADV_IND</option>
@@ -59,98 +71,250 @@
                           <option value="ADV_DISCOVER_IND">ADV_DISCOVER_IND</option>
                           <option value="UNRECOGNISED">UNRECOGNISED</option>
                         </select>
-                        </div>
-                          <div class="form2">
-                      <h4> rxAdd: </h4>
 
-                                <input type="radio" value="public" ng-model="bluetooth.packet.advHeader.rxAdd"> public<br>
-                                <input type="radio" value="random" ng-model="bluetooth.packet.advHeader.rxAdd"> random<br>
-                          </div>
+                      </div>
 
-                            <div class="form2">
-                      <h4> txAdd: <br> </h4>
+                      <div class="form2">
+
+                      <h3> rxAdd: </h3>
+
+                                <input type="radio" value="public" ng-model="bluetooth.packet.advHeader.rxAdd"> public
+                                <input type="radio" value="random" ng-model="bluetooth.packet.advHeader.rxAdd"> random
+                      </div>
+
+                      <div class="form2">
+
+                      <h3> txAdd: </h3>
+
                                </h4>
-                                <input type="radio" value="public" ng-model="bluetooth.packet.advHeader.txAdd"> public<br>
-                                <input type="radio" value="random" ng-model="bluetooth.packet.advHeader.txAdd"> random<br>
-                          </div>
+                                <input type="radio" value="public" ng-model="bluetooth.packet.advHeader.txAdd"> public
+                                <input type="radio" value="random" ng-model="bluetooth.packet.advHeader.txAdd"> random
+                      </div>
+
+                      <div class="form2">
+
                       <label for="length">
-                      <h3> Length: <input ng-model="bluetooth.packet.advHeader.length" type="number" name="payloadlength" id="length" 
-                                    min="8" max="37" step="1" value="8">
+
+                      <h3> Length: <input ng-model="bluetooth.packet.advHeader.length" type="number" name="payloadlength" id="length" min="8" max="37" step="1" value="8">
+
                       </label>
-                    </form>
-                  </div>
+
+                      </div>
+                </div>
 
                   <div class="form1">
-                  <h2> Address: <input type="text" name="address" ng-model="address.value"> 
+
+                  <h2> Address: 
+                    <input type="text" name="address" ng-model="address.value"> 
                   </h2>
+                  
                   </div>
 
                   <div class="form1">
-                  <h2> Data: <input type="text" name="data" > </h2>
+
+                  <h2> Data: 
+                    <input type="text" name="data"> 
+                  </h2>
+
                   <h3> UUID: </h3>
-                        <input type="radio" name="uuid" value="nc16" checked> Non-Complete 16 Bit
-                         <br>
-                         <input type="radio" name="uuid" value="c16"> Complete 16 Bit
-                         <br>
-                         <input type="radio" name="uuid" value="nc128" checked> Non-Complete 128 Bit<br>
-                         <input type="radio" name="uuid" value="c128"> Complete 128 Bit
-                         <br>
-                  <h3> Local Name: <br> </h3>
-                          <input type="radio" name="age" value="adult"> shortenedLocalName <br>
-                         <input type="radio" name="age" value="teen" checked> completeLocalName <br>
+
+                        <input type="radio" name="uuid" value="nc16" checked> Non-Complete 16 Bit <br>
+                        <input type="radio" name="uuid" value="c16"> Complete 16 Bit <br>
+                        <input type="radio" name="uuid" value="nc128" checked> Non-Complete 128 Bit <br>
+                        <input type="radio" name="uuid" value="c128"> Complete 128 Bit <br>
+
+                  <h3> Local Name: </h3>
+
+                         <input type="radio" name="age" value="adult"> shortened                          
+                         <input type="radio" name="age" value="teen" checked> 
+                         complete 
+
                   <h3> Flags: </h3>
-                        <select ng-model="bluetooth.packet.advData.flags[1]">
+
+                       <select ng-model="bluetooth.packet.advData.flags[1]">
+
                           <option value="LE Limited Discoverable Mode">LE Limited Discoverable Mode</option>
                           <option value="LE General Discoverable Mode">LE General Discoverable Mode</option>
                           <option value="BR/EDR Not Supported">BR/EDR Not Supported</option>
                           <option value="Simultaneous LE and BR/EDR to Same Device Capable (Controller)">Simultaneous LE and BR/EDR to Same Device Capable (Controller)</option>
                           <option value="Simultaneous LE and BR/EDR to Same Device Capable (Host)">Simultaneous LE and BR/EDR to Same Device Capable (Host)</option>
                           <option value="Reserved">Reserved</option>
-                        </select>
+
+                       </select>
+
                   <h3> Manufacturer Specific Data: </h3>
-                        <select>
+
+            <section ng-controller="DropDown as Dd">  
+            <select ng-model="showDd" class="form-control" ng-options="msd.abbreviation as msd.name for msd in msd">            
+            <option value="">Choose One</option>
+            </select>
+
+             <div ng-switch="showDd">
+             <div ng-switch-when="Gen">
+
+                 <table class="table">
+                     
+                     <tbody>
+                         <tr>
+                             <td>companyIdentifierCode:
+            <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.companyIdentifierCode">
+                               </td>
+                         </tr>
+                         <tr>
+                             <td>data:
+            <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.data">
+                             </td>
+                         </tr>
+                     </tbody>
+                 </table>
+
+            </div>
+
+           <div ng-switch-when="iB">
+
+               <table class="table">
+                       <tbody>
+                       <tr >
+                           <td>uuid:  
+          <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.uuid">
+                           </td>
+                       </tr>
+                        <tr >
+                           <td>major: 
+          <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.major"> 
+                            </td>
+                       </tr>
+                        <tr >
+                           <td>minor: 
+          <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.minor">
+                            </td>
+                       </tr>
+                        <tr >
+                           <td>txPower:
+          <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower"> 
+                           </td>
+                       </tr>
+                   </tbody>
+               </table>
+
+          </div>
+
+              </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                       <!--  <select>
+
                           <option value="1">Generic</option>
                           <option value="1">iBeacon</option>
+
                         </select>
-                          Generic: 
-                            <h4> companyIdentifierCode:<br><input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.companyIdentifierCode"><br> </h4>
-                            <h4> data:<br><input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.data"><br> </h4>
-                          iBeacon: 
-                            <h4> uuid:<br><input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.uuid"><br> </h4>
-                            <h4> major:<br><input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.major"><br> </h4>
-                            <h4> minor:<br><input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.minor"><br> </h4>
-                            <h4> txPower:<br><input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower"><br> </h4>
+
+                          <h3>Generic:</h3> 
+
+                            <h4> companyIdentifierCode:
+                              <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.companyIdentifierCode"> 
+                            </h4>
+
+                            <h4> data:
+                              <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.data">
+                            </h4>
+
+                          <h3>iBeacon:</h3> 
+
+                            <h4> uuid:
+                              <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.uuid">
+                            </h4>
+
+                            <h4> major:
+                              <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.major"> 
+                            </h4>
+
+                            <h4> minor:
+                              <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.minor">
+                            </h4>
+
+                            <h4> txPower:
+                              <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower"> 
+                            </h4> -->
+
                       <label for="txPowerLevel">
-                      <h3> TX Power Level: <input type="number" name="txPowerLeval" id="txPowerLevel"
-                                    min="-128" max="128" step="1" value="-128" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower">
+
+                      <h3> TX Power Level: 
+                        <input type="number" name="txPowerLeval" id="txPowerLevel" min="-128" max="128" step="1" value="-128" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower">
+
                       </label>
-                      <h3> Slave Connection Interval Range:<br><input type="text" name="address"><br> </h3>
-                      <h3> Service Solicitation: <br> </h3>
-                          <input type="radio" name="age" value="adult"> 16 Bit UUIDs <br>
-                          <input type="radio" name="age" value="teen" checked> 128 Bit UUIDs <br>
+
+                      <h3> Slave Connection Interval Range:  
+                        <input type="text" name="address"> 
+                      </h3>
+
+                      <h3> Service Solicitation:</h3>
+
+                          <input type="radio" name="age" value="adult"> 16 Bit UUIDs 
+                          <input type="radio" name="age" value="teen" checked> 128 Bit UUIDs 
+
                       <h3> Service Data: <br> </h3>
-                          <h4> uuid:<br><input type="text" name="address"><br> </h4>
-                          <h4> data:<br><input type="text" name="address"><br> </h4>
+
+                          <h4> uuid:  
+                            <input type="text" name="address"> 
+                          </h4>
+                          <h4> data:  
+                            <input type="text" name="address">
+                          </h4>
+
               </form> 
+
           </div>
+
           </div>
+
         <!--________reelyActive________-->
        
         <div class="form" ng-show="reelyactive.show">
+
           <h1> reelyActive Packet Elements </h1>
           <p>Feature coming soon!</p>
+
         </div>
 
         <!--________JSON________-->
         
         <div class="json">
+
           <h1> As JSON </h1>
           <pre>{{packet}}</pre>
+
         </div>
 
       </div>
 
     </div>
+
     <footer id="footer">
       <a href="https://github.com/reelyactive/advlib"> advlib </a> &nbsp; | &nbsp;
       <a href="http://context.reelyactive.com"> &copy; reelyActive 2015 </a>
