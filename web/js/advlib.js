@@ -29037,10 +29037,40 @@ module.exports = angular.module('advapp', [])
 // ----- Packet controller -----
 
 .controller("PacketCtrl", function ($scope) {
-    $scope.bluetooth.presets = [{
+    $scope.bluetooth.presets = [
+      {
         name: "reelyActible",
         payload: "421655daba50e1fe0201050c097265656c79416374697665"
-    }];
+      },
+      {
+        name: "TrackR",
+        payload: "40239dd02fcbafe20409746b7203194002020106020a0403033e0f09ff00009dd02fcbafe2"
+      },
+      {
+        name: "Apple TV",
+        payload: "0015415df17b209c02011a0bff4c0009060202c0a8006a"
+      },
+      {
+        name: "Roximity",
+        payload: "42243cae3eb8ebe00201061aff4c0002158deefbb9f7384297804096668bb4428100012258c5"
+      },
+      {
+        name: "UriBeacon",
+        payload: "4220f60032be32c20201040303d8fe1216d8fe00f2027265656c7961637469766507"
+      },
+      {
+        name: "Tile",
+        payload: "400dc3dc80ee20e40201060303edfe"
+      },
+      {
+        name: "Fitbit",
+        payload: "4025b2a86b4f01d90201041106ba5689a6fabfa2bd01467d6e00fbabad09160a181204eb150000"
+      },
+      {
+        name: "reelyActive Bluetooth Smart reelceiver (RA-R436)",
+        payload: "061b9e5ed0f7b13402010611074449555520657669746341796c656572"
+      }
+    ];
     $scope.reelyactive.presets = [{
         name: "Tag",
         payload: "1234"

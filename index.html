@@ -25,11 +25,10 @@
       <!--________Payload________-->
       <div>
         <form>
-          <select ng-model="payload" ng-options="preset.payload as preset.name for preset in presets">
-            <option value="">-- Select Preset Payload --</option>
+          <select ng-model="payload" ng-change="process()" ng-options="preset.payload as preset.name for preset in presets">
+            <option value=""> -- Select Preset Payload --</option>
           </select>
           <input ng-model="payload" ng-keyup="process()" type="text" size="64" placeholder="Paste your payload here">
-          <button ng-click="process()"> Process </button>
         </form>
       </div>
       <!--________Bluetooth Smart________-->
@@ -38,11 +37,11 @@
         <div class="form1">
           <form>
             <div class="form2">
-              <h2> Header: <input type="text" name="header" ng-model="header"> </h2>
+              <h2> Header: <input type="text" name="header" ng-model="header" readonly> </h2>
             </div>
             <div class="form2">
               <h3> Type:
-                <select ng-model="bluetooth.packet.advHeader.type">
+                <select disabled ng-model="bluetooth.packet.advHeader.type">
                   <option value="ADV_IND">ADV_IND</option>
                   <option value="ADV_DIRECT_IND">ADV_DIRECT_IND</option>
                   <option value="ADV_NONCONNECT_IND">ADV_NONCONNECT_IND</option>
@@ -56,52 +55,52 @@
               <div class="form2">
                 <h3> rxAdd:
                 <span class = "radio">
-                  <input type="radio" value="public" ng-model="bluetooth.packet.advHeader.rxAdd"> public
-                  <input type="radio" value="random" ng-model="bluetooth.packet.advHeader.rxAdd"> random
+                  <input type="radio" value="public" onclick="this.checked = false;" ng-model="bluetooth.packet.advHeader.rxAdd"> public
+                  <input type="radio" value="random"  onclick="this.checked = false;"ng-model="bluetooth.packet.advHeader.rxAdd"> random
                 </span>
                 </h3>
             </div>
             <div class="form2">
               <h3> txAdd:
                 <span class = "radio">
-                  <input type="radio" value="public" ng-model="bluetooth.packet.advHeader.txAdd"> public
-                  <input type="radio" value="random" ng-model="bluetooth.packet.advHeader.txAdd"> random
+                  <input type="radio" value="public" onclick="this.checked = false;" ng-model="bluetooth.packet.advHeader.txAdd"> public
+                  <input type="radio" value="random" onclick="this.checked = false;" ng-model="bluetooth.packet.advHeader.txAdd"> random
                 </span>
                 </h3>
             </div>
             <div class="form2">
               <label for="length">
-                <h3> Length: <input ng-model="bluetooth.packet.advHeader.length" type="number" name="payloadlength" id="length" min="8" max="37" step="1" value="8">
+                <h3> Length: <input disabled ng-model="bluetooth.packet.advHeader.length" type="number" name="payloadlength" id="length" min="8" max="37" step="1" value="8">
                 </label>
               </div>
             </div>
             <div class="form1">
               <h2> Address:
-              <input type="text" name="address" ng-model="address.value">
+              <input type="text" name="address" ng-model="address.value" readonly>
               </h2>
               
             </div>
             <div class="form1">
               <h2> Data:
-              <input type="text" name="data">
+              <input type="text" name="data" readonly>
               </h2>
               <h3> UUID:
               <span class = "radio">
-                <input type="radio" name="uuid" value="nc16" checked> Non-Complete 16 Bit
-                <input type="radio" name="uuid" value="c16"> Complete 16 Bit
-                <input type="radio" name="uuid" value="nc128" checked> Non-Complete 128 Bit
-                <input type="radio" name="uuid" value="c128"> Complete 128 Bit
+                <input type="radio" name="uuid" value="nonComplete16BitUUIDs" ng-model="bluetooth.packet.advData"> Non-Complete 16 Bit
+                <input type="radio" name="uuid" value="complete16BitUUIDs" ng-model="bluetooth.packet.advData"> Complete 16 Bit
+                <input type="radio" name="uuid" value="nonComplete128BitUUIDs" ng-model="bluetooth.packet.advData"> Non-Complete 128 Bit
+                <input type="radio" name="uuid" value="complete128BitUUIDs" ng-model="bluetooth.packet.advHeadvDataader"> Complete 128 Bit
               </span>
               </h3>
-                <h3> Local Name:
-              <span class = "radio">
-                <input type="radio" name="age" value="adult"> shortened
-                <input type="radio" name="age" value="teen" checked>
-                complete
-              </span>
-              </h3>
+                <h3> Local Name:</h3>
+              <h4> complete:
+              <input type="text" value="completeLocalName" ng-model="bluetooth.packet.advData.completeLocalName" readonly>
+              </h4>
+              <h4> shortened:
+              <input type="text" value="shortenedLocalName" ng-model="bluetooth.packet.advData.shortenedLocalName" readonly>
+              </h4>
                 <h3> Flags:
-              <select ng-model="bluetooth.packet.advData.flags[1]">
+              <select disabled ng-model="bluetooth.packet.advData.flags[1]">
                 <option value="LE Limited Discoverable Mode">LE Limited Discoverable Mode</option>
                 <option value="LE General Discoverable Mode">LE General Discoverable Mode</option>
                 <option value="BR/EDR Not Supported">BR/EDR Not Supported</option>
@@ -162,24 +161,24 @@
                 </section>
                 <label for="txPowerLevel">
                   <h3> TX Power Level:
-                <input type="number" name="txPowerLeval" id="txPowerLevel" min="-128" max="128" step="1" value="-128" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower">
+                <input value="txPower" id="txPowerLevel" ng-model="bluetooth.packet.advData.txPower" readonly>
                 </h3>
                 </label>
                 <h3> Slave Connection Interval Range:
-              <input type="text" name="address">
+              <input type="text" name="address" readonly>
               </h3>
                 <h3> Service Solicitation:
               <span class = "radio">
-                <input type="radio" name="age" value="adult"> 16 Bit UUIDs
-                <input type="radio" name="age" value="teen" checked> 128 Bit UUIDs
+                <input type="radio" name="ss" value="16" onclick="this.checked = false;"> 16 Bit UUIDs
+                <input type="radio" name="ss" value="128" checked onclick="this.checked = false;"> 128 Bit UUIDs
               </span>
               </h3>
                 <h3> Service Data: <br> </h3>
                 <h4> uuid:
-              <input type="text" name="address">
+              <input type="text" name="address" ng-model="bluetooth.packet.advData.serviceData.uuid" readonly>
               </h4>
                 <h4> data:
-              <input type="text" name="address">
+              <input type="text" name="address" ng-model="bluetooth.packet.advData.serviceData.data" readonly>
               </h4>
           </form>
           </div>
