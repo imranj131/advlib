@@ -69,7 +69,7 @@ module.exports = angular.module('advapp', [])
 
 // ----- DropDown controller -----
 
-.controller('DropDown', function ($scope) {
+.controller('DropDownCtrl', function ($scope) {
         $scope.msd = [{
             abbreviation: 'Gen',
             name: 'Generic',

@@ -112,3 +112,7 @@ h2 {
     color: rgba(255,255,255,0.7);
   }
 
+  .form-control {
+    padding-right: 0px;
+
+  }

@@ -142,14 +142,11 @@
 
                        </select>
 
-                  <h3> Manufacturer Specific Data: </h3>
-
-                      <section ng-controller="DropDown as Dd"> 
-
-                        <select ng-model="showDd" class="form-control" ng-options="msd.abbreviation as msd.name for msd in msd">                                                                    
-                            <option value="">Choose One</option>
+                  <section ng-controller="DropDownCtrl as Dd"> 
+                  <h3> Manufacturer Specific Data: 
+                        <select ng-model="showDd" class="form-control" ng-options="msd.abbreviation as msd.name for msd in msd"> <option value="">Choose One</option>
                         </select>
-
+                        </h3>
                              <div ng-switch="showDd">
                              <div ng-switch-when="Gen">
                                  <table class="table">
