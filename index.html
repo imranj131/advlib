@@ -129,8 +129,7 @@
                          <input type="radio" name="age" value="teen" checked> 
                          complete 
 
-                  <h3> Flags: </h3>
-
+                  <h3> Flags: 
                        <select ng-model="bluetooth.packet.advData.flags[1]">
 
                           <option value="LE Limited Discoverable Mode">LE Limited Discoverable Mode</option>
@@ -142,7 +141,10 @@
 
                        </select>
 
+                  </h3>
+
                   <section ng-controller="DropDownCtrl as Dd"> 
+
                   <h3> Manufacturer Specific Data: 
                         <select ng-model="showDd" class="form-control" ng-options="msd.abbreviation as msd.name for msd in msd"> <option value="">Choose One</option>
                         </select>
@@ -197,51 +199,12 @@
 
                       </section>
 
-
-
-
-
-
-                                  <!--  <select>
-
-                          <option value="1">Generic</option>
-                          <option value="1">iBeacon</option>
-
-                        </select>
-
-                          <h3>Generic:</h3> 
-
-                            <h4> companyIdentifierCode:
-                              <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.companyIdentifierCode"> 
-                            </h4>
-
-                            <h4> data:
-                              <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.data">
-                            </h4>
-
-                          <h3>iBeacon:</h3> 
-
-                            <h4> uuid:
-                              <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.uuid">
-                            </h4>
-
-                            <h4> major:
-                              <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.major"> 
-                            </h4>
-
-                            <h4> minor:
-                              <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.minor">
-                            </h4>
-
-                            <h4> txPower:
-                              <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower"> 
-                            </h4> -->
-
                       <label for="txPowerLevel">
 
                       <h3> TX Power Level: 
                         <input type="number" name="txPowerLeval" id="txPowerLevel" min="-128" max="128" step="1" value="-128" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower">
-
+                      </h3>
+                      
                       </label>
 
                       <h3> Slave Connection Interval Range:  
