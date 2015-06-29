@@ -1,7 +1,7 @@
 var advlib = require('../../lib/index.js');
 var angular = require('angular');
 
-module.exports = angular.module('advapp', [])
+module.exports = angular.module('advapp', ['ui.bootstrap'])
 
 // ----- Interaction controller -----
 
@@ -98,14 +98,44 @@ module.exports = angular.module('advapp', [])
             $scope.bluetooth.packet = advlib.ble.process($scope.payload);
             $scope.packet = JSON.stringify($scope.bluetooth.packet, null, " ");
 
+
             // Defined for ng-keyup function process() calls
             $scope.header = $scope.payload.substr(0, 4);
-            $scope.address = advlib.ble.address.process($scope.payload);
+            $scope.payloadData = $scope.payload.substring(16, payload.length -16);
         } else if ($scope.reelyactive.show) {
             $scope.reelyactive.packet = advlib.reelyactive.process($scope.payload);
             $scope.packet = JSON.stringify($scope.reelyactive.packet, null, " ");
         }
     }
+
+    $scope.headerType = [
+    {
+      name: 'ADV_IND'
+    },
+    {
+      name: 'ADV_DIRECT_IND'
+    },
+    {
+      name: 'ADV_NONCONNECT_IND'
+    },
+    {
+      name: 'SCAN_REQ'
+    },
+    {
+      name: 'SCAN_RSP'
+    },
+    {
+      name: 'CONNECT_REQ'
+    },
+    {
+      name: 'ADV_DISCOVER_IND'
+    },
+    {
+      name: 'UNRECOGNISED'
+    }
+  ];
+
+
 
     window.MYSCOPE = $scope; // In order to access scope on console (to be removed when not testing)
 
@@ -141,29 +171,15 @@ module.exports = angular.module('advapp', [])
     this.getIsDefault = function () {
         return this.isDefault;
     };
+})
+
+.controller('AccordionDemoCtrl', function ($scope) {
+  $scope.oneAtATime = true;
+
+  $scope.status = {
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };  
 });
 
-//      TO DO LIST
-// -------------------
-// HEADER 
-// 1) Header ---> DONE
-//    See line 57
 
-// 2) Type ---> DONE 
-
-// 3) rxAdd and txAdd ---> DONE
-
-// 4) Length ---> DONE
-
-// ADDRESS
-// 1) Value ---> DONE
-//    See line 58
-
-// DATA
-// 1) UUID ---> not sure
-// 2) Local Name ---> not sure
-// 3) Flags ---> DONE
-// 4) MSD ---> DONE
-// 5) TXPowerLevel ---> not sure
-// 6) Service Solicitation ---> not sure
-// 7) Service Data ---> not sure
