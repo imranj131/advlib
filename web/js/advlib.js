@@ -29085,6 +29085,7 @@ module.exports = angular.module('advapp', ['ui.bootstrap'])
             // Defined for ng-keyup function process() calls
             $scope.header = $scope.payload.substr(0, 4);
             $scope.payloadData = $scope.payload.substring(16, payload.length -16);
+          
         } else if ($scope.reelyactive.show) {
             $scope.reelyactive.packet = advlib.reelyactive.process($scope.payload);
             $scope.packet = JSON.stringify($scope.reelyactive.packet, null, " ");
