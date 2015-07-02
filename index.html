@@ -22,21 +22,17 @@
       </li>
     </ul>
   </div> -->
- <tabset justified="true"  >
-
+  <tabset justified="true"  >
   <tab heading="reelyActive" select="selectReelyactive()" ng-class="reelyactive.tabclass">
-<!--________reelyActive________-->
-<div class="form" ng-show="reelyactive.show">
-  <h1> reelyActive Packet Elements </h1>
-  <p>Feature coming soon!</p>
-</div>
-</tab>
-
-<tab heading="Bluetooth Smart" select="selectBluetooth()" active="true" ng-class="bluetooth.tabclass">
-
+  <!--________reelyActive________-->
+  <div class="form" ng-show="reelyactive.show">
+    <h1> reelyActive Packet Elements </h1>
+    <p>Feature coming soon!</p>
+  </div>
+  </tab>
+  <tab heading="Bluetooth Smart" select="selectBluetooth()" active="true" ng-class="bluetooth.tabclass">
   <!--________Packet________-->
   <div ng-controller="PacketCtrl">
-
     <!--________Payload________-->
     <div>
       <form>
@@ -46,7 +42,6 @@
         <input ng-model="payload" ng-keyup="process()" type="text" size="77" placeholder="Or paste your payload here">
       </form>
     </div>
-
     <!--________Bluetooth Smart________-->
     <div class="form" ng-show="bluetooth.show">
       <h1> Bluetooth Smart Packet Elements </h1>
@@ -102,7 +97,7 @@
               <h4> UUID:</h4>
               <h5>Non-Complete 16 Bit: <input type="text" name="uuid" value="nonComplete16BitUUIDs" ng-model="bluetooth.packet.advData"> </h5>
               <h5>Complete 16 Bit: <input type="text" name="uuid" value="complete16BitUUIDs" ng-model="bluetooth.packet.advData"> </h5>
-             <h5>Non-Complete 128 Bit: <input type="text" name="uuid" value="nonComplete128BitUUIDs" ng-model="bluetooth.packet.advData"> </h5>
+              <h5>Non-Complete 128 Bit: <input type="text" name="uuid" value="nonComplete128BitUUIDs" ng-model="bluetooth.packet.advData"> </h5>
               <h5>Complete 128 Bit:<input type="text" name="uuid" value="complete128BitUUIDs" ng-model="bluetooth.packet.advHeadvData">
               
               </h5><h4> Local Name:</h4>
@@ -187,35 +182,19 @@
         </accordion-group>
       </accordion>
       
-
     </div>
-
     <!--________JSON________-->
     <div class="json">
       <h1> As JSON </h1>
     <pre>{{packet}}</pre>
   </div>
-
-</tab>
-
-
+  </tab>
   
   </tabset>
-
-
 </div>
-
-
-
-
-
-
-
 <footer id="footer">
   <a href="https://github.com/reelyactive/advlib"> advlib </a> &nbsp; | &nbsp;
   <a href="http://context.reelyactive.com"> &copy; reelyActive 2015 </a>
 </footer>
-
 </body>
-
 </html>
