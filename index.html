@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="web/style/main.css" />
     <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    
   </head>
   <body ng-app="advapp">
+  <header>reelyActive Bluetooth Advertising Library </header>
     <div ng-controller="InteractionCtrl">
       
       
@@ -23,19 +25,19 @@
     </ul>
   </div> -->
   <tabset justified="true"  >
-  <tab heading="reelyActive" select="selectReelyactive()" ng-class="reelyactive.tabclass">
+  <tab heading="reelyActive" select="selectReelyactive()" ng-class="reelyactive.tabclass" style= "background-color:#FF8008">
   <!--________reelyActive________-->
   <div class="form" ng-show="reelyactive.show">
     <h1> reelyActive Packet Elements </h1>
     <p>Feature coming soon!</p>
   </div>
   </tab>
-  <tab heading="Bluetooth Smart" select="selectBluetooth()" active="true" ng-class="bluetooth.tabclass">
+  <tab heading="Bluetooth Smart" select="selectBluetooth()" active="true" ng-class="bluetooth.tabclass" style= "background-color:#FF8008">
   <!--________Packet________-->
   <div ng-controller="PacketCtrl">
     <!--________Payload________-->
     <div>
-      <form>
+      <form class = "payloadInputDd" style= "background-color:#F5F5F5">
         <select ng-model="payload" ng-change="process()" ng-options="preset.payload as preset.name for preset in presets">
           <option value=""> -- Choose a preset payload --</option>
         </select>
@@ -49,20 +51,20 @@
       <div ng-controller="AccordionDemoCtrl">
         
         <accordion close-others="oneAtATime">
-          <accordion-group heading="Header: {{header}}" >
+          <accordion-group heading="Header: {{header}}" style= "background-color:#4997bd">
             <form>
-              <div class="form2">
+              <div >
                 <h4> Header:
                 <input type="text" name="header" ng-model="header" readonly>
                 </h4>
               </div>
-              <div class="form2">
+              <div >
                 <h4> Type: </h4>
                 <select ng-model="bluetooth.packet.advHeader.type" ng-options="header.name for header in headerType" >
                   <option value="">{{bluetooth.packet.advHeader.type}}</option>
                 </select>
               </div>
-              <div class="form2">
+              <div >
                 <h4> rxAdd:
                 <span class = "radio">
                   <input type="radio" value="public" onclick="this.checked = false;" ng-model="bluetooth.packet.advHeader.rxAdd"> public <br>
@@ -70,7 +72,7 @@
                 </span>
                 </h4>
               </div>
-              <div class="form2">
+              <div >
                 <h4> txAdd:
                 <span class = "radio">
                   <input type="radio" value="public" onclick="this.checked = false;" ng-model="bluetooth.packet.advHeader.txAdd"> public<br>
@@ -78,29 +80,30 @@
                 </span>
                 </h4>
               </div>
-              <div class="form2">
+              <div >
                 <label for="length">
                   <h4> Length: <input disabled ng-model="bluetooth.packet.advHeader.length" type="number" name="payloadlength" id="length" min="8" max="37" step="1" value="8">
                 </label>
               </div>
             </form>
           </accordion-group>
-          <accordion-group heading="Address: {{bluetooth.packet.value}}">
+          <accordion-group heading="Address: {{bluetooth.packet.value}}" style= "background-color:#4997bd">
             <div class="form1">
               <h4> Address:
               <input type="text" name="address" ng-model="bluetooth.packet.value" readonly>
               </h4>
             </div>
           </accordion-group>
-          <accordion-group heading="Data: {{payloadData}}">
+          <accordion-group heading="Data: {{payloadData}}" style= "background-color:#4997bd">
             <div class="form1">
               <h4> UUID:</h4>
-              <h5>Non-Complete 16 Bit: <input type="text" name="uuid" value="nonComplete16BitUUIDs" ng-model="bluetooth.packet.advData"> </h5>
-              <h5>Complete 16 Bit: <input type="text" name="uuid" value="complete16BitUUIDs" ng-model="bluetooth.packet.advData"> </h5>
-              <h5>Non-Complete 128 Bit: <input type="text" name="uuid" value="nonComplete128BitUUIDs" ng-model="bluetooth.packet.advData"> </h5>
-              <h5>Complete 128 Bit:<input type="text" name="uuid" value="complete128BitUUIDs" ng-model="bluetooth.packet.advHeadvData">
-              
-              </h5><h4> Local Name:</h4>
+              <h5 ng-show="bluetooth.packet.advData.nonComplete16BitUUIDs">Non-Complete 16 Bit: <input type="text" name="uuid" value="nonComplete16BitUUIDs" ng-model="bluetooth.packet.advData.nonComplete16BitUUIDs"> </h5>
+              <h5 ng-show="bluetooth.packet.advData.complete16BitUUIDs">Complete 16 Bit: <input type="text" name="uuid" value="complete16BitUUIDs" ng-model="bluetooth.packet.advData.complete16BitUUIDs"> </h5>
+              <h5 ng-show="bluetooth.packet.advData.nonComplete128BitUUIDs">Non-Complete 128 Bit: <input type="text" name="uuid" value="nonComplete128BitUUIDs" ng-model="bluetooth.packet.advData.nonComplete128BitUUIDs"> </h5>
+              <h5 ng-show="bluetooth.packet.advData.complete128BitUUIDs">Complete 128 Bit:<input type="text" name="uuid" value="complete128BitUUIDs" ng-model="bluetooth.packet.advData.complete128BitUUIDs">
+              </h5>
+
+              <h4> Local Name:</h4>
               <h5 ng-show="bluetooth.packet.advData.completeLocalName">
               complete:
               <input type="text" value="completeLocalName" ng-model="bluetooth.packet.advData.completeLocalName" readonly> <br>
@@ -157,14 +160,14 @@
                   <input value="txPower" id="txPowerLevel" ng-model="bluetooth.packet.advData.txPower" readonly>
                   </h4>
                 </label>
-                <h4> Slave Connection Interval Range:
+                <!-- <h4> Slave Connection Interval Range:
                 <input type="text" name="address" readonly>
-                </h4>
+                </h4> -->
                 <h4> Service Solicitation:</h4>
-                <h5>
+                <h5 ng-show="bluetooth.packet.advData.solicitation16BitUUIDs">
                 <span class = "radio">
-                  <input type="radio" name="ss" value="16" onclick="this.checked = false;"> 16 Bit UUIDs<br>
-                  <input type="radio" name="ss" value="128" checked onclick="this.checked = false;"> 128 Bit UUIDs
+                  <input type="radio" name="ss" value="16" ng-model="bluetooth.packet.advData.solicitation16BitUUIDs" onclick="this.checked = false;"> 16 Bit UUIDs<br>
+                  <input type="radio" name="ss" value="128" ng-model="bluetooth.packet.advData.solicitation128BitUUIDs" checked onclick="this.checked = false;"> 128 Bit UUIDs
                 </span>
                 </h5>
                 <h4> Service Data: <br> </h4>

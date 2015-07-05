@@ -29010,10 +29010,10 @@ module.exports = angular.module('advapp', ['ui.bootstrap'])
         bluetooth: true,
         reelyactive: false
     };
-    $scope.tabclass = {
-        bluetooth: 'selected-tab',
-        reelyactive: 'tab'
-    };
+    // $scope.tabclass = {
+    //     bluetooth: 'selected-tab',
+    //     reelyactive: 'tab'
+    // };
 
     $scope.selectBluetooth = function () {
         $scope.bluetooth.show = true;
@@ -29155,6 +29155,15 @@ module.exports = angular.module('advapp', ['ui.bootstrap'])
     this.getIsDefault = function () {
         return this.isDefault;
     };
+
+    // $scope.genericOrIbeacon = function() {
+    //     if ($scope.bluetooth.packet.advData.manufacturerSpecificData.iBeacon) {
+    //         $scope.bluetooth.packet = advlib.ble.process($scope.payload);
+            
+    //     } else if ($scope.bluetooth.packet.advData.manufacturerSpecificData) {
+    //         $scope.reelyactive.packet = advlib.reelyactive.process($scope.payload);
+    //     }
+    // }
 })
 
 .controller('AccordionDemoCtrl', function ($scope) {
