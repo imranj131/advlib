@@ -113,14 +113,24 @@
               <input type="text" value="shortenedLocalName" ng-model="bluetooth.packet.advData.shortenedLocalName" readonly>
               </h5>
               <h4> Flags:<br></h4>
-              <h5>
-              <input type="checkbox" value="LE Limited Discoverable Mode" ng-model="bluetooth.packet.advData.flags" readonly> LE Limited Discoverable Mode<br>
-              <input type="checkbox" value="LE General Discoverable Mode" ng-model="bluetooth.packet.advData.flags" readonly> LE General Discoverable Mode<br>
-              <input type="checkbox" value="BR/EDR Not Supported" ng-model="bluetooth.packet.advData.flags" readonly> BR/EDR Not Supported<br>
-              <input type="checkbox" value="Simultaneous LE and BR/EDR to Same Device Capable (Controller)" ng-model="bluetooth.packet.advData.flags" readonly> Simultaneous LE and BR/EDR to Same Device Capable (Controller)<br>
-              <input type="checkbox" value="Simultaneous LE and BR/EDR to Same Device Capable (Host)" ng-model="bluetooth.packet.advData.flags" readonly> Simultaneous LE and BR/EDR to Same Device Capable (Host)<br>
-              <input type="checkbox" value="Reserved" ng-model="bluetooth.packet.advData.flags" readonly> Reserved
-              </h5>
+              <!-- <span ng-show="checkedItems['LE Limited Discoverable Mode']"> -->
+              <input type="checkbox" ng-model="checkedItems['LE Limited Discoverable Mode']" readonly> LE Limited Discoverable Mode<br>
+              <!-- </span> -->
+              <!-- <span ng-show="checkedItems['LE General Discoverable Mode']"> -->
+              <input type="checkbox" ng-model="checkedItems['LE General Discoverable Mode']" readonly> LE General Discoverable Mode<br>
+             <!--  </span> -->
+              <!-- <span ng-show="checkedItems['BR/EDR Not Supported']">  -->
+              <input type="checkbox" ng-model="checkedItems['BR/EDR Not Supported']" readonly> BR/EDR Not Supported<br>
+              <!-- </span> -->
+              <!-- <span ng-show="checkedItems['Simultaneous LE and BR/EDR to Same Device Capable (Controller)']"> -->
+              <input type="checkbox" ng-model="checkedItems['Simultaneous LE and BR/EDR to Same Device Capable (Controller)']" readonly> Simultaneous LE and BR/EDR to Same Device Capable (Controller)<br>
+              <!-- </span> -->
+              <!-- <span ng-show="checkedItems['Simultaneous LE and BR/EDR to Same Device Capable (Host)']"> -->
+              <input type="checkbox" ng-model="checkedItems['Simultaneous LE and BR/EDR to Same Device Capable (Host)']" readonly> Simultaneous LE and BR/EDR to Same Device Capable (Host)<br>
+              <!-- </span> -->
+              <!-- <span ng-show="checkedItems['Reserved']"> -->
+              <input type="checkbox" ng-model="checkedItems['Reserved']" readonly> Reserved
+              <!-- </span> -->
               
               <section ng-controller="DropDownCtrl as Dd">
                 <h4> Manufacturer Specific Data:

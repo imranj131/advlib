@@ -29010,10 +29010,10 @@ module.exports = angular.module('advapp', ['ui.bootstrap'])
         bluetooth: true,
         reelyactive: false
     };
-    // $scope.tabclass = {
-    //     bluetooth: 'selected-tab',
-    //     reelyactive: 'tab'
-    // };
+    $scope.tabclass = {
+        bluetooth: 'selected-tab',
+        reelyactive: 'tab'
+    };
 
     $scope.selectBluetooth = function () {
         $scope.bluetooth.show = true;
@@ -29084,8 +29084,16 @@ module.exports = angular.module('advapp', ['ui.bootstrap'])
 
             // Defined for ng-keyup function process() calls
             $scope.header = $scope.payload.substr(0, 4);
-            $scope.payloadData = $scope.payload.substring(16, payload.length -16);
-          
+            $scope.payloadData = $scope.payload.substring(16, $scope.payload.length -16);
+            
+
+            // Defined for Flags' array and Form Checkbox binding            
+            var flags = $scope.bluetooth.packet.advData.flags
+            $scope.checkedItems = {};
+            flags.forEach( function(element) {
+                $scope.checkedItems[element] = true;
+            });
+
         } else if ($scope.reelyactive.show) {
             $scope.reelyactive.packet = advlib.reelyactive.process($scope.payload);
             $scope.packet = JSON.stringify($scope.reelyactive.packet, null, " ");
