@@ -24,8 +24,9 @@ h2 {
 }
 header {
 text-align: center;
-font-size: 20px;
-background-color: #4997bd;
+font-size: 33px;
+background-color: #0770a2;
+height: 50px;
 }
 .payloadInputDd {
 text-align: center;
