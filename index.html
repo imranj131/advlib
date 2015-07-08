@@ -66,9 +66,9 @@
                 <div >
                   <h4> txAdd:
                   <span class="btn-group">
-                    <label  ng-model="bluetooth.packet.advHeader.txAdd"  btn-radio="'public'"  class="btn btn-default
+                    <label  ng-model="bluetooth.packet.advHeader.txAdd"  btn-radio="'public'" class="btn btn-default
                     "/> public </label>
-                    <label  ng-model="bluetooth.packet.advHeader.txAdd"  btn-radio="'random'"  class="btn btn-default
+                    <label  ng-model="bluetooth.packet.advHeader.txAdd"  btn-radio="'random'" class="btn btn-default
                     "/> random </label>
                   </span>
                   </h4>
@@ -124,7 +124,7 @@
                 <input type="checkbox" ng-model="checkedItems['Reserved']" readonly> Reserved
                 <!-- </span> -->
                 
-                <section ng-controller="DropDownCtrl as Dd">
+                <!-- <section ng-controller="DropDownCtrl as Dd">
                   <h4> Manufacturer Specific Data:
                   <select ng-model="showDd" ng-options="msd.abbreviation as msd.name for msd in msd" class="form-control" style="width:50%">
                     <option value="">Choose One</option>
@@ -156,6 +156,35 @@
                       <br>
                       </h5>
                     </div>
+                  </section> -->
+                  <section >
+                    <h4> Manufacturer Specific Data:</h4>
+                    <h5 ng-show="bluetooth.packet.advData.manufacturerSpecificData"><b>Generic Data</b></h5>
+                    <div ng-show="bluetooth.packet.advData.manufacturerSpecificData">
+                      companyIdentifierCode:
+                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.companyIdentifierCode" class="form-control" style="width:50%">
+                      <br>
+                      data:
+                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.data" class="form-control" style="width:50%">
+                    </div>
+                    
+                    <h5 ng-show="bluetooth.packet.advData.manufacturerSpecificData.iBeacon"><b>iBeacon</b></h5>
+                    <div ng-show="bluetooth.packet.advData.manufacturerSpecificData.iBeacon">
+                      uuid:
+                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.uuid" class="form-control" style="width:50%">
+                      <br>
+                      major:
+                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.major" class="form-control" style="width:50%">
+                      <br>
+                      minor:
+                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.minor" class="form-control" style="width:50%">
+                      <br>
+                      txPower:
+                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower" class="form-control" style="width:50%">
+                      <br>
+                    </div>
+                    
+                    
                   </section>
                   <label for="txPowerLevel">
                     <h4> TX Power Level:
