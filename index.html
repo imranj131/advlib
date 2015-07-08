@@ -16,16 +16,13 @@
     
     <tabset justified="true"  >
     <tab heading="reelyActive" select="selectReelyactive()" ng-class="reelyactive.tabclass" style= "background-color:#ff6900">
-
-
     <!--________reelyActive________-->
     <div class="form" ng-show="reelyactive.show">
       <h1> reelyActive Packet Elements </h1>
       <p>Feature coming soon!</p>
     </div>
     </tab>
-
-
+    
     <tab heading="Bluetooth Smart" select="selectBluetooth()" active="true" ng-class="bluetooth.tabclass" style= "background-color:#ff6900">
     <!--________Packet________-->
     <div ng-controller="PacketCtrl">
@@ -194,17 +191,14 @@
         <h1> As JSON </h1>
       <pre>{{packet}}</pre>
     </div>
-
-
     </tab>
+    
+    
     </tabset>
-
   </div>
-
   <footer id="footer">
     <a href="https://github.com/reelyactive/advlib"> advlib </a> &nbsp; | &nbsp;
     <a href="http://context.reelyactive.com"> &copy; reelyActive 2015 </a>
   </footer>
-  
 </body>
 </html>
