@@ -162,35 +162,35 @@
                     <h5 ng-show="bluetooth.packet.advData.manufacturerSpecificData"><b>Generic Data</b></h5>
                     <div ng-show="bluetooth.packet.advData.manufacturerSpecificData">
                       companyIdentifierCode:
-                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.companyIdentifierCode" class="form-control" style="width:50%">
+                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.companyIdentifierCode" class="form-control" style="width:50%" readonly>
                       <br>
                       data:
-                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.data" class="form-control" style="width:50%">
+                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.data" class="form-control" style="width:50%" readonly>
                     </div>
                     
                     <h5 ng-show="bluetooth.packet.advData.manufacturerSpecificData.iBeacon"><b>iBeacon</b></h5>
                     <div ng-show="bluetooth.packet.advData.manufacturerSpecificData.iBeacon">
                       uuid:
-                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.uuid" class="form-control" style="width:50%">
+                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.uuid" class="form-control" style="width:50%" readonly>
                       <br>
                       major:
-                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.major" class="form-control" style="width:50%">
+                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.major" class="form-control" style="width:50%" readonly>
                       <br>
                       minor:
-                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.minor" class="form-control" style="width:50%">
+                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.minor" class="form-control" style="width:50%" readonly>
                       <br>
                       txPower:
-                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower" class="form-control" style="width:50%">
+                      <input type="text" name="address" ng-model="bluetooth.packet.advData.manufacturerSpecificData.iBeacon.txPower" class="form-control" style="width:50%" readonly>
                       <br>
                     </div>
                     
                     
                   </section>
-                  <label for="txPowerLevel">
+                  
                     <h4> TX Power Level:
-                    <input value="txPower" id="txPowerLevel" ng-model="bluetooth.packet.advData.txPower" class="form-control" style="width:50%" readonly>
+                    <input value="txPower" id="txPowerLevel" ng-model="bluetooth.packet.advData.txPower" class="form-control" style="width:50%" ng-show="bluetooth.packet.advData.txPower" readonly>
                     </h4>
-                  </label>
+                  
                   <!-- <h4> Slave Connection Interval Range:
                   <input type="text" name="address" readonly>
                   </h4> -->
