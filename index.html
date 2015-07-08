@@ -223,17 +223,29 @@
     </div>
   </div>
   </tab>
+
+
+
+
+
+
+
   <tab heading="reelyActive" select="selectReelyactive()">
   <!--________reelyActive________-->
   
   <div>
-    <form class = "payloadInputDd">
-      <select ng-model="payload" ng-change="process()" ng-options="preset.payload as preset.name for preset in presets">
-        <option value=""> -- Choose a preset payload --</option>
-      </select>
-      <input ng-model="payload" ng-keyup="process()" type="text" size="77" placeholder="Or paste your payload here">
-    </form>
-  </div>
+        <form class = "payloadInputDd">
+          
+          <select ng-model="payload" ng-change="process()" class="form-control" ng-options="preset.payload as preset.name for preset in presets" style="width:30%">
+            <option value=""> -- Choose a preset payload --</option>
+          </select>
+          <input ng-model="payload" ng-keyup="process()" type="text"  class="form-control" placeholder="Or paste your payload here" style="width:40%">
+          
+        </form>
+      </div>
+
+
+
   <div class="form" ng-show="reelyactive.show">
     <h1> reelyActive Packet Elements </h1>
     <div ng-controller="AccordionDemoCtrl">
