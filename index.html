@@ -15,13 +15,7 @@
   <div ng-controller="InteractionCtrl">
     
     <tabset justified="true"  >
-    <tab heading="reelyActive" select="selectReelyactive()" ng-class="reelyactive.tabclass" style= "background-color:#ff6900">
-    <!--________reelyActive________-->
-    <div class="form" ng-show="reelyactive.show">
-      <h1> reelyActive Packet Elements </h1>
-      <p>Feature coming soon!</p>
-    </div>
-    </tab>
+    
     
     <tab heading="Bluetooth Smart" select="selectBluetooth()" active="true" ng-class="bluetooth.tabclass" style= "background-color:#ff6900">
     <!--________Packet________-->
@@ -191,14 +185,47 @@
         <h1> As JSON </h1>
       <pre>{{packet}}</pre>
     </div>
-    </tab>
-    
-    
-    </tabset>
   </div>
-  <footer id="footer">
-    <a href="https://github.com/reelyactive/advlib"> advlib </a> &nbsp; | &nbsp;
-    <a href="http://context.reelyactive.com"> &copy; reelyActive 2015 </a>
-  </footer>
+  </tab>
+  <tab heading="reelyActive" select="selectReelyactive()" ng-class="reelyactive.tabclass" style= "background-color:#ff6900">
+  <!--________reelyActive________-->
+  
+  <div>
+    <form class = "payloadInputDd">
+      <select ng-model="payload" ng-change="process()" ng-options="preset.payload as preset.name for preset in presets">
+        <option value=""> -- Choose a preset payload --</option>
+      </select>
+      <input ng-model="payload" ng-keyup="process()" type="text" size="77" placeholder="Or paste your payload here">
+    </form>
+  </div>
+  <div class="form" ng-show="reelyactive.show">
+    <h1> reelyActive Packet Elements </h1>
+    <div ng-controller="AccordionDemoCtrl">
+      
+      <accordion close-others="false">
+        <accordion-group heading="Coming soon: {{header}}" >
+        </accordion-group>
+        <accordion-group heading="Coming soon too: {{header}}" >
+        </accordion-group>
+        <accordion-group heading="What I said ^: {{header}}" >
+        </accordion-group>
+      </accordion>
+    </div>
+    
+    
+  </div>
+  <!--________JSON________-->
+  <div class="json">
+    <h1> As JSON </h1>
+  <pre>{{packet}}</pre>
+</div>
+</tab>
+
+</tabset>
+</div>
+<footer id="footer">
+<a href="https://github.com/reelyactive/advlib"> advlib </a> &nbsp; | &nbsp;
+<a href="http://context.reelyactive.com"> &copy; reelyActive 2015 </a>
+</footer>
 </body>
 </html>
