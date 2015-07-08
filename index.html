@@ -5,7 +5,6 @@
     reelyActive: advlib
     </title>
     <script src="web/js/advlib.js"></script>
-    
     <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="web/style/main.css" />
@@ -18,7 +17,7 @@
     <tabset justified="true"  >
     
     
-    <tab heading="Bluetooth Smart" select="selectBluetooth()" active="true" ng-class="bluetooth.tabclass" style= "background-color:#ff6900">
+    <tab heading="Bluetooth Smart" select="selectBluetooth()" active="true" ng-class="bluetooth.tabclass">
     <!--________Packet________-->
     <div ng-controller="PacketCtrl">
       <!--________Payload________-->
@@ -187,9 +186,9 @@
                     
                   </section>
                   
-                    <h4> TX Power Level:
-                    <input value="txPower" id="txPowerLevel" ng-model="bluetooth.packet.advData.txPower" class="form-control" style="width:50%" ng-show="bluetooth.packet.advData.txPower" readonly>
-                    </h4>
+                  <h4> TX Power Level:
+                  <input value="txPower" id="txPowerLevel" ng-model="bluetooth.packet.advData.txPower" class="form-control" style="width:50%" ng-show="bluetooth.packet.advData.txPower" readonly>
+                  </h4>
                   
                   <!-- <h4> Slave Connection Interval Range:
                   <input type="text" name="address" readonly>
@@ -224,7 +223,7 @@
     </div>
   </div>
   </tab>
-  <tab heading="reelyActive" select="selectReelyactive()" ng-class="reelyactive.tabclass" style= "background-color:#ff6900">
+  <tab heading="reelyActive" select="selectReelyactive()" ng-class="reelyactive.tabclass" >
   <!--________reelyActive________-->
   
   <div>
