@@ -1,4 +1,4 @@
-a {
+a{
   text-decoration:none;
 }
 
@@ -25,11 +25,15 @@ h2 {
 header {
 text-align: center;
 font-size: 33px;
-background-color: #0770a2;
+background-color: none;
 height: 50px;
 }
 .payloadInputDd {
 text-align: center;
+}
+
+.form-control{
+  display: inline;
 }
 
 .form {
@@ -70,3 +74,4 @@ text-align: center;
 #footer a:hover {
   color:rgba(255,255,255,0.7)
 }
+
