@@ -5,6 +5,7 @@
     reelyActive: advlib
     </title>
     <script src="web/js/advlib.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:600,400' rel='stylesheet' type='text/css'>
     <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
       rel="stylesheet">
@@ -203,11 +204,9 @@
     <h1> reelyActive Packet Elements </h1>
     <div ng-controller="AccordionDemoCtrl">
       <accordion close-others="false">
-        <accordion-group heading="Coming soon: {{header}}">
+        <accordion-group heading="Data: {{header}}">
         </accordion-group>
-        <accordion-group heading="Coming soon too: {{header}}">
-        </accordion-group>
-        <accordion-group heading="What I said ^: {{header}}">
+        <accordion-group heading="Flags: {{header}}" >
         </accordion-group>
       </accordion>
     </div>
