@@ -85,20 +85,19 @@ module.exports = angular.module('advapp', ['ui.bootstrap'])
   }];
   $scope.reelyactive.presets = [{
     name: "Tag",
-    payload: "1234"
+    payload: "123456789"
   }];
 
   $scope.process = function(item, event) {
+    console.log('this is the payload'+$scope.payload)
     if ($scope.bluetooth.show) {
       $scope.bluetooth.packet = advlib.ble.process($scope.payload);
       $scope.packet = JSON.stringify($scope.bluetooth.packet, null, " ");
-
 
       // Defined for ng-keyup function process() calls
       $scope.header = $scope.payload.substr(0, 4);
       $scope.payloadData = $scope.payload.substring(16, $scope.payload.length -
         16);
-
 
       // Defined for Flags' array and Form Checkbox binding            
       var flags = $scope.bluetooth.packet.advData.flags
@@ -108,6 +107,7 @@ module.exports = angular.module('advapp', ['ui.bootstrap'])
       });
 
     } else if ($scope.reelyactive.show) {
+      console.log(advlib.reelyactive.process($scope.payload))
       $scope.reelyactive.packet = advlib.reelyactive.process($scope.payload);
       $scope.packet = JSON.stringify($scope.reelyactive.packet, null, " ");
     }

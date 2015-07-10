@@ -1,25 +1,30 @@
 <!DOCTYPE HTML>
-<html>
+<html ng-app="advapp">
   <head>
+
     <title>
     reelyActive: advlib
     </title>
+
     <script src="web/js/advlib.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:600,400' rel='stylesheet' type='text/css'>
     <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
-    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
-      rel="stylesheet">
-      <link rel="stylesheet" href="web/style/main.css" />
-    </head>
-    <body ng-app="advapp">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="web/style/main.css" />
+
+  </head>
+
+    <body ng-controller="InteractionCtrl">
+
     <header>reelyActive advLib </header>
-    <div ng-controller="InteractionCtrl">
+    
       <tabset justified="true">
+
       <tab heading="Bluetooth Smart" select="selectBluetooth()" active="true">
       <!--________Packet________-->
       <div ng-controller="PacketCtrl">
         <!--________Payload________-->
-        <div>
+      
           <form class="payloadInputDd">
             <select ng-model="payload" ng-change="process()" class="form-control" ng-options="preset.payload as preset.name for preset in presets"
               style="width:30%">
@@ -28,9 +33,10 @@
             <input ng-model="payload" ng-keyup="process()" type="text" class="form-control" placeholder="Or paste your payload here"
             style="width:40%">
           </form>
-        </div>
+      
         <!--________Bluetooth Smart________-->
         <div class="form" ng-show="bluetooth.show">
+
           <h1> Bluetooth Smart Packet Elements </h1>
           <div ng-controller="AccordionDemoCtrl">
             <accordion close-others="false">
@@ -100,31 +106,26 @@
                   <input type="text" value="shortenedLocalName" ng-model="bluetooth.packet.advData.shortenedLocalName" class="form-control" style="width:50%" readonly>
                   </h5>
                   <h4> Flags:<br></h4>
-                  <!-- <span ng-show="checkedItems['LE Limited Discoverable Mode']"> -->
+                  
                   <input type="checkbox" ng-model="checkedItems['LE Limited Discoverable Mode']" readonly> LE Limited Discoverable Mode
                   <br>
-                  <!-- </span> -->
-                  <!-- <span ng-show="checkedItems['LE General Discoverable Mode']"> -->
+                  
                   <input type="checkbox" ng-model="checkedItems['LE General Discoverable Mode']" readonly> LE General Discoverable Mode
                   <br>
-                  <!--  </span> -->
-                  <!-- <span ng-show="checkedItems['BR/EDR Not Supported']">  -->
+                  
                   <input type="checkbox" ng-model="checkedItems['BR/EDR Not Supported']" readonly> BR/EDR Not Supported
                   <br>
-                  <!-- </span> -->
-                  <!-- <span ng-show="checkedItems['Simultaneous LE and BR/EDR to Same Device Capable (Controller)']"> -->
+                  
                   <input type="checkbox" ng-model="checkedItems['Simultaneous LE and BR/EDR to Same Device Capable (Controller)']"
                   readonly> Simultaneous LE and BR/EDR to Same Device Capable (Controller)
                   <br>
-                  <!-- </span> -->
-                  <!-- <span ng-show="checkedItems['Simultaneous LE and BR/EDR to Same Device Capable (Host)']"> -->
+                  
                   <input type="checkbox" ng-model="checkedItems['Simultaneous LE and BR/EDR to Same Device Capable (Host)']"
                   readonly> Simultaneous LE and BR/EDR to Same Device Capable (Host)
                   <br>
-                  <!-- </span> -->
-                  <!-- <span ng-show="checkedItems['Reserved']"> -->
+                  
                   <input type="checkbox" ng-model="checkedItems['Reserved']" readonly> Reserved
-                  <!-- </span> -->
+                  
                   <section>
                     <h4> Manufacturer Specific Data:</h4>
                     <h5 ng-show="bluetooth.packet.advData.manufacturerSpecificData"><b>Generic Data</b></h5>
@@ -156,9 +157,6 @@
                   <h4> TX Power Level:
                   <input value="txPower" id="txPowerLevel" ng-model="bluetooth.packet.advData.txPower" class="form-control" style="width:50%" ng-show="bluetooth.packet.advData.txPower" readonly>
                   </h4>
-                  <!-- <h4> Slave Connection Interval Range:
-                  <input type="text" name="address" readonly>
-                  </h4> -->
                   <h4> Service Solicitation:</h4>
                   <h5 ng-show="bluetooth.packet.advData.solicitation16BitUUIDs">
                   <span class = "radio">
@@ -181,47 +179,58 @@
           </accordion-group>
         </accordion>
       </div>
+
       <!--________JSON________-->
       <div class="json">
         <h1> As JSON </h1>
       <pre>{{packet}}</pre>
-    </div>
+      </div>
+
   </div>
   </tab>
+
   <tab heading="reelyActive" select="selectReelyactive()">
+  
   <!--________reelyActive________-->
-  <div>
-    <form class="payloadInputDd">
-      <select ng-model="payload" ng-change="process()" class="form-control" ng-options="preset.payload as preset.name for preset in presets"
-        style="width:30%">
-        <option value=""> -- Choose a preset payload --</option>
-      </select>
-      <input ng-model="payload" ng-keyup="process()" type="text" class="form-control" placeholder="Or paste your payload here"
-      style="width:40%">
-    </form>
-  </div>
-  <div class="form" ng-show="reelyactive.show">
-    <h1> reelyActive Packet Elements </h1>
-    <div ng-controller="AccordionDemoCtrl">
-      <accordion close-others="false">
-        <accordion-group heading="Data: {{header}}">
-        </accordion-group>
-        <accordion-group heading="Flags: {{header}}" >
-        </accordion-group>
-      </accordion>
+  <div ng-controller="PacketCtrl">
+    
+      <form class="payloadInputDd">
+        <select ng-model="payload" ng-change="process()" class="form-control" ng-options="preset.payload as preset.name for preset in presets"
+          style="width:30%">
+          <option value=""> -- Choose a preset payload --</option>
+        </select>
+        <input ng-model="payload" ng-keyup="process()" type="text" class="form-control" placeholder="Or paste your payload here"
+        style="width:40%">
+      </form>
+    
+    <div class="form" ng-show="reelyactive.show">
+
+      <h1> reelyActive Packet Elements </h1>
+
+      <div ng-controller="AccordionDemoCtrl">
+        <accordion close-others="false">
+          <accordion-group heading="Data: {{header}}">
+          </accordion-group>
+          <accordion-group heading="Flags: {{header}}" >
+          </accordion-group>
+        </accordion>
+      </div>
     </div>
+
+    <!--________JSON________-->
+    <div class="json">
+      <h1> As JSON </h1>
+    <pre>{{packet}}</pre>
   </div>
-  <!--________JSON________-->
-  <div class="json">
-    <h1> As JSON </h1>
-  <pre>{{packet}}</pre>
-</div>
-</tab>
+
+  </div>
+  </tab>
 </tabset>
-</div>
+
 <footer id="footer">
 <a href="https://github.com/reelyactive/advlib"> advlib </a> &nbsp; | &nbsp;
 <a href="http://context.reelyactive.com"> &copy; reelyActive 2015 </a>
 </footer>
+
 </body>
 </html>
