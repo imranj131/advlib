@@ -84,12 +84,14 @@ module.exports = angular.module('advapp', ['ui.bootstrap'])
     payload: "061b9e5ed0f7b13402010611074449555520657669746341796c656572"
   }];
   $scope.reelyactive.presets = [{
-    name: "Tag",
-    payload: "123456789"
+    name: "Tag Identification Blink",
+    payload: "1234567c"
+  }, {
+    name: "Tag Sensor Blink",
+    payload: "123456742029"
   }];
 
   $scope.process = function(item, event) {
-    console.log('this is the payload'+$scope.payload)
     if ($scope.bluetooth.show) {
       $scope.bluetooth.packet = advlib.ble.process($scope.payload);
       $scope.packet = JSON.stringify($scope.bluetooth.packet, null, " ");

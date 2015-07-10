@@ -190,14 +190,14 @@
   </tab>
 
   <tab heading="reelyActive" select="selectReelyactive()">
-  
+
   <!--________reelyActive________-->
   <div ng-controller="PacketCtrl">
     
       <form class="payloadInputDd">
         <select ng-model="payload" ng-change="process()" class="form-control" ng-options="preset.payload as preset.name for preset in presets"
           style="width:30%">
-          <option value=""> -- Choose a preset payload --</option>
+          <option value="">-- Choose a preset payload --</option>
         </select>
         <input ng-model="payload" ng-keyup="process()" type="text" class="form-control" placeholder="Or paste your payload here"
         style="width:40%">
@@ -209,11 +209,29 @@
 
       <div ng-controller="AccordionDemoCtrl">
         <accordion close-others="false">
-          <accordion-group heading="Data: {{header}}">
+          <accordion-group heading="Identifier: ">
+            <h4> Value: 
+                <input type="text" name="header" ng-model="reelyactive.packet.type" class="form-control" style="width:20%" readonly>
+            </h4>
           </accordion-group>
-          <accordion-group heading="Flags: {{header}}" >
+          <accordion-group heading="Flags:" >
+          <label for="transmissionCount">
+            <h4> Transmission Count: 
+                <input disabled ng-model="reelyactive.packet.flags.transmissionCount" type="number" name="payloadlength" id="length" min="0" max="3" step="1" value="8" class="form-control" style="width:20%">
+            </h4>
+          </label>
           </accordion-group>
-        </accordion>
+           <accordion-group heading="Data: ">
+          <h4> Battery:
+            <input type="text" name="header" ng-model="reelyactive.packet.data.battery" class="form-control" style="width:20%" readonly>
+          </h4>
+          <h4> Temperature:
+            <input type="text" name="header" ng-model="reelyactive.packet.data.temperature" class="form-control" style="width:20%" readonly>
+          </h4>
+          </accordion-group>
+          </accordion>
+         
+          
       </div>
     </div>
 

@@ -781,7 +781,7 @@ function process(payload) {
   };
 }
 
-module.exports = process;
+module.exports.process = process;
 },{}],19:[function(require,module,exports){
 /**
  * Convert a raw radio sensor data payload.
@@ -794,7 +794,7 @@ function process(payload) {
   return { transmissionCount: transmissionCount };
 }
 
-module.exports = process;
+module.exports.process = process;
 },{}],20:[function(require,module,exports){
 /**
  * Process a raw reelyActive radio payload into semantically meaningful
@@ -809,9 +809,9 @@ var flags = require('./flags/index.js');
 function process(payload) {
   var ra28 = new identifier(identifier.RA28, payload.substr(0, 7));
   var eui64 = ra28.toType(identifier.EUI64);
-  eui64.flags = flags(payload.substr(7, 1));
+  eui64.flags = flags.process(payload.substr(7, 1));
   if (payload.length === 12) {
-    eui64.data = data(payload.substr(8, 4));
+    eui64.data = data.process(payload.substr(8, 4));
   }
   return eui64;
 }
@@ -29203,12 +29203,14 @@ module.exports = angular.module('advapp', ['ui.bootstrap'])
     payload: "061b9e5ed0f7b13402010611074449555520657669746341796c656572"
   }];
   $scope.reelyactive.presets = [{
-    name: "Tag",
-    payload: "123456789"
+    name: "Tag Identification Blink",
+    payload: "1234567c"
+  }, {
+    name: "Tag Sensor Blink",
+    payload: "123456742029"
   }];
 
   $scope.process = function(item, event) {
-    console.log('this is the payload'+$scope.payload)
     if ($scope.bluetooth.show) {
       $scope.bluetooth.packet = advlib.ble.process($scope.payload);
       $scope.packet = JSON.stringify($scope.bluetooth.packet, null, " ");
