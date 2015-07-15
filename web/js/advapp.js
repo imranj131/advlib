@@ -1,4 +1,4 @@
-var advlib = require('../../lib/index.js');
+var advlib = require('advlib');
 var angular = require('angular');
 
 module.exports = angular.module('advapp', ['ui.bootstrap'])

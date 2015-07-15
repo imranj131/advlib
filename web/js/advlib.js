@@ -675,12 +675,15 @@ module.exports.address = address;
  * Copyright reelyActive 2015
  * We believe in an open Internet of Things
  */
+
+
 var ble = require('./ble');
-var reelyactive = require('./reelyactive')
+var reelyactive = require('./reelyactive');
 
 
 module.exports.ble = ble;
 module.exports.reelyactive = reelyactive;
+
 },{"./ble":15,"./reelyactive":20}],17:[function(require,module,exports){
 /**
  * Copyright reelyActive 2014
@@ -29117,7 +29120,7 @@ require('./angular');
 module.exports = angular;
 
 },{"./angular":21}],23:[function(require,module,exports){
-var advlib = require('../../lib/index.js');
+var advlib = require('advlib');
 var angular = require('angular');
 
 module.exports = angular.module('advapp', ['ui.bootstrap'])
@@ -29266,4 +29269,4 @@ module.exports = angular.module('advapp', ['ui.bootstrap'])
     isFirstDisabled: false
   };
 });
-},{"../../lib/index.js":16,"angular":22}]},{},[23]);
+},{"advlib":16,"angular":22}]},{},[23]);

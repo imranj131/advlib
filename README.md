@@ -27,7 +27,7 @@ or
 
 Feel free to require NodeJS modules you need to run your app, or any npm modules you need in order to write your AngularJS code for the browser in web/js/advapp.js. 
 
-    var advlib = require('../../lib/index.js');
+    var advlib = require('advlib');
     var angular = require('angular');
 
 If at this point you are confused that you are using NodeJS's module loading system for your browser's JavaScript code, do not worry as Browserify bundles it all up into a single neat and tidy JavaScript file which can be understood by the browser.
@@ -44,7 +44,7 @@ Finally, drop a single script tag into your index.html file and you are done!
 <script src="js/advlib.js"></script>
 ```
 
-Note: Browserify is called on the source code in the [master branch.](https://github.com/imranj131/advlib/tree/master)
+
 
 Bluetooth Smart (BLE) Advertising Packet Library
 ------------------------------------------------

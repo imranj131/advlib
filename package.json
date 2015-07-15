@@ -18,7 +18,8 @@
     "url": "https://github.com/imranj131/advlib.git"
   },
   "dependencies": {
-    "angular": "^1.4.1"
+    "angular": "^1.4.1",
+    "advlib": "^0.0.2"
   },
   "devDependencies": {
     "mocha": "^2.2.5"
