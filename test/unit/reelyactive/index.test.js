@@ -10,16 +10,16 @@ var assert = require('assert');
 var INPUT_DATA = '123456742029' ;
 
 // Expected outputs for the scenario
-var EXPECTED_DATA =  {
- type: 'EUI-64',
- value: '001bc50941234567',
+var EXPECTED_DATA = {
+  type: 'EUI-64',
+  value: '001bc50941234567',
   flags: {
-  transmissionCount: 1
- },
- data: {
-  battery: '3.01V',
-  temperature: '24.0C'
- }
+    transmissionCount: 1
+  },
+  data: {
+    battery: '3.01V',
+    temperature: '24.0C'
+  }
 }
 
 describe('reelyactive', function() {
